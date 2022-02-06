@@ -40,15 +40,6 @@ namespace CGALDotNetGeometry.Shapes
             Max = new POINT3(max);
         }
 
-        /// <summary>
-        /// Construct a new box.
-        /// </summary>
-        /// <param name="minX">The boxes min x value.</param>
-        /// <param name="minY">The boxes min y value.</param>
-        /// <param name="minZ">The boxes min z value.</param>
-        /// <param name="maxX">The boxes max x value.</param>
-        /// <param name="maxY">The boxes max y value.</param>
-        /// <param name="maxZ">The boxes max z value.</param>
         //public Box3f(REAL minX, REAL minY, REAL minZ, REAL maxX, REAL maxY, REAL maxZ)
         //{
         //    Min = new POINT3(minX, minY, minZ);

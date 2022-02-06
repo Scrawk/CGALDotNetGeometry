@@ -129,7 +129,6 @@ namespace CGALDotNetGeometry.Shapes
         /// <summary>
         /// Normalize the lines direction.
         /// </summary>
-        /// <param name="digits">number of digits to round to.</param>
         public void Normalize()
         {
             Direction.Normalize();

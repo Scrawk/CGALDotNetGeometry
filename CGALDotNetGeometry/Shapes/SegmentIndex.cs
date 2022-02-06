@@ -21,7 +21,7 @@ namespace CGALDotNetGeometry.Shapes
 
         /// <summary>
         /// The segments seconds point index.
-        /// </summary
+        /// </summary>
         public int B;
 
         /// <summary>

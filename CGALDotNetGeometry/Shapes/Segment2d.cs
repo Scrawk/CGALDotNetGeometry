@@ -45,7 +45,7 @@ namespace CGALDotNetGeometry.Shapes
         /// <param name="ax">The segments first points x value.</param>
         /// <param name="ay">The segments first points y value.</param>
         /// <param name="bx">The segments second points x value.</param>
-        /// <param name="by">The segments second points y value.param>
+        /// <param name="by">The segments second points y value.</param>
         public Segment2d(REAL ax, REAL ay, REAL bx, REAL by)
         {
             A = new POINT2(ax, ay);
@@ -197,7 +197,7 @@ namespace CGALDotNetGeometry.Shapes
         /// <summary>
         /// Is the segment equal to the other segment.
         /// </summary>
-        /// <param name="obj">The other segment.</param>
+        /// <param name="seg">The other segment.</param>
         /// <returns>Is the segment equal to the other segment.</returns>
         public bool Equals(Segment2d seg)
         {

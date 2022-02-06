@@ -65,7 +65,7 @@ namespace CGALDotNetGeometry.Shapes
         /// <summary>
         /// Is the ray equal to the other ray.
         /// </summary>
-        /// <param name="obj">The other ray.</param>
+        /// <param name="ray">The other ray.</param>
         /// <returns>Is the ray equal to the other ray.</returns>
         public bool Equals(Ray2f ray)
         {

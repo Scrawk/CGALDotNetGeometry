@@ -179,7 +179,7 @@ namespace CGALDotNetGeometry.Shapes
         /// <summary>
         /// Is the line equal to the other line.
         /// </summary>
-        /// <param name="obj">The other line.</param>
+        /// <param name="line">The other line.</param>
         /// <returns>Is the line equal to the other line.</returns>
         public bool Equals(Line2d line)
         {

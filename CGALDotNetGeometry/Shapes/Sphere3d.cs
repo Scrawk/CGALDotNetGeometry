@@ -119,7 +119,7 @@ namespace CGALDotNetGeometry.Shapes
         /// <summary>
         /// Is this sphere equal to the other sphere.
         /// </summary>
-        /// <param name="obj">The other sphere.</param>
+        /// <param name="sphere">The other sphere.</param>
         /// <returns>Is this sphere equal to the other sphere.</returns>
         public bool Equals(Sphere3d sphere)
         {

@@ -8799,7 +8799,7 @@
             <summary>
             Is the line equal to the other line.
             </summary>
-            <param name="obj">The other line.</param>
+            <param name="line">The other line.</param>
             <returns>Is the line equal to the other line.</returns>
         </member>
         <member name="M:CGALDotNetGeometry.Shapes.Line2d.GetHashCode">
@@ -8952,7 +8952,7 @@
             <summary>
             Is the line equal to the other line.
             </summary>
-            <param name="obj">The other line.</param>
+            <param name="line">The other line.</param>
             <returns>Is the line equal to the other line.</returns>
         </member>
         <member name="M:CGALDotNetGeometry.Shapes.Line2f.GetHashCode">
@@ -9285,7 +9285,7 @@
             <summary>
             Is the ray equal to the other ray.
             </summary>
-            <param name="obj">The other ray.</param>
+            <param name="ray">The other ray.</param>
             <returns>Is the ray equal to the other ray.</returns>
         </member>
         <member name="M:CGALDotNetGeometry.Shapes.Ray2d.GetHashCode">
@@ -9388,7 +9388,7 @@
             <summary>
             Is the ray equal to the other ray.
             </summary>
-            <param name="obj">The other ray.</param>
+            <param name="ray">The other ray.</param>
             <returns>Is the ray equal to the other ray.</returns>
         </member>
         <member name="M:CGALDotNetGeometry.Shapes.Ray2f.GetHashCode">
@@ -9538,7 +9538,6 @@
             <summary>
             Normalize the lines direction.
             </summary>
-            <param name="digits">number of digits to round to.</param>
         </member>
         <member name="M:CGALDotNetGeometry.Shapes.Ray3d.Round(System.Int32)">
             <summary>
@@ -9632,7 +9631,6 @@
             <summary>
             Normalize the lines direction.
             </summary>
-            <param name="digits">number of digits to round to.</param>
         </member>
         <member name="M:CGALDotNetGeometry.Shapes.Ray3f.Round(System.Int32)">
             <summary>
@@ -9662,7 +9660,15 @@
             <param name="a">The segments first point.</param>
             <param name="b">The segments second point.</param>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:CGALDotNetGeometry.Shapes.Segment2d.#ctor(System.Double,System.Double,System.Double,System.Double)" -->
+        <member name="M:CGALDotNetGeometry.Shapes.Segment2d.#ctor(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Construct a new segment.
+            </summary>
+            <param name="ax">The segments first points x value.</param>
+            <param name="ay">The segments first points y value.</param>
+            <param name="bx">The segments second points x value.</param>
+            <param name="by">The segments second points y value.</param>
+        </member>
         <member name="P:CGALDotNetGeometry.Shapes.Segment2d.Center">
             <summary>
             The segments center.
@@ -9729,7 +9735,7 @@
             <summary>
             Is the segment equal to the other segment.
             </summary>
-            <param name="obj">The other segment.</param>
+            <param name="seg">The other segment.</param>
             <returns>Is the segment equal to the other segment.</returns>
         </member>
         <member name="M:CGALDotNetGeometry.Shapes.Segment2d.GetHashCode">
@@ -9858,7 +9864,15 @@
             <param name="a">The segments first point.</param>
             <param name="b">The segments second point.</param>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:CGALDotNetGeometry.Shapes.Segment2f.#ctor(System.Single,System.Single,System.Single,System.Single)" -->
+        <member name="M:CGALDotNetGeometry.Shapes.Segment2f.#ctor(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Construct a new segment.
+            </summary>
+            <param name="ax">The segments first points x value.</param>
+            <param name="ay">The segments first points y value.</param>
+            <param name="bx">The segments second points x value.</param>
+            <param name="by">The segments second points y value.</param>
+        </member>
         <member name="P:CGALDotNetGeometry.Shapes.Segment2f.Center">
             <summary>
             The segments center.
@@ -9925,7 +9939,7 @@
             <summary>
             Is the segment equal to the other segment.
             </summary>
-            <param name="obj">The other segment.</param>
+            <param name="seg">The other segment.</param>
             <returns>Is the segment equal to the other segment.</returns>
         </member>
         <member name="M:CGALDotNetGeometry.Shapes.Segment2f.GetHashCode">
@@ -10219,7 +10233,11 @@
             The segments first point index.
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "F:CGALDotNetGeometry.Shapes.SegmentIndex.B" -->
+        <member name="F:CGALDotNetGeometry.Shapes.SegmentIndex.B">
+            <summary>
+            The segments seconds point index.
+            </summary>
+        </member>
         <member name="M:CGALDotNetGeometry.Shapes.SegmentIndex.#ctor(System.Int32,System.Int32)">
             <summary>
             Consturct a new segment.
@@ -10321,7 +10339,7 @@
             <summary>
             Is this sphere equal to the other sphere.
             </summary>
-            <param name="obj">The other sphere.</param>
+            <param name="sphere">The other sphere.</param>
             <returns>Is this sphere equal to the other sphere.</returns>
         </member>
         <member name="M:CGALDotNetGeometry.Shapes.Sphere3d.GetHashCode">
@@ -10470,7 +10488,7 @@
             <summary>
             Is this sphere equal to the other sphere.
             </summary>
-            <param name="obj">The other sphere.</param>
+            <param name="sphere">The other sphere.</param>
             <returns>Is this sphere equal to the other sphere.</returns>
         </member>
         <member name="M:CGALDotNetGeometry.Shapes.Sphere3f.GetHashCode">
