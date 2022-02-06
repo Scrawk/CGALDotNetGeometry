@@ -237,10 +237,10 @@ namespace CGALDotNetGeometry.Colors
         {
             unchecked
             {
-                int hash = (int)2166136261;
-                hash = (hash * 16777619) ^ h.GetHashCode();
-                hash = (hash * 16777619) ^ s.GetHashCode();
-                hash = (hash * 16777619) ^ v.GetHashCode();
+                int hash = (int)MathUtil.HASH_PRIME_1;
+                hash = (hash * MathUtil.HASH_PRIME_2) ^ h.GetHashCode();
+                hash = (hash * MathUtil.HASH_PRIME_2) ^ s.GetHashCode();
+                hash = (hash * MathUtil.HASH_PRIME_2) ^ v.GetHashCode();
                 return hash;
             }
         }

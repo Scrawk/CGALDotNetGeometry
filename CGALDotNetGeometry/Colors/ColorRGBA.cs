@@ -341,11 +341,11 @@ namespace CGALDotNetGeometry.Colors
         {
             unchecked
             {
-                int hash = (int)2166136261;
-                hash = (hash * 16777619) ^ r.GetHashCode();
-                hash = (hash * 16777619) ^ g.GetHashCode();
-                hash = (hash * 16777619) ^ b.GetHashCode();
-                hash = (hash * 16777619) ^ a.GetHashCode();
+                int hash = (int)MathUtil.HASH_PRIME_1;
+                hash = (hash * MathUtil.HASH_PRIME_2) ^ r.GetHashCode();
+                hash = (hash * MathUtil.HASH_PRIME_2) ^ g.GetHashCode();
+                hash = (hash * MathUtil.HASH_PRIME_2) ^ b.GetHashCode();
+                hash = (hash * MathUtil.HASH_PRIME_2) ^ a.GetHashCode();
                 return hash;
             }
         }
