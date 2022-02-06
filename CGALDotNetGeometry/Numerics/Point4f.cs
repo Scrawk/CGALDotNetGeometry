@@ -148,6 +148,37 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
+        /// Are any of the points components nan.
+        /// </summary>
+        public bool IsNAN
+        {
+            get
+            {
+                if (REAL.IsNaN(x)) return true;
+                if (REAL.IsNaN(y)) return true;
+                if (REAL.IsNaN(z)) return true;
+                if (REAL.IsNaN(w)) return true;
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Make a point with no nan conponents.
+        /// </summary>
+        public Point4f NoNAN
+        {
+            get
+            {
+                var p = new Point4f(x, y, z, w);
+                if (REAL.IsNaN(p.x)) p.x = 0;
+                if (REAL.IsNaN(p.y)) p.y = 0;
+                if (REAL.IsNaN(p.z)) p.z = 0;
+                if (REAL.IsNaN(p.w)) p.w = 0;
+                return p;
+            }
+        }
+
+        /// <summary>
         /// Point as vector.
         /// </summary>
         public Vector3f Vector3f => new Vector3f(x, y, z);

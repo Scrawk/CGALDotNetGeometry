@@ -2453,6 +2453,16 @@
             Make a point with no non finite conponents.
             </summary>
         </member>
+        <member name="P:CGALDotNetGeometry.Numerics.Point2d.IsNAN">
+            <summary>
+            Are any of the points components nan.
+            </summary>
+        </member>
+        <member name="P:CGALDotNetGeometry.Numerics.Point2d.NoNAN">
+            <summary>
+            Make a point with no nan conponents.
+            </summary>
+        </member>
         <member name="P:CGALDotNetGeometry.Numerics.Point2d.Vector2d">
             <summary>
             Point as a vector.
@@ -2757,6 +2767,16 @@
         <member name="P:CGALDotNetGeometry.Numerics.Point2f.Finite">
             <summary>
             Make a point with no non finite conponents.
+            </summary>
+        </member>
+        <member name="P:CGALDotNetGeometry.Numerics.Point2f.IsNAN">
+            <summary>
+            Are any of the points components nan.
+            </summary>
+        </member>
+        <member name="P:CGALDotNetGeometry.Numerics.Point2f.NoNAN">
+            <summary>
+            Make a point with no nan conponents.
             </summary>
         </member>
         <member name="P:CGALDotNetGeometry.Numerics.Point2f.Vector2f">
@@ -3323,6 +3343,16 @@
             Make a point with no non finite conponents.
             </summary>
         </member>
+        <member name="P:CGALDotNetGeometry.Numerics.Point3d.IsNAN">
+            <summary>
+            Are any of the points components nan.
+            </summary>
+        </member>
+        <member name="P:CGALDotNetGeometry.Numerics.Point3d.NoNAN">
+            <summary>
+            Make a point with no nan conponents.
+            </summary>
+        </member>
         <member name="P:CGALDotNetGeometry.Numerics.Point3d.Vector3d">
             <summary>
             Point as vector.
@@ -3637,6 +3667,16 @@
         <member name="P:CGALDotNetGeometry.Numerics.Point3f.Finite">
             <summary>
             Make a point with no non finite conponents.
+            </summary>
+        </member>
+        <member name="P:CGALDotNetGeometry.Numerics.Point3f.IsNAN">
+            <summary>
+            Are any of the points components nan.
+            </summary>
+        </member>
+        <member name="P:CGALDotNetGeometry.Numerics.Point3f.NoNAN">
+            <summary>
+            Make a point with no nan conponents.
             </summary>
         </member>
         <member name="P:CGALDotNetGeometry.Numerics.Point3f.Vector3f">
@@ -4193,6 +4233,16 @@
             Make a point with no non finite conponents.
             </summary>
         </member>
+        <member name="P:CGALDotNetGeometry.Numerics.Point4d.IsNAN">
+            <summary>
+            Are any of the points components nan.
+            </summary>
+        </member>
+        <member name="P:CGALDotNetGeometry.Numerics.Point4d.NoNAN">
+            <summary>
+            Make a point with no nan conponents.
+            </summary>
+        </member>
         <member name="P:CGALDotNetGeometry.Numerics.Point4d.Vector3d">
             <summary>
             Point as vector.
@@ -4477,6 +4527,16 @@
         <member name="P:CGALDotNetGeometry.Numerics.Point4f.Finite">
             <summary>
             Make a point with no non finite conponents.
+            </summary>
+        </member>
+        <member name="P:CGALDotNetGeometry.Numerics.Point4f.IsNAN">
+            <summary>
+            Are any of the points components nan.
+            </summary>
+        </member>
+        <member name="P:CGALDotNetGeometry.Numerics.Point4f.NoNAN">
+            <summary>
+            Make a point with no nan conponents.
             </summary>
         </member>
         <member name="P:CGALDotNetGeometry.Numerics.Point4f.Vector3f">
@@ -5449,6 +5509,16 @@
             Make a vector with no non finite conponents.
             </summary>
         </member>
+        <member name="P:CGALDotNetGeometry.Numerics.Vector2d.IsNAN">
+            <summary>
+            Are any of the vectors components nan.
+            </summary>
+        </member>
+        <member name="P:CGALDotNetGeometry.Numerics.Vector2d.NoNAN">
+            <summary>
+            Make a vector with no nan conponents.
+            </summary>
+        </member>
         <member name="P:CGALDotNetGeometry.Numerics.Vector2d.Point2d">
             <summary>
             Convert the vector to a point.
@@ -5789,6 +5859,16 @@
         <member name="P:CGALDotNetGeometry.Numerics.Vector2f.Finite">
             <summary>
             Make a vector with no non finite conponents.
+            </summary>
+        </member>
+        <member name="P:CGALDotNetGeometry.Numerics.Vector2f.IsNAN">
+            <summary>
+            Are any of the vectors components nan.
+            </summary>
+        </member>
+        <member name="P:CGALDotNetGeometry.Numerics.Vector2f.NoNAN">
+            <summary>
+            Make a vector with no nan conponents.
             </summary>
         </member>
         <member name="P:CGALDotNetGeometry.Numerics.Vector2f.Point2f">
@@ -6146,6 +6226,16 @@
         <member name="P:CGALDotNetGeometry.Numerics.Vector3d.Finite">
             <summary>
             Make a vector with no non finite conponents.
+            </summary>
+        </member>
+        <member name="P:CGALDotNetGeometry.Numerics.Vector3d.IsNAN">
+            <summary>
+            Are any of the vectors components nan.
+            </summary>
+        </member>
+        <member name="P:CGALDotNetGeometry.Numerics.Vector3d.NoNAN">
+            <summary>
+            Make a vector with no nan conponents.
             </summary>
         </member>
         <member name="P:CGALDotNetGeometry.Numerics.Vector3d.Point3d">
@@ -6512,6 +6602,16 @@
             Make a vector with no non finite conponents.
             </summary>
         </member>
+        <member name="P:CGALDotNetGeometry.Numerics.Vector3f.IsNAN">
+            <summary>
+            Are any of the vectors components nan.
+            </summary>
+        </member>
+        <member name="P:CGALDotNetGeometry.Numerics.Vector3f.NoNAN">
+            <summary>
+            Make a vector with no nan conponents.
+            </summary>
+        </member>
         <member name="P:CGALDotNetGeometry.Numerics.Vector3f.Point3f">
             <summary>
             Convert the vector to a point.
@@ -6871,6 +6971,16 @@
             Make a vector with no non finite conponents.
             </summary>
         </member>
+        <member name="P:CGALDotNetGeometry.Numerics.Vector4d.IsNAN">
+            <summary>
+            Are any of the vectors components nan.
+            </summary>
+        </member>
+        <member name="P:CGALDotNetGeometry.Numerics.Vector4d.NoNAN">
+            <summary>
+            Make a vector with no nan conponents.
+            </summary>
+        </member>
         <member name="P:CGALDotNetGeometry.Numerics.Vector4d.Point4d">
             <summary>
             Convert the vector to a point.
@@ -7176,6 +7286,16 @@
         <member name="P:CGALDotNetGeometry.Numerics.Vector4f.Finite">
             <summary>
             Make a vector with no non finite conponents.
+            </summary>
+        </member>
+        <member name="P:CGALDotNetGeometry.Numerics.Vector4f.IsNAN">
+            <summary>
+            Are any of the vectors components nan.
+            </summary>
+        </member>
+        <member name="P:CGALDotNetGeometry.Numerics.Vector4f.NoNAN">
+            <summary>
+            Make a vector with no nan conponents.
             </summary>
         </member>
         <member name="P:CGALDotNetGeometry.Numerics.Vector4f.Point4f">

@@ -174,6 +174,35 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
+        /// Are any of the vectors components nan.
+        /// </summary>
+        public bool IsNAN
+        {
+            get
+            {
+                if (REAL.IsNaN(x)) return true;
+                if (REAL.IsNaN(y)) return true;
+                if (REAL.IsNaN(z)) return true;
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Make a vector with no nan conponents.
+        /// </summary>
+        public Vector3d NoNAN
+        {
+            get
+            {
+                var v = new Vector3d(x, y, z);
+                if (REAL.IsNaN(v.x)) v.x = 0;
+                if (REAL.IsNaN(v.y)) v.y = 0;
+                if (REAL.IsNaN(v.z)) v.z = 0;
+                return v;
+            }
+        }
+
+        /// <summary>
         /// Convert the vector to a point.
         /// </summary>
         public Point3d Point3d
