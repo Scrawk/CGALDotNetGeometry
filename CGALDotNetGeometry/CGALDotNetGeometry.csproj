@@ -10,7 +10,6 @@
   <ItemGroup>
     <Folder Include="Colors\" />
     <Folder Include="Shapes\" />
-    <Folder Include="Numerics\" />
   </ItemGroup>
 
   <ItemGroup>
