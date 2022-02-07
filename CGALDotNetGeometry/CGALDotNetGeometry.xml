@@ -2682,6 +2682,15 @@
             </summary>
             <param name="digits">The number of digits to round to.</param>
         </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Point2d.RandomPoints(System.Int32,System.Int32,CGALDotNetGeometry.Shapes.Box2f)">
+            <summary>
+            Create a array of random points.
+            </summary>
+            <param name="seed">The seed</param>
+            <param name="count">The number of points to create.</param>
+            <param name="range">The range of the points.</param>
+            <returns>The point array.</returns>
+        </member>
         <member name="F:CGALDotNetGeometry.Numerics.Point2f.UnitX">
             <summary>
             The unit x point.
@@ -2987,6 +2996,15 @@
             Round the point.
             </summary>
             <param name="digits">The number of digits to round to.</param>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Point2f.RandomPoints(System.Int32,System.Int32,CGALDotNetGeometry.Shapes.Box2f)">
+            <summary>
+            Create a array of random points.
+            </summary>
+            <param name="seed">The seed</param>
+            <param name="count">The number of points to create.</param>
+            <param name="range">The range of the points.</param>
+            <returns>The point array.</returns>
         </member>
         <member name="F:CGALDotNetGeometry.Numerics.Point2i.UnitX">
             <summary>
@@ -3572,6 +3590,15 @@
             </summary>
             <param name="digits">The number of digits to round to.</param>
         </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Point3d.RandomPoints(System.Int32,System.Int32,CGALDotNetGeometry.Shapes.Box3d)">
+            <summary>
+            Create a array of random points.
+            </summary>
+            <param name="seed">The seed</param>
+            <param name="count">The number of points to create.</param>
+            <param name="range">The range of the points.</param>
+            <returns>The point array.</returns>
+        </member>
         <member name="F:CGALDotNetGeometry.Numerics.Point3f.UnitX">
             <summary>
             The unit x point.
@@ -3887,6 +3914,15 @@
             Round the point.
             </summary>
             <param name="digits">The number of digits to round to.</param>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Point3f.RandomPoints(System.Int32,System.Int32,CGALDotNetGeometry.Shapes.Box3f)">
+            <summary>
+            Create a array of random points.
+            </summary>
+            <param name="seed">The seed</param>
+            <param name="count">The number of points to create.</param>
+            <param name="range">The range of the points.</param>
+            <returns>The point array.</returns>
         </member>
         <member name="F:CGALDotNetGeometry.Numerics.Point3i.UnitX">
             <summary>

@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Runtime.CompilerServices;
 
+
 using REAL = System.Single;
+using BOX3 = CGALDotNetGeometry.Shapes.Box3f;
 
 namespace CGALDotNetGeometry.Numerics
 {
@@ -610,6 +612,30 @@ namespace CGALDotNetGeometry.Numerics
             x = MathUtil.Round(x, digits);
             y = MathUtil.Round(y, digits);
             z = MathUtil.Round(z, digits);
+        }
+
+        /// <summary>
+        /// Create a array of random points.
+        /// </summary>
+        /// <param name="seed">The seed</param>
+        /// <param name="count">The number of points to create.</param>
+        /// <param name="range">The range of the points.</param>
+        /// <returns>The point array.</returns>
+        public static Point3f[] RandomPoints(int seed, int count, BOX3 range)
+        {
+            var points = new Point3f[count];
+            var rnd = new Random(seed);
+
+            for (int i = 0; i < count; i++)
+            {
+                REAL x = (REAL)(range.Min.x + rnd.NextDouble() * range.Max.x);
+                REAL y = (REAL)(range.Min.y + rnd.NextDouble() * range.Max.y);
+                REAL z = (REAL)(range.Min.z + rnd.NextDouble() * range.Max.z);
+
+                points[i] = new Point3f(x, y, z);
+            }
+
+            return points;
         }
 
     }

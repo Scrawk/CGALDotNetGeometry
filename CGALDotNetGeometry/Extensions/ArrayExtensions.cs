@@ -80,12 +80,14 @@ namespace CGALDotNetGeometry.Extensions
 
         public static void Round(this IList<Point2d> array, int digits)
         {
+            if (digits < 0) return;
             for (int i = 0; i < array.Count; i++)
                 array[i] = array[i].Rounded(digits);
         }
 
         public static void Round(this IList<Point3d> array, int digits)
         {
+            if (digits < 0) return;
             for (int i = 0; i < array.Count; i++)
                 array[i] = array[i].Rounded(digits);
         }

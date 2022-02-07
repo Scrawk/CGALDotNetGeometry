@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using System.Runtime.CompilerServices;
 
 using REAL = System.Single;
+using BOX2 = CGALDotNetGeometry.Shapes.Box2f;
 
 namespace CGALDotNetGeometry.Numerics
 {
@@ -594,6 +595,29 @@ namespace CGALDotNetGeometry.Numerics
         {
             x = MathUtil.Round(x, digits);
             y = MathUtil.Round(y, digits);
+        }
+
+        /// <summary>
+        /// Create a array of random points.
+        /// </summary>
+        /// <param name="seed">The seed</param>
+        /// <param name="count">The number of points to create.</param>
+        /// <param name="range">The range of the points.</param>
+        /// <returns>The point array.</returns>
+        public static Point2f[] RandomPoints(int seed, int count, BOX2 range)
+        {
+            var points = new Point2f[count];
+            var rnd = new Random(seed);
+
+            for (int i = 0; i < count; i++)
+            {
+                REAL x = (REAL)(range.Min.x + rnd.NextDouble() * range.Max.x);
+                REAL y = (REAL)(range.Min.y + rnd.NextDouble() * range.Max.y);
+
+                points[i] = new Point2f(x, y);
+            }
+
+            return points;
         }
 
     }
