@@ -379,6 +379,26 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
+        /// Cast from Point2d to Point2f.
+        /// </summary>
+        /// <param name="v"></param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static explicit operator Point2f(Point2d v)
+        {
+            return new Point2f((REAL)v.x, (REAL)v.y);
+        }
+
+        /// <summary>
+        /// Cast from Point2i to Point2f.
+        /// </summary>
+        /// <param name="v"></param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static implicit operator Point2f(Point2i v)
+        {
+            return new Point2f(v.x, v.y);
+        }
+
+        /// <summary>
         /// Are these points equal.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -595,6 +615,24 @@ namespace CGALDotNetGeometry.Numerics
         {
             x = MathUtil.Round(x, digits);
             y = MathUtil.Round(y, digits);
+        }
+
+        /// <summary>
+        /// Floor each component if point.
+        /// </summary>
+        public void Floor()
+        {
+            x = MathUtil.Floor(x);
+            y = MathUtil.Floor(y);
+        }
+
+        /// <summary>
+        /// Ceilling each component if point.
+        /// </summary>
+        public void Ceilling()
+        {
+            x = MathUtil.Ceilling(x);
+            y = MathUtil.Ceilling(y);
         }
 
         /// <summary>

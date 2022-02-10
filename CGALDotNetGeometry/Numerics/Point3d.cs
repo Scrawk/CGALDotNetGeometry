@@ -408,6 +408,26 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
+        /// Cast from Point43f to Point3d.
+        /// </summary>
+        /// <param name="v"></param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static implicit operator Point3d(Point3f v)
+        {
+            return new Point3d(v.x, v.y, v.z);
+        }
+
+        /// <summary>
+        /// Cast from Point3i to Point3d.
+        /// </summary>
+        /// <param name="v"></param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static implicit operator Point3d(Point3i v)
+        {
+            return new Point3d(v.x, v.y, v.z);
+        }
+
+        /// <summary>
         /// Are these points equal.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -624,6 +644,26 @@ namespace CGALDotNetGeometry.Numerics
             x = MathUtil.Round(x, digits);
             y = MathUtil.Round(y, digits);
             z = MathUtil.Round(z, digits);
+        }
+
+        /// <summary>
+        /// Floor each component if point.
+        /// </summary>
+        public void Floor()
+        {
+            x = MathUtil.Floor(x);
+            y = MathUtil.Floor(y);
+            z = MathUtil.Floor(z);
+        }
+
+        /// <summary>
+        /// Ceilling each component if point.
+        /// </summary>
+        public void Ceilling()
+        {
+            x = MathUtil.Ceilling(x);
+            y = MathUtil.Ceilling(y);
+            z = MathUtil.Ceilling(z);
         }
 
         /// <summary>

@@ -385,6 +385,26 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
+        /// Cast from Point4f to Point4d.
+        /// </summary>
+        /// <param name="v"></param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static implicit operator Point4d(Point4f v)
+        {
+            return new Point4d(v.x, v.y, v.z, v.w);
+        }
+
+        /// <summary>
+        /// Cast from Point4i to Point4d.
+        /// </summary>
+        /// <param name="v"></param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static implicit operator Point4d(Point4i v)
+        {
+            return new Point4d(v.x, v.y, v.z, v.w);
+        }
+
+        /// <summary>
         /// Are these points equal.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -603,6 +623,28 @@ namespace CGALDotNetGeometry.Numerics
             y = MathUtil.Round(y, digits);
             z = MathUtil.Round(z, digits);
             w = MathUtil.Round(w, digits);
+        }
+
+        /// <summary>
+        /// Floor each component if point.
+        /// </summary>
+        public void Floor()
+        {
+            x = MathUtil.Floor(x);
+            y = MathUtil.Floor(y);
+            z = MathUtil.Floor(z);
+            w = MathUtil.Floor(w);
+        }
+
+        /// <summary>
+        /// Ceilling each component if point.
+        /// </summary>
+        public void Ceilling()
+        {
+            x = MathUtil.Ceilling(x);
+            y = MathUtil.Ceilling(y);
+            z = MathUtil.Ceilling(z);
+            w = MathUtil.Ceilling(w);
         }
 
     }

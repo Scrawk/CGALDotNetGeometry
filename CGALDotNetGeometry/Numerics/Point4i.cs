@@ -298,6 +298,26 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
+        /// Cast from Point4f to Point4i.
+        /// </summary>
+        /// <param name="v"></param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static explicit operator Point4i(Point4f v)
+        {
+            return new Point4i((REAL)v.x, (REAL)v.y, (REAL)v.z, (REAL)v.w);
+        }
+
+        /// <summary>
+        /// Cast from Point4d to Point4i.
+        /// </summary>
+        /// <param name="v"></param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static explicit operator Point4i(Point4d v)
+        {
+            return new Point4i((REAL)v.x, (REAL)v.y, (REAL)v.z, (REAL)v.w);
+        }
+
+        /// <summary>
         /// Are these points equal.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

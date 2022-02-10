@@ -306,6 +306,26 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
+        /// Cast from Point3f to Point3i.
+        /// </summary>
+        /// <param name="v"></param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static explicit operator Point3i(Point3f v)
+        {
+            return new Point3i((REAL)v.x, (REAL)v.y, (REAL)v.z);
+        }
+
+        /// <summary>
+        /// Cast from Point3d to Point3i.
+        /// </summary>
+        /// <param name="v"></param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static explicit operator Point3i(Point3d v)
+        {
+            return new Point3i((REAL)v.x, (REAL)v.y, (REAL)v.z);
+        }
+
+        /// <summary>
         /// Are these points equal.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
