@@ -5,6 +5,9 @@ using CGALDotNetGeometry.Numerics;
 
 using REAL = System.Double;
 using POINT3 = CGALDotNetGeometry.Numerics.Point3d;
+using BOX3 = CGALDotNetGeometry.Shapes.Box3d;
+using MATRIX3 = CGALDotNetGeometry.Numerics.Matrix3x3d;
+using MATRIX4 = CGALDotNetGeometry.Numerics.Matrix4x4d;
 
 namespace CGALDotNetGeometry.Shapes
 {
@@ -67,6 +70,24 @@ namespace CGALDotNetGeometry.Shapes
         public Segment3d Reversed => new Segment3d(B, A);
 
         /// <summary>
+        /// The bounding box of the segment.
+        /// </summary>
+        public BOX3 Bounds
+        {
+            get
+            {
+                var xmin = MathUtil.Min(A.x, B.x);
+                var xmax = MathUtil.Max(A.x, B.x);
+                var ymin = MathUtil.Min(A.y, B.y);
+                var ymax = MathUtil.Max(A.y, B.y);
+                var zmin = MathUtil.Min(A.z, B.z);
+                var zmax = MathUtil.Max(A.z, B.z);
+
+                return new BOX3(new POINT3(xmin, ymin, zmin), new POINT3(xmax, ymax, zmin));
+            }
+        }
+
+        /// <summary>
         /// Array acess to the segments points.
         /// </summary>
         /// <param name="i">The index of the point to access (0-2)</param>
@@ -89,7 +110,6 @@ namespace CGALDotNetGeometry.Shapes
                 fixed (POINT3* array = &A) { array[i] = value; }
             }
         }
-
 
         public static Segment3d operator +(Segment3d seg, REAL s)
         {
@@ -119,6 +139,21 @@ namespace CGALDotNetGeometry.Shapes
         public static Segment3d operator /(Segment3d seg, REAL s)
         {
             return new Segment3d(seg.A / s, seg.B / s);
+        }
+
+        public static Segment3d operator *(MATRIX3 m, Segment3d seg)
+        {
+            return new Segment3d(m * seg.A, m * seg.B);
+        }
+
+        public static Segment3d operator *(MATRIX4 m, Segment3d seg)
+        {
+            return new Segment3d(m * seg.A, m * seg.B);
+        }
+
+        public static implicit operator Segment3d(Segment3f seg)
+        {
+            return new Segment3d(seg.A, seg.B);
         }
 
         public static bool operator ==(Segment3d s1, Segment3d s2)

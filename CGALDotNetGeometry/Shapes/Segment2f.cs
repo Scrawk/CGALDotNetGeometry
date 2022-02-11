@@ -8,6 +8,8 @@ using POINT2 = CGALDotNetGeometry.Numerics.Point2f;
 using VECTOR2 = CGALDotNetGeometry.Numerics.Vector2f;
 using BOX2 = CGALDotNetGeometry.Shapes.Box2f;
 using MATRIX2 = CGALDotNetGeometry.Numerics.Matrix2x2f;
+using MATRIX3 = CGALDotNetGeometry.Numerics.Matrix3x3f;
+using MATRIX4 = CGALDotNetGeometry.Numerics.Matrix4x4f;
 
 namespace CGALDotNetGeometry.Shapes
 {
@@ -167,9 +169,24 @@ namespace CGALDotNetGeometry.Shapes
             return new Segment2f(seg.A / s, seg.B / s);
         }
 
-        public static Segment2f operator *(Segment2f seg, MATRIX2 m)
+        public static Segment2f operator *(MATRIX2 m, Segment2f seg)
         {
             return new Segment2f(m * seg.A, m * seg.B);
+        }
+
+        public static Segment2f operator *(MATRIX3 m, Segment2f seg)
+        {
+            return new Segment2f(m * seg.A, m * seg.B);
+        }
+
+        public static Segment2f operator *(MATRIX4 m, Segment2f seg)
+        {
+            return new Segment2f(m * seg.A, m * seg.B);
+        }
+
+        public static explicit operator Segment2f(Segment2d seg)
+        {
+            return new Segment2f((POINT2)seg.A, (POINT2)seg.B);
         }
 
         public static bool operator ==(Segment2f s1, Segment2f s2)

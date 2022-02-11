@@ -6,6 +6,8 @@ using CGALDotNetGeometry.Numerics;
 using REAL = System.Double;
 using POINT3 = CGALDotNetGeometry.Numerics.Point3d;
 using VECTOR3 = CGALDotNetGeometry.Numerics.Vector3d;
+using MATRIX3 = CGALDotNetGeometry.Numerics.Matrix3x3d;
+using MATRIX4 = CGALDotNetGeometry.Numerics.Matrix4x4d;
 
 namespace CGALDotNetGeometry.Shapes
 {
@@ -36,6 +38,21 @@ namespace CGALDotNetGeometry.Shapes
         {
             Position = position;
             Direction = direction.Normalized;
+        }
+
+        public static Ray3d operator *(MATRIX3 m, Ray3d ray)
+        {
+            return new Ray3d(m * ray.Position, m * ray.Direction);
+        }
+
+        public static Ray3d operator *(MATRIX4 m, Ray3d ray)
+        {
+            return new Ray3d(m * ray.Position, m * ray.Direction);
+        }
+
+        public static implicit operator Ray3d(Ray3f ray)
+        {
+            return new Ray3d(ray.Position, ray.Direction);
         }
 
         /// <summary>

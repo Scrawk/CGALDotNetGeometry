@@ -241,6 +241,19 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
+        /// Cast to float matrix from a double matrix.
+        /// </summary>
+        /// <param name="m">The other matrix</param>
+        public static explicit operator Matrix2x2f(Matrix2x2d m)
+        {
+            var m2 = new Matrix2x2f();
+            for (int i = 0; i < 9; i++)
+                m2[i] = (REAL)m[i];
+
+            return m2;
+        }
+
+        /// <summary>
         /// Are these matrices equal.
         /// </summary>
         public static bool operator ==(Matrix2x2f m1, Matrix2x2f m2)

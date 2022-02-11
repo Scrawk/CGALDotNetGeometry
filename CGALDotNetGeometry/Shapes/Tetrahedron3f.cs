@@ -5,6 +5,9 @@ using CGALDotNetGeometry.Numerics;
 
 using REAL = System.Single;
 using POINT3 = CGALDotNetGeometry.Numerics.Point3f;
+using BOX3 = CGALDotNetGeometry.Shapes.Box3f;
+using MATRIX3 = CGALDotNetGeometry.Numerics.Matrix3x3f;
+using MATRIX4 = CGALDotNetGeometry.Numerics.Matrix4x4f;
 
 namespace CGALDotNetGeometry.Shapes
 {
@@ -48,6 +51,24 @@ namespace CGALDotNetGeometry.Shapes
             B = b;
             C = c;
             D = c;
+        }
+
+        /// <summary>
+        /// The bounding box of the tetrahedron.
+        /// </summary>
+        public BOX3 Bounds
+        {
+            get
+            {
+                var xmin = MathUtil.Min(A.x, B.x, C.x, D.x);
+                var xmax = MathUtil.Max(A.x, B.x, C.x, D.x);
+                var ymin = MathUtil.Min(A.y, B.y, C.y, D.y);
+                var ymax = MathUtil.Max(A.y, B.y, C.y, D.y);
+                var zmin = MathUtil.Min(A.z, B.z, C.z, D.z);
+                var zmax = MathUtil.Max(A.z, B.z, C.z, D.z);
+
+                return new BOX3(new POINT3(xmin, ymin, zmin), new POINT3(xmax, ymax, zmin));
+            }
         }
 
         /// <summary>
@@ -102,6 +123,21 @@ namespace CGALDotNetGeometry.Shapes
         public static Tetrahedron3f operator /(Tetrahedron3f tri, REAL s)
         {
             return new Tetrahedron3f(tri.A / s, tri.B / s, tri.C / s, tri.D / s);
+        }
+
+        public static Tetrahedron3f operator *(MATRIX3 m, Tetrahedron3f tet)
+        {
+            return new Tetrahedron3f(m * tet.A, m * tet.B, m * tet.C, m * tet.D);
+        }
+
+        public static Tetrahedron3f operator *(MATRIX4 m, Tetrahedron3f tet)
+        {
+            return new Tetrahedron3f(m * tet.A, m * tet.B, m * tet.C, m * tet.D);
+        }
+
+        public static explicit operator Tetrahedron3f(Tetrahedron3d tet)
+        {
+            return new Tetrahedron3f((POINT3)tet.A, (POINT3)tet.B, (POINT3)tet.C, (POINT3)tet.D);
         }
 
         public static bool operator ==(Tetrahedron3f t1, Tetrahedron3f t2)

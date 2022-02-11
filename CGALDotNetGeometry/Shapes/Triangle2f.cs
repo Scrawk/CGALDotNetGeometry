@@ -10,6 +10,8 @@ using POINT3 = CGALDotNetGeometry.Numerics.Point3f;
 using BOX2 = CGALDotNetGeometry.Shapes.Box2f;
 using CIRCLE2 = CGALDotNetGeometry.Shapes.Circle2f;
 using MATRIX2 = CGALDotNetGeometry.Numerics.Matrix2x2f;
+using MATRIX3 = CGALDotNetGeometry.Numerics.Matrix3x3f;
+using MATRIX4 = CGALDotNetGeometry.Numerics.Matrix4x4f;
 
 namespace CGALDotNetGeometry.Shapes
 {
@@ -238,9 +240,24 @@ namespace CGALDotNetGeometry.Shapes
             return new Triangle2f(tri.A / s, tri.B / s, tri.C / s);
         }
 
-        public static Triangle2f operator *(Triangle2f tri, MATRIX2 m)
+        public static Triangle2f operator *(MATRIX2 m, Triangle2f tri)
         {
             return new Triangle2f(m * tri.A, m * tri.B, m * tri.C);
+        }
+
+        public static Triangle2f operator *(MATRIX3 m, Triangle2f tri)
+        {
+            return new Triangle2f(m * tri.A, m * tri.B, m * tri.C);
+        }
+
+        public static Triangle2f operator *(MATRIX4 m, Triangle2f tri)
+        {
+            return new Triangle2f(m * tri.A, m * tri.B, m * tri.C);
+        }
+
+        public static explicit operator Triangle2f(Triangle2d tri)
+        {
+            return new Triangle2f((POINT2)tri.A, (POINT2)tri.B, (POINT2)tri.C);
         }
 
         public static bool operator ==(Triangle2f t1, Triangle2f t2)

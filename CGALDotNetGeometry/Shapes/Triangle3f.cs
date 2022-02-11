@@ -7,6 +7,8 @@ using REAL = System.Single;
 using POINT3 = CGALDotNetGeometry.Numerics.Point3f;
 using VECTOR3 = CGALDotNetGeometry.Numerics.Vector3f;
 using BOX3 = CGALDotNetGeometry.Shapes.Box3f;
+using MATRIX3 = CGALDotNetGeometry.Numerics.Matrix3x3f;
+using MATRIX4 = CGALDotNetGeometry.Numerics.Matrix4x4f;
 
 namespace CGALDotNetGeometry.Shapes
 {
@@ -65,6 +67,24 @@ namespace CGALDotNetGeometry.Shapes
         }
 
         /// <summary>
+        /// The bounding box of the triangle.
+        /// </summary>
+        public BOX3 Bounds
+        {
+            get
+            {
+                var xmin = MathUtil.Min(A.x, B.x, C.x);
+                var xmax = MathUtil.Max(A.x, B.x, C.x);
+                var ymin = MathUtil.Min(A.y, B.y, C.y);
+                var ymax = MathUtil.Max(A.y, B.y, C.y);
+                var zmin = MathUtil.Min(A.z, B.z, C.z);
+                var zmax = MathUtil.Max(A.z, B.z, C.z);
+
+                return new BOX3(new POINT3(xmin, ymin, zmin), new POINT3(xmax, ymax, zmin));
+            }
+        }
+
+        /// <summary>
         /// Array acess to the triangles points.
         /// </summary>
         /// <param name="i">The index of the point to access (0-2)</param>
@@ -116,6 +136,21 @@ namespace CGALDotNetGeometry.Shapes
         public static Triangle3f operator /(Triangle3f tri, REAL s)
         {
             return new Triangle3f(tri.A / s, tri.B / s, tri.C / s);
+        }
+
+        public static Triangle3f operator *(MATRIX3 m, Triangle3f tri)
+        {
+            return new Triangle3f(m * tri.A, m * tri.B, m * tri.C);
+        }
+
+        public static Triangle3f operator *(MATRIX4 m, Triangle3f tri)
+        {
+            return new Triangle3f(m * tri.A, m * tri.B, m * tri.C);
+        }
+
+        public static explicit operator Triangle3f(Triangle3d tri)
+        {
+            return new Triangle3f((POINT3)tri.A, (POINT3)tri.B, (POINT3)tri.C);
         }
 
         public static bool operator ==(Triangle3f t1, Triangle3f t2)

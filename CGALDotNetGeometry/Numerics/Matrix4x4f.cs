@@ -443,6 +443,19 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
+        /// Cast to float matrix from a double matrix.
+        /// </summary>
+        /// <param name="m">The other matrix</param>
+        public static explicit operator Matrix4x4f(Matrix4x4d m)
+        {
+            var m2 = new Matrix4x4f();
+            for (int i = 0; i < 16; i++)
+                m2[i] = (REAL)m[i];
+
+            return m2;
+        }
+
+        /// <summary>
         /// Are these matrices equal.
         /// </summary>
         public static bool operator ==(Matrix4x4f m1, Matrix4x4f m2)

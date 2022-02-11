@@ -9,6 +9,9 @@ using POINT2 = CGALDotNetGeometry.Numerics.Point2d;
 using CIRCLE2 = CGALDotNetGeometry.Shapes.Circle2d;
 using SEGMENT2 = CGALDotNetGeometry.Shapes.Segment2d;
 using BOX2 = CGALDotNetGeometry.Shapes.Box2d;
+using MATRIX2 = CGALDotNetGeometry.Numerics.Matrix2x2d;
+using MATRIX3 = CGALDotNetGeometry.Numerics.Matrix3x3d;
+using MATRIX4 = CGALDotNetGeometry.Numerics.Matrix4x4d;
 
 namespace CGALDotNetGeometry.Shapes
 {
@@ -85,6 +88,26 @@ namespace CGALDotNetGeometry.Shapes
                 hash = (hash * MathUtil.HASH_PRIME_2) ^ Direction.GetHashCode();
                 return hash;
             }
+        }
+
+        public static Ray2d operator *(MATRIX2 m, Ray2d ray)
+        {
+            return new Ray2d(m * ray.Position, m * ray.Direction);
+        }
+
+        public static Ray2d operator *(MATRIX3 m, Ray2d ray)
+        {
+            return new Ray2d(m * ray.Position, m * ray.Direction);
+        }
+
+        public static Ray2d operator *(MATRIX4 m, Ray2d ray)
+        {
+            return new Ray2d(m * ray.Position, m * ray.Direction);
+        }
+
+        public static implicit operator Ray2d(Ray2f ray)
+        {
+            return new Ray2d(ray.Position, ray.Direction);
         }
 
         /// <summary>

@@ -393,6 +393,35 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
+        /// Divide a scalar and a vector.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Vector2d operator /(REAL s, Vector2d v)
+        {
+            return new Vector2d(s / v.x, s / v.y);
+        }
+
+        /// <summary>
+        /// Implict cast from a tuple.
+        /// </summary>
+        /// <param name="v">The vector to cast from</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static implicit operator Vector2d(ValueTuple<REAL, REAL, REAL> v)
+        {
+            return new Vector2d(v.Item1, v.Item2);
+        }
+
+        /// <summary>
+        /// Cast from Vector2f to Vector2f.
+        /// </summary>
+        /// <param name="v"></param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static implicit operator Vector2d(Vector2f v)
+        {
+            return new Vector2d(v.x, v.y);
+        }
+
+        /// <summary>
         /// Are these vectors equal.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -732,19 +761,21 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
-        /// Returns if list of verts make a CCW polygon.
-        /// Presumes polygon is simple.
+        /// Floor each component of vector.
         /// </summary>
-        public static bool IsCCW(IList<Vector2d> vertices)
+        public void Floor()
         {
-            REAL sum = 0.0;
-            for (int i = 0; i < vertices.Count; i++)
-            {
-                Vector2d v1 = vertices[i];
-                Vector2d v2 = vertices[(i + 1) % vertices.Count];
-                sum += (v2.x - v1.x) * (v2.y + v1.y);
-            }
-            return sum < 0.0;
+            x = MathUtil.Floor(x);
+            y = MathUtil.Floor(y);
+        }
+
+        /// <summary>
+        /// Ceilling each component of vector.
+        /// </summary>
+        public void Ceilling()
+        {
+            x = MathUtil.Ceilling(x);
+            y = MathUtil.Ceilling(y);
         }
     }
 

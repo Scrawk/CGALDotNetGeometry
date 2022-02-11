@@ -8,6 +8,8 @@ using REAL = System.Double;
 using POINT2 = CGALDotNetGeometry.Numerics.Point2d;
 using POINT3 = CGALDotNetGeometry.Numerics.Point3d;
 using MATRIX2 = CGALDotNetGeometry.Numerics.Matrix2x2d;
+using MATRIX3 = CGALDotNetGeometry.Numerics.Matrix3x3d;
+using MATRIX4 = CGALDotNetGeometry.Numerics.Matrix4x4d;
 
 namespace CGALDotNetGeometry.Shapes
 {
@@ -159,7 +161,17 @@ namespace CGALDotNetGeometry.Shapes
             return new Box2d(box.Min / s, box.Max / s);
         }
 
-        public static Box2d operator *(Box2d box, MATRIX2 m)
+        public static Box2d operator *(MATRIX2 m, Box2d box)
+        {
+            return new Box2d(m * box.Min, m * box.Max);
+        }
+
+        public static Box2d operator *(MATRIX3 m, Box2d box)
+        {
+            return new Box2d(m * box.Min, m * box.Max);
+        }
+
+        public static Box2d operator *(MATRIX4 m, Box2d box)
         {
             return new Box2d(m * box.Min, m * box.Max);
         }

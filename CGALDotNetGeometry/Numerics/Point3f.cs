@@ -109,6 +109,17 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
+        /// A point from the varibles.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Point3f(double x, double y, double z)
+        {
+            this.x = (REAL)x;
+            this.y = (REAL)y;
+            this.z = (REAL)z;
+        }
+
+        /// <summary>
         /// Array accessor for variables. 
         /// </summary>
         /// <param name="i">The variables index.</param>
@@ -383,6 +394,15 @@ namespace CGALDotNetGeometry.Numerics
         public static Point3f operator /(Point3f v, REAL s)
         {
             return new Point3f(v.x / s, v.y / s, v.z / s);
+        }
+
+        /// <summary>
+        /// Divide a scalar and a point.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Point3f operator /(REAL s, Point3f v)
+        {
+            return new Point3f(s / v.x, s / v.y, s / v.z);
         }
 
         /// <summary>

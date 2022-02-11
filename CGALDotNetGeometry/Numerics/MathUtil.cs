@@ -585,6 +585,24 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int Min(int a, int b, int c, int d)
+        {
+            return Math.Min(a, Math.Min(Math.Min(b, c), Math.Min(c, d)));
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static float Min(float a, float b, float c, float d)
+        {
+            return Math.Min(a, Math.Min(Math.Min(b, c), Math.Min(c, d)));
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static double Min(double a, double b, double c, double d)
+        {
+            return Math.Min(a, Math.Min(Math.Min(b, c), Math.Min(c, d)));
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static int Max(int a, int b)
         {
             return Math.Max(a, b);
@@ -618,6 +636,24 @@ namespace CGALDotNetGeometry.Numerics
         public static double Max(double a, double b, double c)
         {
             return Math.Max(a, Math.Max(b, c));
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static int Max(int a, int b, int c, int d)
+        {
+            return Math.Max(a, Math.Max(Math.Max(b, c), Math.Max(c, d)));
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static float Max(float a, float b, float c, float d)
+        {
+            return Math.Max(a, Math.Max(Math.Max(b, c), Math.Max(c, d)));
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static double Max(double a, double b, double c, double d)
+        {
+            return Math.Max(a, Math.Max(Math.Max(b, c), Math.Max(c, d)));
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

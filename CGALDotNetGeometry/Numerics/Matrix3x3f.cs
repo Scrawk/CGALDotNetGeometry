@@ -328,6 +328,19 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
+        /// Cast to float matrix from a double matrix.
+        /// </summary>
+        /// <param name="m">The other matrix</param>
+        public static explicit operator Matrix3x3f(Matrix3x3d m)
+        {
+            var m2 = new Matrix3x3f();
+            for (int i = 0; i < 9; i++)
+                m2[i] = (REAL)m[i];
+
+            return m2;
+        }
+
+        /// <summary>
         /// Are these matrices equal.
         /// </summary>
         public static bool operator ==(Matrix3x3f m1, Matrix3x3f m2)

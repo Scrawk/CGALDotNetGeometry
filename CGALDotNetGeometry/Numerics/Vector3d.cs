@@ -411,6 +411,35 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
+        /// Divide a scalar and a vector.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Vector3d operator /(REAL s, Vector3d v)
+        {
+            return new Vector3d(s / v.x, s / v.y, s / v.z);
+        }
+
+        /// <summary>
+        /// Implict cast from a tuple.
+        /// </summary>
+        /// <param name="v">The vector to cast from</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static implicit operator Vector3d(ValueTuple<REAL, REAL, REAL> v)
+        {
+            return new Vector3d(v.Item1, v.Item2, v.Item3);
+        }
+
+        /// <summary>
+        /// Cast from Vector3f to Vector3d.
+        /// </summary>
+        /// <param name="v"></param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static implicit operator Vector3d(Vector3f v)
+        {
+            return new Vector3d(v.x, v.y, v.z);
+        }
+
+        /// <summary>
         /// Are these vectors equal.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -788,6 +817,26 @@ namespace CGALDotNetGeometry.Numerics
             x = MathUtil.Round(x, digits);
             y = MathUtil.Round(y, digits);
             z = MathUtil.Round(z, digits);
+        }
+
+        /// <summary>
+        /// Floor each component of vector.
+        /// </summary>
+        public void Floor()
+        {
+            x = MathUtil.Floor(x);
+            y = MathUtil.Floor(y);
+            z = MathUtil.Floor(z);
+        }
+
+        /// <summary>
+        /// Ceilling each component of vector.
+        /// </summary>
+        public void Ceilling()
+        {
+            x = MathUtil.Ceilling(x);
+            y = MathUtil.Ceilling(y);
+            z = MathUtil.Ceilling(z);
         }
 
     }

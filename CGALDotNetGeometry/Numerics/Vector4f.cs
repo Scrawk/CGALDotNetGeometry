@@ -429,6 +429,35 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
+        /// Divide a scalar and a vector.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Vector4f operator /(REAL s, Vector4f v)
+        {
+            return new Vector4f(s / v.x, s / v.y, s / v.z, s / v.w);
+        }
+
+        /// <summary>
+        /// Implict cast from a tuple.
+        /// </summary>
+        /// <param name="v">The vector to cast from</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static implicit operator Vector4f(ValueTuple<REAL, REAL, REAL, REAL> v)
+        {
+            return new Vector4f(v.Item1, v.Item2, v.Item3, v.Item4);
+        }
+
+        /// <summary>
+        /// Cast from Vector4d to Vector4f.
+        /// </summary>
+        /// <param name="v"></param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static explicit operator Vector4f(Vector4d v)
+        {
+            return new Vector4f(v.x, v.y, v.z, v.w);
+        }
+
+        /// <summary>
         /// Are these vectors equal.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -694,6 +723,28 @@ namespace CGALDotNetGeometry.Numerics
             y = MathUtil.Round(y, digits);
             z = MathUtil.Round(z, digits);
             w = MathUtil.Round(w, digits);
+        }
+
+        /// <summary>
+        /// Floor each component of vector.
+        /// </summary>
+        public void Floor()
+        {
+            x = MathUtil.Floor(x);
+            y = MathUtil.Floor(y);
+            z = MathUtil.Floor(z);
+            w = MathUtil.Floor(w);
+        }
+
+        /// <summary>
+        /// Ceilling each component of vector.
+        /// </summary>
+        public void Ceilling()
+        {
+            x = MathUtil.Ceilling(x);
+            y = MathUtil.Ceilling(y);
+            z = MathUtil.Ceilling(z);
+            w = MathUtil.Ceilling(w);
         }
 
     }

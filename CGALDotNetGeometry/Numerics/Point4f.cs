@@ -94,6 +94,18 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
+        /// A point from the varibles.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Point4f(double x, double y, double z, double w)
+        {
+            this.x = (REAL)x;
+            this.y = (REAL)y;
+            this.z = (REAL)z;
+            this.w = (REAL)w;
+        }
+
+        /// <summary>
         /// Array accessor for variables. 
         /// </summary>
         /// <param name="i">The variables index.</param>
@@ -372,6 +384,16 @@ namespace CGALDotNetGeometry.Numerics
         public static Point4f operator /(Point4f v, REAL s)
         {
             return new Point4f(v.x / s, v.y / s, v.z / s, v.w / s);
+        }
+
+
+        /// <summary>
+        /// Divide a scalar and a point.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Point4f operator /(REAL s, Point4f v)
+        {
+            return new Point4f(s / v.x, s / v.y, s / v.z, s / v.w);
         }
 
         /// <summary>

@@ -7,6 +7,8 @@ using CGALDotNetGeometry.Numerics;
 using REAL = System.Single;
 using POINT3 = CGALDotNetGeometry.Numerics.Point3f;
 using VECTOR3 = CGALDotNetGeometry.Numerics.Vector3f;
+using MATRIX3 = CGALDotNetGeometry.Numerics.Matrix3x3f;
+using MATRIX4 = CGALDotNetGeometry.Numerics.Matrix4x4f;
 
 namespace CGALDotNetGeometry.Shapes
 {
@@ -101,6 +103,21 @@ namespace CGALDotNetGeometry.Shapes
         public REAL SqrDistance
         {
             get { return Position.SqrMagnitude; }
+        }
+
+        public static Plane3f operator *(MATRIX3 m, Plane3f plane)
+        {
+            return new Plane3f(m * plane.Position, m * plane.Normal);
+        }
+
+        public static Plane3f operator *(MATRIX4 m, Plane3f plane)
+        {
+            return new Plane3f(m * plane.Position, m * plane.Normal);
+        }
+
+        public static explicit operator Plane3f(Plane3d plane)
+        {
+            return new Plane3f((POINT3)plane.Position, (VECTOR3)plane.Normal);
         }
 
         /// <summary>

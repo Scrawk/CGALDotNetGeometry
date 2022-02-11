@@ -8,6 +8,7 @@ using REAL = System.Double;
 using POINT3 = CGALDotNetGeometry.Numerics.Point3d;
 using POINT4 = CGALDotNetGeometry.Numerics.Point4d;
 using MATRIX3 = CGALDotNetGeometry.Numerics.Matrix3x3d;
+using MATRIX4 = CGALDotNetGeometry.Numerics.Matrix4x4d;
 
 namespace CGALDotNetGeometry.Shapes
 {
@@ -150,6 +151,21 @@ namespace CGALDotNetGeometry.Shapes
         public static Box3d operator *(Box3d box, MATRIX3 m)
         {
             return new Box3d(m * box.Min, m * box.Max);
+        }
+
+        public static Box3d operator *(Box3d box, MATRIX4 m)
+        {
+            return new Box3d(m * box.Min, m * box.Max);
+        }
+
+        public static implicit operator Box3d(Box3f box)
+        {
+            return new Box3d(box.Min, box.Max);
+        }
+
+        public static implicit operator Box3d(Box3i box)
+        {
+            return new Box3d(box.Min, box.Max);
         }
 
         public static bool operator ==(Box3d b1, Box3d b2)

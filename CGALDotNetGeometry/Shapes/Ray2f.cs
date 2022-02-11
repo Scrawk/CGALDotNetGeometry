@@ -9,6 +9,9 @@ using POINT2 = CGALDotNetGeometry.Numerics.Point2f;
 using CIRCLE2 = CGALDotNetGeometry.Shapes.Circle2f;
 using SEGMENT2 = CGALDotNetGeometry.Shapes.Segment2f;
 using BOX2 = CGALDotNetGeometry.Shapes.Box2f;
+using MATRIX2 = CGALDotNetGeometry.Numerics.Matrix2x2f;
+using MATRIX3 = CGALDotNetGeometry.Numerics.Matrix3x3f;
+using MATRIX4 = CGALDotNetGeometry.Numerics.Matrix4x4f;
 
 namespace CGALDotNetGeometry.Shapes
 {
@@ -38,6 +41,26 @@ namespace CGALDotNetGeometry.Shapes
         {
             Position = position;
             Direction = direction;
+        }
+
+        public static Ray2f operator *(MATRIX2 m, Ray2f ray)
+        {
+            return new Ray2f(m * ray.Position, m * ray.Direction);
+        }
+
+        public static Ray2f operator *(MATRIX3 m, Ray2f ray)
+        {
+            return new Ray2f(m * ray.Position, m * ray.Direction);
+        }
+
+        public static Ray2f operator *(MATRIX4 m, Ray2f ray)
+        {
+            return new Ray2f(m * ray.Position, m * ray.Direction);
+        }
+
+        public static explicit operator Ray2f(Ray2d ray)
+        {
+            return new Ray2f((POINT2)ray.Position, (VECTOR2)ray.Direction);
         }
 
         public static bool operator ==(Ray2f r1, Ray2f r2)

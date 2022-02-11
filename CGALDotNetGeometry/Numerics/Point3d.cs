@@ -389,6 +389,15 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
+        /// Divide a scalar and a point.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Point3d operator /(REAL s, Point3d v)
+        {
+            return new Point3d(s / v.x, s / v.y, s / v.z);
+        }
+
+        /// <summary>
         /// Divide a point and a scalar.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

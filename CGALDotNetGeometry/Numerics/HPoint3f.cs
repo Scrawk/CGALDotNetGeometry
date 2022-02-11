@@ -5,70 +5,116 @@ using System.Runtime.CompilerServices;
 
 using CGALDotNetGeometry.Shapes;
 
-using REAL = System.Double;
+using REAL = System.Single;
 
 namespace CGALDotNetGeometry.Numerics
 {
-    /// <summary>
-    /// A Homogenous 2D point struct.
-    /// </summary>
+
     [Serializable]
     [StructLayout(LayoutKind.Sequential)]
-    public struct HPoint2d : IEquatable<HPoint2d>
+    public struct HPoint3f : IEquatable<HPoint3f>
     {
-        public REAL x, y, w;
+        public REAL x, y, z, w;
 
         /// <summary>
         /// The unit x point.
         /// </summary>
-	    public readonly static HPoint2d UnitX = new HPoint2d(1, 0);
+	    public readonly static HPoint3f UnitX = new HPoint3f(1, 0, 0);
 
         /// <summary>
         /// The unit y point.
         /// </summary>
-	    public readonly static HPoint2d UnitY = new HPoint2d(0, 1);
+	    public readonly static HPoint3f UnitY = new HPoint3f(0, 1, 0);
+
+        /// <summary>
+        /// The unit z point.
+        /// </summary>
+        public readonly static HPoint3f UnitZ = new HPoint3f(0, 0, 1);
 
         /// <summary>
         /// A point of zeros.
         /// </summary>
-	    public readonly static HPoint2d Zero = new HPoint2d(0);
+	    public readonly static HPoint3f Zero = new HPoint3f(0);
 
         /// <summary>
         /// A point of ones.
         /// </summary>
-	    public readonly static HPoint2d One = new HPoint2d(1);
+	    public readonly static HPoint3f One = new HPoint3f(1);
+
+        /// <summary>
+        /// A point of 0.5.
+        /// </summary>
+        public readonly static HPoint3f Half = new HPoint3f(0.5f);
+
+        /// <summary>
+        /// A point of positive infinity.
+        /// </summary>
+        public readonly static HPoint3f PositiveInfinity = new HPoint3f(REAL.PositiveInfinity);
+
+        /// <summary>
+        /// A point of negative infinity.
+        /// </summary>
+        public readonly static HPoint3f NegativeInfinity = new HPoint3f(REAL.NegativeInfinity);
+
 
         /// <summary>
         /// A point all with the value v.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public HPoint2d(REAL v)
+        public HPoint3f(REAL v)
         {
             this.x = v;
             this.y = v;
+            this.z = v;
             this.w = 1;
         }
 
         /// <summary>
-        /// A point from the varibles.
+        /// A point all with the value v.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public HPoint2d(REAL x, REAL y)
+        public HPoint3f(REAL v, REAL w)
         {
-            this.x = x;
-            this.y = y;
-            this.w = 1;
-        }
-
-        /// <summary>
-        /// A point from the varibles.
-        /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public HPoint2d(REAL x, REAL y, REAL w)
-        {
-            this.x = x;
-            this.y = y;
+            this.x = v;
+            this.y = v;
+            this.z = v;
             this.w = w;
+        }
+
+        /// <summary>
+        /// A point from the varibles.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public HPoint3f(REAL x, REAL y, REAL z)
+        {
+            this.x = x;
+            this.y = y;
+            this.z = z;
+            this.w = 1;
+        }
+
+        /// <summary>
+        /// A point from the varibles.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public HPoint3f(REAL x, REAL y, REAL z, REAL w)
+        {
+            this.x = x;
+            this.y = y;
+            this.z = z;
+            this.w = w;
+        }
+
+        /// <summary>
+        /// A point from the varibles.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public HPoint3f(double x, double y, double z, double w)
+        {
+            this.x = (REAL)x;
+            this.y = (REAL)y;
+            this.z = (REAL)z;
+            this.w = (REAL)w;
         }
 
         /// <summary>
@@ -80,15 +126,15 @@ namespace CGALDotNetGeometry.Numerics
         {
             get
             {
-                if ((uint)i >= 3)
-                    throw new IndexOutOfRangeException("HPoint2d index out of range.");
+                if ((uint)i >= 4)
+                    throw new IndexOutOfRangeException("HPoint3f index out of range.");
 
-                fixed (HPoint2d* array = &this) { return ((REAL*)array)[i]; }
+                fixed (HPoint3f* array = &this) { return ((REAL*)array)[i]; }
             }
             set
             {
-                if ((uint)i >= 3)
-                    throw new IndexOutOfRangeException("HPoint2d index out of range.");
+                if ((uint)i >= 4)
+                    throw new IndexOutOfRangeException("HPoint3f index out of range.");
 
                 fixed (REAL* array = &x) { array[i] = value; }
             }
@@ -132,6 +178,7 @@ namespace CGALDotNetGeometry.Numerics
             {
                 if (REAL.IsNaN(x)) return true;
                 if (REAL.IsNaN(y)) return true;
+                if (REAL.IsNaN(z)) return true;
                 if (REAL.IsNaN(w)) return true;
                 return false;
             }
@@ -140,13 +187,14 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Make a point with no nan conponents.
         /// </summary>
-        public HPoint2d NoNAN
+        public HPoint3f NoNAN
         {
             get
             {
-                var p = new HPoint2d(x, y, w);
+                var p = new HPoint3f(x, y, z, w);
                 if (REAL.IsNaN(p.x)) p.x = 0;
                 if (REAL.IsNaN(p.y)) p.y = 0;
+                if (REAL.IsNaN(p.z)) p.z = 0;
                 if (REAL.IsNaN(p.w)) p.w = 0;
                 return p;
             }
@@ -155,105 +203,115 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Convert from homogenous to cartesian space.
         /// </summary>
-        public Point2d Cartesian
+        public Point3f Cartesian
         {
             get
             {
                 if (w != 0)
-                    return new Point2d(x / w, y / w);
+                    return new Point3f(x / w, y / w, z / w);
                 else
-                    return new Point2d(x, y);
+                    return new Point3f(x, y, z);
             }
         }
+
+        /// <summary>
+        /// Point as vector.
+        /// </summary>
+        public Vector3f Vector3f => new Vector3f(x, y, z);
+
+        /// <summary>
+        /// Point as vector.
+        /// </summary>
+        public Vector4d Vector4d => new Vector4d(x, y, z, w);
 
         /// <summary>
         /// Add two points.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static HPoint2d operator +(HPoint2d v1, HPoint2d v2)
+        public static HPoint3f operator +(HPoint3f v1, HPoint3f v2)
         {
-            return new HPoint2d(v1.x + v2.x, v1.y + v2.y, v1.w + v2.w);
+            return new HPoint3f(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z, v1.w + v2.w);
         }
 
         /// <summary>
         /// Add point and scalar.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static HPoint2d operator +(HPoint2d v1, REAL s)
+        public static HPoint3f operator +(HPoint3f v1, REAL s)
         {
-            return new HPoint2d(v1.x + s, v1.y + s, v1.w + s);
+            return new HPoint3f(v1.x + s, v1.z + s, v1.z + s, v1.w + s);
         }
 
         /// <summary>
         /// Add point and scalar.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static HPoint2d operator +(REAL s, HPoint2d v1)
+        public static HPoint3f operator +(REAL s, HPoint3f v1)
         {
-            return new HPoint2d(s + v1.x, s + v1.y, s + v1.w);
+            return new HPoint3f(s + v1.x, s + v1.y, s + v1.z, s + v1.w);
         }
 
         /// <summary>
         /// Multiply two points.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static HPoint2d operator *(HPoint2d v1, HPoint2d v2)
+        public static HPoint3f operator *(HPoint3f v1, HPoint3f v2)
         {
-            return new HPoint2d(v1.x * v2.x, v1.y * v2.y, v1.w * v2.w);
+            return new HPoint3f(v1.x * v2.x, v1.y * v2.y, v1.z * v2.z, v1.w * v2.w);
         }
 
         /// <summary>
         /// Multiply a point and a scalar.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static HPoint2d operator *(HPoint2d v, REAL s)
+        public static HPoint3f operator *(HPoint3f v, REAL s)
         {
-            return new HPoint2d(v.x * s, v.y * s, v.w * s);
+            return new HPoint3f(v.x * s, v.y * s, v.z * s, v.w * s);
         }
 
         /// <summary>
         /// Multiply a point and a scalar.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static HPoint2d operator *(REAL s, HPoint2d v)
+        public static HPoint3f operator *(REAL s, HPoint3f v)
         {
-            return new HPoint2d(v.x * s, v.y * s, v.w * s);
+            return new HPoint3f(v.x * s, v.y * s, v.z * s, v.w * s);
         }
 
         /// <summary>
         /// Divide a point and a scalar.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static HPoint2d operator /(HPoint2d v, REAL s)
+        public static HPoint3f operator /(HPoint3f v, REAL s)
         {
-            return new HPoint2d(v.x / s, v.y / s, v.w / s);
+            return new HPoint3f(v.x / s, v.y / s, v.z / s, v.w / s);
         }
 
         /// <summary>
         /// Divide a point and a scalar.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static HPoint2d operator /(REAL s, HPoint2d v)
+        public static HPoint3f operator /(REAL s, HPoint3f v)
         {
-            return new HPoint2d(s / v.x, s / v.y, s / v.w);
+            return new HPoint3f(s / v.x, s / v.y, s / v.z, s / v.w);
         }
 
         /// <summary>
         /// Are these points equal.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool operator ==(HPoint2d v1, HPoint2d v2)
+        public static bool operator ==(HPoint3f v1, HPoint3f v2)
         {
-            return (v1.x == v2.x && v1.y == v2.y && v1.w == v2.w);
+            return (v1.x == v2.x && v1.y == v2.y && v1.z == v2.z && v1.w == v2.w);
         }
 
         /// <summary>
         /// Are these points not equal.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static bool operator !=(HPoint2d v1, HPoint2d v2)
+        public static bool operator !=(HPoint3f v1, HPoint3f v2)
         {
-            return (v1.x != v2.x || v1.y != v2.y || v1.w != v2.w);
+            return (v1.x != v2.x || v1.y != v2.y || v1.z != v2.z || v1.w != v2.w);
         }
 
         /// <summary>
@@ -262,8 +320,8 @@ namespace CGALDotNetGeometry.Numerics
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object obj)
         {
-            if (!(obj is HPoint2d)) return false;
-            HPoint2d v = (HPoint2d)obj;
+            if (!(obj is HPoint3f)) return false;
+            HPoint3f v = (HPoint3f)obj;
             return this == v;
         }
 
@@ -271,7 +329,7 @@ namespace CGALDotNetGeometry.Numerics
         /// Are these points equal.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public bool Equals(HPoint2d v)
+        public bool Equals(HPoint3f v)
         {
             return this == v;
         }
@@ -287,6 +345,7 @@ namespace CGALDotNetGeometry.Numerics
                 int hash = (int)MathUtil.HASH_PRIME_1;
                 hash = (hash * MathUtil.HASH_PRIME_2) ^ x.GetHashCode();
                 hash = (hash * MathUtil.HASH_PRIME_2) ^ y.GetHashCode();
+                hash = (hash * MathUtil.HASH_PRIME_2) ^ z.GetHashCode();
                 hash = (hash * MathUtil.HASH_PRIME_2) ^ w.GetHashCode();
                 return hash;
             }
@@ -298,7 +357,7 @@ namespace CGALDotNetGeometry.Numerics
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override string ToString()
         {
-            return string.Format("{0},{1},{2}", x, y, w);
+            return string.Format("{0},{1},{2},{3}", x, y, z, w);
         }
 
         /// <summary>
@@ -307,7 +366,7 @@ namespace CGALDotNetGeometry.Numerics
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public string ToString(string f)
         {
-            return string.Format("{0},{1},{2}", x.ToString(f), y.ToString(f), w.ToString(f));
+            return string.Format("{0},{1},{2},{3}", x.ToString(f), y.ToString(f), z.ToString(f), w.ToString(f));
         }
 
         /// <summary>
@@ -316,12 +375,13 @@ namespace CGALDotNetGeometry.Numerics
         /// <param name="digits">The number of digits to round to.</param>
         /// <returns>The rounded point</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public HPoint2d Rounded(int digits)
+        public HPoint3f Rounded(int digits)
         {
             REAL x = MathUtil.Round(this.x, digits);
             REAL y = MathUtil.Round(this.y, digits);
+            REAL z = MathUtil.Round(this.z, digits);
             REAL w = MathUtil.Round(this.w, digits);
-            return new HPoint2d(x, y, w);
+            return new HPoint3f(x, y, z, w);
         }
 
         /// <summary>
@@ -333,6 +393,7 @@ namespace CGALDotNetGeometry.Numerics
         {
             x = MathUtil.Round(x, digits);
             y = MathUtil.Round(y, digits);
+            z = MathUtil.Round(z, digits);
             w = MathUtil.Round(w, digits);
         }
 
@@ -343,6 +404,7 @@ namespace CGALDotNetGeometry.Numerics
         {
             x = MathUtil.Floor(x);
             y = MathUtil.Floor(y);
+            z = MathUtil.Floor(z);
             w = MathUtil.Floor(w);
         }
 
@@ -353,6 +415,7 @@ namespace CGALDotNetGeometry.Numerics
         {
             x = MathUtil.Ceilling(x);
             y = MathUtil.Ceilling(y);
+            z = MathUtil.Ceilling(z);
             w = MathUtil.Ceilling(w);
         }
 
@@ -364,17 +427,18 @@ namespace CGALDotNetGeometry.Numerics
         /// <param name="weight">The number of points weight.</param>
         /// <param name="range">The range of the points.</param>
         /// <returns>The point array.</returns>
-        public static HPoint2d[] RandomPoints(int seed, int count, REAL weight, Box2d range)
+        public static HPoint3f[] RandomPoints(int seed, int count, REAL weight, Box3f range)
         {
-            var points = new HPoint2d[count];
+            var points = new HPoint3f[count];
             var rnd = new Random(seed);
 
             for (int i = 0; i < count; i++)
             {
-                REAL x = range.Min.x + rnd.NextDouble() * range.Max.x;
-                REAL y = range.Min.y + rnd.NextDouble() * range.Max.y;
+                REAL x = range.Min.x + (REAL)rnd.NextDouble() * range.Max.x;
+                REAL y = range.Min.y + (REAL)rnd.NextDouble() * range.Max.y;
+                REAL z = range.Min.z + (REAL)rnd.NextDouble() * range.Max.z;
 
-                points[i] = new HPoint2d(x, y, weight);
+                points[i] = new HPoint3f(x, y, z, weight);
             }
 
             return points;

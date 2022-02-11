@@ -375,6 +375,15 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
+        /// Divide a scalar and a point.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Point4d operator /(REAL s, Point4d v)
+        {
+            return new Point4d(s / v.x, s / v.y, s / v.z, s / v.w);
+        }
+
+        /// <summary>
         /// Implict cast from a tuple.
         /// </summary>
         /// <param name="v">The vector to cast from</param>

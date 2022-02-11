@@ -154,6 +154,11 @@ namespace CGALDotNetGeometry.Shapes
             }
         }
 
+        public static implicit operator Line2d(Line2f line)
+        {
+            return new Line2d(line.A, line.B, line.C);
+        }
+
         public static bool operator ==(Line2d i1, Line2d i2)
         {
             return i1.A == i2.A && i1.B == i2.B && i1.C == i2.C;

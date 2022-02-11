@@ -158,6 +158,37 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
+        /// Are any of the points components nan.
+        /// </summary>
+        public bool IsNAN
+        {
+            get
+            {
+                if (REAL.IsNaN(x)) return true;
+                if (REAL.IsNaN(y)) return true;
+                if (REAL.IsNaN(z)) return true;
+                if (REAL.IsNaN(w)) return true;
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Make a point with no nan conponents.
+        /// </summary>
+        public HPoint3d NoNAN
+        {
+            get
+            {
+                var p = new HPoint3d(x, y, z, w);
+                if (REAL.IsNaN(p.x)) p.x = 0;
+                if (REAL.IsNaN(p.y)) p.y = 0;
+                if (REAL.IsNaN(p.z)) p.z = 0;
+                if (REAL.IsNaN(p.w)) p.w = 0;
+                return p;
+            }
+        }
+
+        /// <summary>
         /// Convert from homogenous to cartesian space.
         /// </summary>
         public Point3d Cartesian
@@ -236,6 +267,24 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
+        /// Divide a point and a scalar.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static HPoint3d operator /(HPoint3d v, REAL s)
+        {
+            return new HPoint3d(v.x / s, v.y / s, v.z / s, v.w / s);
+        }
+
+        /// <summary>
+        /// Divide a point and a scalar.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static HPoint3d operator /(REAL s, HPoint3d v)
+        {
+            return new HPoint3d(s / v.x, s / v.y, s / v.z, s / v.w);
+        }
+
+        /// <summary>
         /// Are these points equal.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -306,6 +355,56 @@ namespace CGALDotNetGeometry.Numerics
         public string ToString(string f)
         {
             return string.Format("{0},{1},{2},{3}", x.ToString(f), y.ToString(f), z.ToString(f), w.ToString(f));
+        }
+
+        /// <summary>
+        /// A rounded point.
+        /// </summary>
+        /// <param name="digits">The number of digits to round to.</param>
+        /// <returns>The rounded point</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public HPoint3d Rounded(int digits)
+        {
+            REAL x = MathUtil.Round(this.x, digits);
+            REAL y = MathUtil.Round(this.y, digits);
+            REAL z = MathUtil.Round(this.z, digits);
+            REAL w = MathUtil.Round(this.w, digits);
+            return new HPoint3d(x, y, z, w);
+        }
+
+        /// <summary>
+        /// Round the point.
+        /// </summary>
+        /// <param name="digits">The number of digits to round to.</param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public void Round(int digits)
+        {
+            x = MathUtil.Round(x, digits);
+            y = MathUtil.Round(y, digits);
+            z = MathUtil.Round(z, digits);
+            w = MathUtil.Round(w, digits);
+        }
+
+        /// <summary>
+        /// Floor each component if point.
+        /// </summary>
+        public void Floor()
+        {
+            x = MathUtil.Floor(x);
+            y = MathUtil.Floor(y);
+            z = MathUtil.Floor(z);
+            w = MathUtil.Floor(w);
+        }
+
+        /// <summary>
+        /// Ceilling each component if point.
+        /// </summary>
+        public void Ceilling()
+        {
+            x = MathUtil.Ceilling(x);
+            y = MathUtil.Ceilling(y);
+            z = MathUtil.Ceilling(z);
+            w = MathUtil.Ceilling(w);
         }
 
         /// <summary>

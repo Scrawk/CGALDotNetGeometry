@@ -194,12 +194,12 @@ namespace CGALDotNetGeometry.Shapes
 
         public static explicit operator Box2i(Box2d box)
         {
-            return new Box2i((Point2i)box.Min, (Point2i)box.Max);
+            return new Box2i((POINT2)box.Min, (POINT2)box.Max);
         }
 
         public static explicit operator Box2i(Box2f box)
         {
-            return new Box2i((Point2i)box.Min, (Point2i)box.Max);
+            return new Box2i((POINT2)box.Min, (POINT2)box.Max);
         }
 
         public static bool operator ==(Box2i b1, Box2i b2)
