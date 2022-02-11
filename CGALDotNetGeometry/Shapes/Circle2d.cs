@@ -81,6 +81,11 @@ namespace CGALDotNetGeometry.Shapes
             }
         }
 
+        public static implicit operator Circle2d(Circle2f circle)
+        {
+            return new Circle2d(circle.Center, circle.Radius);
+        }
+
         public static bool operator ==(Circle2d c1, Circle2d c2)
         {
             return c1.Radius == c2.Radius && c1.Center == c2.Center;
@@ -152,22 +157,29 @@ namespace CGALDotNetGeometry.Shapes
         /// <summary>
         /// Does the circle contain the point.
         /// </summary>
-        /// <param name="p">The point</param>
+        /// <param name="point">The point.</param>
+        /// <param name="includeBorder">Does the border conunt as inside the circle.</param>
         /// <returns>true if circle contains point</returns>
-        public bool Contains(POINT2 p)
+        public bool Contains(POINT2 point, bool includeBorder = true)
         {
-            return POINT2.SqrDistance(Center, p) <= Radius2;
+            if (includeBorder)
+                return POINT2.SqrDistance(Center, point) <= Radius2;
+            else
+                return POINT2.SqrDistance(Center, point) < Radius2;
         }
 
         /// <summary>
         /// Does the circle fully contain the box.
         /// </summary>
-        public bool Contains(BOX2 box)
+        /// <param name="box">The box.</param>
+        /// <param name="includeBorder">Does the border conunt as inside the circle.</param>
+        /// <returns>Does the circle fully contain the box.</returns>
+        public bool Contains(BOX2 box, bool includeBorder = true)
         {
-            if (!Contains(box.Corner00)) return false;
-            if (!Contains(box.Corner01)) return false;
-            if (!Contains(box.Corner10)) return false;
-            if (!Contains(box.Corner11)) return false;
+            if (!Contains(box.Corner00, includeBorder)) return false;
+            if (!Contains(box.Corner01, includeBorder)) return false;
+            if (!Contains(box.Corner10, includeBorder)) return false;
+            if (!Contains(box.Corner11, includeBorder)) return false;
             return true;
         }
 
@@ -175,20 +187,32 @@ namespace CGALDotNetGeometry.Shapes
         /// Does this circle intersect with the other circle.
         /// </summary>
         /// <param name="circle">The other circle</param>
+        /// <param name="includeBorder">Does the border conunt as inside the circle.</param>
         /// <returns>True if the circles intersect</returns>
-        public bool Intersects(Circle2d circle)
+        public bool Intersects(Circle2d circle, bool includeBorder = true)
         {
             REAL r = Radius + circle.Radius;
-            return POINT2.SqrDistance(Center, circle.Center) <= r * r;
+
+            if (includeBorder)
+                return POINT2.SqrDistance(Center, circle.Center) <= r * r;
+            else
+                return POINT2.SqrDistance(Center, circle.Center) < r * r;
         }
 
         /// <summary>
         /// Does the circle intersect the box.
         /// </summary>
-        public bool Intersects(BOX2 box)
+        /// <param name="box">The box.</param>
+        /// <param name="includeBorder">Does the border conunt as inside the circle.</param>
+        /// <returns>Does the circle intersect the box.</returns>
+        public bool Intersects(BOX2 box, bool includeBorder = true)
         {
             var p = box.Closest(Center);
-            return POINT2.SqrDistance(p, Center) <= Radius2;
+
+            if(includeBorder)
+                return POINT2.SqrDistance(p, Center) <= Radius2;
+            else
+                return POINT2.SqrDistance(p, Center) < Radius2;
         }
 
         /// <summary>

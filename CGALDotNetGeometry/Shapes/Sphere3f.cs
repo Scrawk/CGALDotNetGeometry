@@ -94,6 +94,11 @@ namespace CGALDotNetGeometry.Shapes
             }
         }
 
+        public static explicit operator Sphere3f(Sphere3d sphere)
+        {
+            return new Sphere3f((POINT3)sphere.Center, (REAL)sphere.Radius);
+        }
+
         public static bool operator ==(Sphere3f s1, Sphere3f s2)
         {
             return s1.Center == s2.Center && s1.Radius == s2.Radius;
@@ -204,26 +209,33 @@ namespace CGALDotNetGeometry.Shapes
         /// <summary>
         /// Does the sphere contain the point.
         /// </summary>
-        /// <param name="p">The point</param>
+        /// <param name="point">The point</param>
+        /// <param name="inculdeBorder">Does the border count as being in side the sphere.</param>
         /// <returns>true if sphere contains point</returns>
-        public bool Contains(POINT3 p)
+        public bool Contains(POINT3 point, bool inculdeBorder = true)
         {
-            return POINT3.SqrDistance(Center, p) <= Radius2;
+            if (inculdeBorder)
+                return POINT3.SqrDistance(Center, point) <= Radius2;
+            else
+                return POINT3.SqrDistance(Center, point) < Radius2;
         }
 
         /// <summary>
         /// Does the sphere fully contain the box.
         /// </summary>
-        public bool Contains(BOX3 box)
+        /// <param name="box">The box.</param>
+        /// <param name="inculdeBorder">Does the border count as being in side the sphere.</param>
+        /// <returns>oes the sphere fully contain the box.</returns>
+        public bool Contains(BOX3 box, bool inculdeBorder = true)
         {
-            if (!Contains(new POINT3(box.Min.x, box.Min.y, box.Min.z))) return false;
-            if (!Contains(new POINT3(box.Max.x, box.Min.y, box.Min.z))) return false;
-            if (!Contains(new POINT3(box.Max.x, box.Min.y, box.Max.z))) return false;
-            if (!Contains(new POINT3(box.Min.x, box.Min.y, box.Max.z))) return false;
-            if (!Contains(new POINT3(box.Min.x, box.Max.y, box.Min.z))) return false;
-            if (!Contains(new POINT3(box.Max.x, box.Max.y, box.Min.z))) return false;
-            if (!Contains(new POINT3(box.Max.x, box.Max.y, box.Max.z))) return false;
-            if (!Contains(new POINT3(box.Min.x, box.Max.y, box.Max.z))) return false;
+            if (!Contains(new POINT3(box.Min.x, box.Min.y, box.Min.z), inculdeBorder)) return false;
+            if (!Contains(new POINT3(box.Max.x, box.Min.y, box.Min.z), inculdeBorder)) return false;
+            if (!Contains(new POINT3(box.Max.x, box.Min.y, box.Max.z), inculdeBorder)) return false;
+            if (!Contains(new POINT3(box.Min.x, box.Min.y, box.Max.z), inculdeBorder)) return false;
+            if (!Contains(new POINT3(box.Min.x, box.Max.y, box.Min.z), inculdeBorder)) return false;
+            if (!Contains(new POINT3(box.Max.x, box.Max.y, box.Min.z), inculdeBorder)) return false;
+            if (!Contains(new POINT3(box.Max.x, box.Max.y, box.Max.z), inculdeBorder)) return false;
+            if (!Contains(new POINT3(box.Min.x, box.Max.y, box.Max.z), inculdeBorder)) return false;
             return true;
         }
 
@@ -231,20 +243,32 @@ namespace CGALDotNetGeometry.Shapes
         /// Does this sphere intersect with the other sphere.
         /// </summary>
         /// <param name="sphere">The other sphere</param>
+        /// <param name="inculdeBorder">Does the border count as being in side the sphere.</param>
         /// <returns>True if the spheres intersect</returns>
-        public bool Intersects(Sphere3f sphere)
+        public bool Intersects(Sphere3f sphere, bool inculdeBorder = true)
         {
             REAL r = Radius + sphere.Radius;
-            return POINT3.SqrDistance(Center, sphere.Center) <= r * r;
+
+            if (inculdeBorder)
+                return POINT3.SqrDistance(Center, sphere.Center) <= r * r;
+            else
+                return POINT3.SqrDistance(Center, sphere.Center) < r * r;
         }
 
         /// <summary>
         /// Does the sphere intersect the box.
         /// </summary>
-        public bool Intersects(BOX3 box)
+        /// <param name="box"></param>
+        /// <param name="inculdeBorder">Does the border count as being in side the sphere.</param>
+        /// <returns>Does the sphere intersect the box.</returns>
+        public bool Intersects(BOX3 box, bool inculdeBorder = true)
         {
             var p = box.Closest(Center);
-            return POINT3.SqrDistance(p, Center) <= Radius2;
+
+            if (inculdeBorder)
+                return POINT3.SqrDistance(p, Center) <= Radius2;
+            else
+                return POINT3.SqrDistance(p, Center) < Radius2;
         }
 
         /// <summary>
