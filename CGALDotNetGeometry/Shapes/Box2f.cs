@@ -323,31 +323,67 @@ namespace CGALDotNetGeometry.Shapes
         /// <summary>
         /// Returns true if this box intersects the other box.
         /// </summary>
-        public bool Intersects(Box2f a)
+        /// <param name="box">The other box.</param>
+        /// <param name="includeBorder">True if on border counts as inside.</param>
+        /// <returns>Returns true if this box intersects the other box.</returns>
+        public bool Intersects(Box2f box, bool includeBorder = true)
         {
-            if (Max.x < a.Min.x || Min.x > a.Max.x) return false;
-            if (Max.y < a.Min.y || Min.y > a.Max.y) return false;
-            return true;
+            if (includeBorder)
+            {
+                if (Max.x < box.Min.x || Min.x > box.Max.x) return false;
+                if (Max.y < box.Min.y || Min.y > box.Max.y) return false;
+                return true;
+            }
+            else
+            {
+                if (Max.x <= box.Min.x || Min.x >= box.Max.x) return false;
+                if (Max.y <= box.Min.y || Min.y >= box.Max.y) return false;
+                return true;
+            }
         }
 
         /// <summary>
-        /// Does the box contain the other box.
+        /// Does the box fully contain the other box.
         /// </summary>
-        public bool Contains(Box2f a)
+        /// <param name="box">The other box.</param>
+        /// <param name="includeBorder">True if on border counts as inside.</param>
+        /// <returns>Does the box fully contain the other box.</returns>
+        public bool Contains(Box2f box, bool includeBorder = true)
         {
-            if (a.Max.x > Max.x || a.Min.x < Min.x) return false;
-            if (a.Max.y > Max.y || a.Min.y < Min.y) return false;
-            return true;
+            if (includeBorder)
+            {
+                if (box.Max.x > Max.x || box.Min.x < Min.x) return false;
+                if (box.Max.y > Max.y || box.Min.y < Min.y) return false;
+                return true;
+            }
+            else
+            {
+                if (box.Max.x >= Max.x || box.Min.x <= Min.x) return false;
+                if (box.Max.y >= Max.y || box.Min.y <= Min.y) return false;
+                return true;
+            }
         }
 
         /// <summary>
         /// Does the box contain the point.
         /// </summary>
-        public bool Contains(POINT2 p)
+        /// <param name="point">The point.</param>
+        /// <param name="includeBorder">True if on border counts as inside.</param>
+        /// <returns>True if the box contains the point.</returns>
+        public bool Contains(POINT2 point, bool includeBorder = true)
         {
-            if (p.x > Max.x || p.x < Min.x) return false;
-            if (p.y > Max.y || p.y < Min.y) return false;
-            return true;
+            if (includeBorder)
+            {
+                if (point.x > Max.x || point.x < Min.x) return false;
+                if (point.y > Max.y || point.y < Min.y) return false;
+                return true;
+            }
+            else
+            {
+                if (point.x >= Max.x || point.x <= Min.x) return false;
+                if (point.y >= Max.y || point.y <= Min.y) return false;
+                return true;
+            }
         }
 
         /// <summary>

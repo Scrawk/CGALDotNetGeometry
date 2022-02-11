@@ -8580,20 +8580,29 @@
             <param name="amount">The amount to expand.</param>
             <returns>The expanded box.</returns>
         </member>
-        <member name="M:CGALDotNetGeometry.Shapes.Box2d.Intersects(CGALDotNetGeometry.Shapes.Box2d)">
+        <member name="M:CGALDotNetGeometry.Shapes.Box2d.Intersects(CGALDotNetGeometry.Shapes.Box2d,System.Boolean)">
             <summary>
             Returns true if this box intersects the other box.
             </summary>
+            <param name="box">The other box.</param>
+            <param name="includeBorder">True if on border counts as inside.</param>
+            <returns>Returns true if this box intersects the other box.</returns>
         </member>
-        <member name="M:CGALDotNetGeometry.Shapes.Box2d.Contains(CGALDotNetGeometry.Shapes.Box2d)">
+        <member name="M:CGALDotNetGeometry.Shapes.Box2d.Contains(CGALDotNetGeometry.Shapes.Box2d,System.Boolean)">
             <summary>
-            Does the box contain the other box.
+            Does the box fully contain the other box.
             </summary>
+            <param name="box">The other box.</param>
+            <param name="includeBorder">True if on border counts as inside.</param>
+            <returns>Does the box fully contain the other box.</returns>
         </member>
-        <member name="M:CGALDotNetGeometry.Shapes.Box2d.Contains(CGALDotNetGeometry.Numerics.Point2d)">
+        <member name="M:CGALDotNetGeometry.Shapes.Box2d.Contains(CGALDotNetGeometry.Numerics.Point2d,System.Boolean)">
             <summary>
             Does the box contain the point.
             </summary>
+            <param name="point">The point.</param>
+            <param name="includeBorder">True if on border counts as inside.</param>
+            <returns>True if the box contains the point.</returns>
         </member>
         <member name="M:CGALDotNetGeometry.Shapes.Box2d.Closest(CGALDotNetGeometry.Numerics.Point2d)">
             <summary>
@@ -8625,7 +8634,7 @@
             <summary>
             Calculate the bounds of 2 points.
             </summary>
-            <param name="a">The first point.</param>
+            <param name="box">The first point.</param>
             <param name="b">The second point</param>
             <returns>The bounding box.</returns>
         </member>
@@ -8775,20 +8784,29 @@
             <param name="amount">The amount to expand.</param>
             <returns>The expanded box.</returns>
         </member>
-        <member name="M:CGALDotNetGeometry.Shapes.Box2f.Intersects(CGALDotNetGeometry.Shapes.Box2f)">
+        <member name="M:CGALDotNetGeometry.Shapes.Box2f.Intersects(CGALDotNetGeometry.Shapes.Box2f,System.Boolean)">
             <summary>
             Returns true if this box intersects the other box.
             </summary>
+            <param name="box">The other box.</param>
+            <param name="includeBorder">True if on border counts as inside.</param>
+            <returns>Returns true if this box intersects the other box.</returns>
         </member>
-        <member name="M:CGALDotNetGeometry.Shapes.Box2f.Contains(CGALDotNetGeometry.Shapes.Box2f)">
+        <member name="M:CGALDotNetGeometry.Shapes.Box2f.Contains(CGALDotNetGeometry.Shapes.Box2f,System.Boolean)">
             <summary>
-            Does the box contain the other box.
+            Does the box fully contain the other box.
             </summary>
+            <param name="box">The other box.</param>
+            <param name="includeBorder">True if on border counts as inside.</param>
+            <returns>Does the box fully contain the other box.</returns>
         </member>
-        <member name="M:CGALDotNetGeometry.Shapes.Box2f.Contains(CGALDotNetGeometry.Numerics.Point2f)">
+        <member name="M:CGALDotNetGeometry.Shapes.Box2f.Contains(CGALDotNetGeometry.Numerics.Point2f,System.Boolean)">
             <summary>
             Does the box contain the point.
             </summary>
+            <param name="point">The point.</param>
+            <param name="includeBorder">True if on border counts as inside.</param>
+            <returns>True if the box contains the point.</returns>
         </member>
         <member name="M:CGALDotNetGeometry.Shapes.Box2f.Closest(CGALDotNetGeometry.Numerics.Point2f)">
             <summary>
@@ -8982,20 +9000,29 @@
             <param name="amount">The amount to expand.</param>
             <returns>The expanded box.</returns>
         </member>
-        <member name="M:CGALDotNetGeometry.Shapes.Box2i.Intersects(CGALDotNetGeometry.Shapes.Box2i)">
+        <member name="M:CGALDotNetGeometry.Shapes.Box2i.Intersects(CGALDotNetGeometry.Shapes.Box2i,System.Boolean)">
             <summary>
             Returns true if this box intersects the other box.
             </summary>
+            <param name="box">The other box.</param>
+            <param name="includeBorder">True if on border counts as inside.</param>
+            <returns>Returns true if this box intersects the other box.</returns>
         </member>
-        <member name="M:CGALDotNetGeometry.Shapes.Box2i.Contains(CGALDotNetGeometry.Shapes.Box2i)">
+        <member name="M:CGALDotNetGeometry.Shapes.Box2i.Contains(CGALDotNetGeometry.Shapes.Box2i,System.Boolean)">
             <summary>
-            Does the box contain the other box.
+            Does the box fully contain the other box.
             </summary>
+            <param name="box">The other box.</param>
+            <param name="includeBorder">True if on border counts as inside.</param>
+            <returns>Does the box fully contain the other box.</returns>
         </member>
-        <member name="M:CGALDotNetGeometry.Shapes.Box2i.Contains(CGALDotNetGeometry.Numerics.Point2i)">
+        <member name="M:CGALDotNetGeometry.Shapes.Box2i.Contains(CGALDotNetGeometry.Numerics.Point2i,System.Boolean)">
             <summary>
             Does the box contain the point.
             </summary>
+            <param name="point">The point.</param>
+            <param name="includeBorder">True if on border counts as inside.</param>
+            <returns>True if the box contains the point.</returns>
         </member>
         <member name="M:CGALDotNetGeometry.Shapes.Box2i.Closest(CGALDotNetGeometry.Numerics.Point2i)">
             <summary>
@@ -9144,20 +9171,29 @@
             <param name="amount">The amount to expand.</param>
             <returns>The expanded box.</returns>
         </member>
-        <member name="M:CGALDotNetGeometry.Shapes.Box3d.Intersects(CGALDotNetGeometry.Shapes.Box3d)">
+        <member name="M:CGALDotNetGeometry.Shapes.Box3d.Intersects(CGALDotNetGeometry.Shapes.Box3d,System.Boolean)">
             <summary>
             Returns true if this box intersects the other box.
             </summary>
+            <param name="box">The other box.</param>
+            <param name="includeBorder">True if on border counts as inside.</param>
+            <returns>Returns true if this box intersects the other box.</returns>
         </member>
-        <member name="M:CGALDotNetGeometry.Shapes.Box3d.Contains(CGALDotNetGeometry.Shapes.Box3d)">
+        <member name="M:CGALDotNetGeometry.Shapes.Box3d.Contains(CGALDotNetGeometry.Shapes.Box3d,System.Boolean)">
             <summary>
-            Does the box contain the other box.
+            Does the box fully contain the other box.
             </summary>
+            <param name="box">The other box.</param>
+            <param name="includeBorder">True if on border counts as inside.</param>
+            <returns>Does the box fully contain the other box.</returns>
         </member>
-        <member name="M:CGALDotNetGeometry.Shapes.Box3d.Contains(CGALDotNetGeometry.Numerics.Point3d)">
+        <member name="M:CGALDotNetGeometry.Shapes.Box3d.Contains(CGALDotNetGeometry.Numerics.Point3d,System.Boolean)">
             <summary>
-            Returns true if this bounding box contains the given point.
+            Does the box contain the point.
             </summary>
+            <param name="point">The point.</param>
+            <param name="includeBorder">True if on border counts as inside.</param>
+            <returns>True if the box contains the point.</returns>
         </member>
         <member name="M:CGALDotNetGeometry.Shapes.Box3d.Closest(CGALDotNetGeometry.Numerics.Point3d)">
             <summary>
@@ -9326,20 +9362,29 @@
             <param name="amount">The amount to expand.</param>
             <returns>The expanded box.</returns>
         </member>
-        <member name="M:CGALDotNetGeometry.Shapes.Box3f.Intersects(CGALDotNetGeometry.Shapes.Box3f)">
+        <member name="M:CGALDotNetGeometry.Shapes.Box3f.Intersects(CGALDotNetGeometry.Shapes.Box3f,System.Boolean)">
             <summary>
             Returns true if this box intersects the other box.
             </summary>
+            <param name="box">The other box.</param>
+            <param name="includeBorder">True if on border counts as inside.</param>
+            <returns>Returns true if this box intersects the other box.</returns>
         </member>
-        <member name="M:CGALDotNetGeometry.Shapes.Box3f.Contains(CGALDotNetGeometry.Shapes.Box3f)">
+        <member name="M:CGALDotNetGeometry.Shapes.Box3f.Contains(CGALDotNetGeometry.Shapes.Box3f,System.Boolean)">
             <summary>
-            Does the box contain the other box.
+            Does the box fully contain the other box.
             </summary>
+            <param name="box">The other box.</param>
+            <param name="includeBorder">True if on border counts as inside.</param>
+            <returns>Does the box fully contain the other box.</returns>
         </member>
-        <member name="M:CGALDotNetGeometry.Shapes.Box3f.Contains(CGALDotNetGeometry.Numerics.Point3f)">
+        <member name="M:CGALDotNetGeometry.Shapes.Box3f.Contains(CGALDotNetGeometry.Numerics.Point3f,System.Boolean)">
             <summary>
-            Returns true if this bounding box contains the given point.
+            Does the box contain the point.
             </summary>
+            <param name="point">The point.</param>
+            <param name="includeBorder">True if on border counts as inside.</param>
+            <returns>True if the box contains the point.</returns>
         </member>
         <member name="M:CGALDotNetGeometry.Shapes.Box3f.Closest(CGALDotNetGeometry.Numerics.Point3f)">
             <summary>
@@ -9508,20 +9553,29 @@
             <param name="amount">The amount to expand.</param>
             <returns>The expanded box.</returns>
         </member>
-        <member name="M:CGALDotNetGeometry.Shapes.Box3i.Intersects(CGALDotNetGeometry.Shapes.Box3i)">
+        <member name="M:CGALDotNetGeometry.Shapes.Box3i.Intersects(CGALDotNetGeometry.Shapes.Box3i,System.Boolean)">
             <summary>
             Returns true if this box intersects the other box.
             </summary>
+            <param name="box">The other box.</param>
+            <param name="includeBorder">True if on border counts as inside.</param>
+            <returns>Returns true if this box intersects the other box.</returns>
         </member>
-        <member name="M:CGALDotNetGeometry.Shapes.Box3i.Contains(CGALDotNetGeometry.Shapes.Box3i)">
+        <member name="M:CGALDotNetGeometry.Shapes.Box3i.Contains(CGALDotNetGeometry.Shapes.Box3i,System.Boolean)">
             <summary>
-            Does the box contain the other box.
+            Does the box fully contain the other box.
             </summary>
+            <param name="box">The other box.</param>
+            <param name="includeBorder">True if on border counts as inside.</param>
+            <returns>Does the box fully contain the other box.</returns>
         </member>
-        <member name="M:CGALDotNetGeometry.Shapes.Box3i.Contains(CGALDotNetGeometry.Numerics.Point3i)">
+        <member name="M:CGALDotNetGeometry.Shapes.Box3i.Contains(CGALDotNetGeometry.Numerics.Point3i,System.Boolean)">
             <summary>
-            Returns true if this bounding box contains the given point.
+            Does the box contain the point.
             </summary>
+            <param name="point">The point.</param>
+            <param name="includeBorder">True if on border counts as inside.</param>
+            <returns>True if the box contains the point.</returns>
         </member>
         <member name="M:CGALDotNetGeometry.Shapes.Box3i.Closest(CGALDotNetGeometry.Numerics.Point3i)">
             <summary>
