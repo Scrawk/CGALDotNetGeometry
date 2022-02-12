@@ -474,6 +474,18 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
+        /// Are these points equal given the error.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool AlmostEqual(Point3f v0, Point3f v1, REAL eps = MathUtil.EPS_32)
+        {
+            if (Math.Abs(v0.x - v1.x) > eps) return false;
+            if (Math.Abs(v0.y - v1.y) > eps) return false;
+            if (Math.Abs(v0.z - v1.z) > eps) return false;
+            return true;
+        }
+
+        /// <summary>
         /// Vectors hash code. 
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -531,10 +543,17 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Direction between two points.
         /// </summary>
+        /// <param name="v0">The first point.</param>
+        /// <param name="v1">The second point.</param>
+        /// <param name="normalize">Should the vector be normalized.</param>
+        /// <returns>The vector from v0 to v1.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Vector3f Direction(Point3f v0, Point3f v1)
+        public static Vector3f Direction(Point3f v0, Point3f v1, bool normalize = true)
         {
-            return (v1 - v0).Vector3f.Normalized;
+            if (normalize)
+                return (v1 - v0).Vector3f.Normalized;
+            else
+                return (v1 - v0).Vector3f;
         }
 
         /// <summary>

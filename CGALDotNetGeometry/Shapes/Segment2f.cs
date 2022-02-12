@@ -275,20 +275,9 @@ namespace CGALDotNetGeometry.Shapes
         /// Does the point line on the segemnts.
         /// </summary>
         /// <param name="p"></param>
-        /// <returns></returns>
-        public bool Contains(POINT2 p)
-        {
-            var c = Closest(p);
-            return POINT2.AlmostEqual(c, p);
-        }
-
-        /// <summary>
-        /// Does the point line on the segemnts.
-        /// </summary>
-        /// <param name="p"></param>
         /// <param name="eps"></param>
         /// <returns></returns>
-        public bool Contains(POINT2 p, REAL eps)
+        public bool Contains(POINT2 p, REAL eps = MathUtil.EPS_32)
         {
             var c = Closest(p);
             return POINT2.AlmostEqual(c, p, eps);

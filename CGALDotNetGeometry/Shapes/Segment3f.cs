@@ -5,6 +5,7 @@ using CGALDotNetGeometry.Numerics;
 
 using REAL = System.Single;
 using POINT3 = CGALDotNetGeometry.Numerics.Point3f;
+using VECTOR3 = CGALDotNetGeometry.Numerics.Vector3f;
 using BOX3 = CGALDotNetGeometry.Shapes.Box3f;
 using MATRIX3 = CGALDotNetGeometry.Numerics.Matrix3x3f;
 using MATRIX4 = CGALDotNetGeometry.Numerics.Matrix4x4f;
@@ -220,6 +221,134 @@ namespace CGALDotNetGeometry.Shapes
         {
             A = A.Rounded(digits);
             B = B.Rounded(digits);
+        }
+
+        /// <summary>
+        /// Does the point line on the segemnts.
+        /// </summary>
+        /// <param name="point"></param>
+        /// <param name="eps"></param>
+        /// <returns></returns>
+        public bool Contains(POINT3 point, REAL eps = MathUtil.EPS_32)
+        {
+            var c = Closest(point);
+            return POINT3.AlmostEqual(c, point, eps);
+        }
+
+        /// <summary>
+        /// Return the signed distance to the point. 
+        /// Always positive.
+        /// </summary>
+        public REAL SignedDistance(POINT3 point)
+        {
+            return POINT3.Distance(Closest(point), point);
+        }
+
+        /// <summary>
+        /// The closest point on segment to point.
+        /// </summary>
+        /// <param name="point">point</param>
+        public POINT3 Closest(POINT3 point)
+        {
+            REAL t;
+            Closest(point, out t);
+            return A + (B - A) * t;
+        }
+
+        /// <summary>
+        /// The closest point on segment to point.
+        /// </summary>
+        /// <param name="point">point</param>
+        /// <param name="t">closest point = A + t * (B - A)</param>
+        public void Closest(POINT3 point, out REAL t)
+        {
+            t = 0.0f;
+            POINT3 ab = B - A;
+            POINT3 ap = point - A;
+
+            REAL len = ab.x * ab.x + ab.y * ab.y;
+            if (MathUtil.IsZero(len)) return;
+
+            t = (ab.x * ap.x + ab.y * ap.y) / len;
+            t = MathUtil.Clamp01(t);
+        }
+
+        /// <summary>
+        /// The closest segment spanning two other segments.
+        /// </summary>
+        /// <param name="seg">the other segment</param>
+        public Segment3f Closest(Segment3f seg)
+        {
+            REAL s, t;
+            Closest(seg, out s, out t);
+            return new Segment3f(A + (B - A) * s, seg.A + (seg.B - seg.A) * t);
+        }
+
+        /// <summary>
+        /// The closest segment spanning two other segments.
+        /// </summary>
+        /// <param name="seg">the other segment</param>
+        /// <param name="s">closest point = A + s * (B - A)</param>
+        /// <param name="t">other closest point = seg.A + t * (seg.B - seg.A)</param>
+        public void Closest(Segment3f seg, out REAL s, out REAL t)
+        {
+            VECTOR3 ab0 = POINT3.Direction(A, B, false);
+            VECTOR3 ab1 = POINT3.Direction(seg.A, seg.B, false);
+            VECTOR3 a01 = POINT3.Direction(seg.A, A, false);
+
+            REAL d00 = VECTOR3.Dot(ab0, ab0);
+            REAL d11 = VECTOR3.Dot(ab1, ab1);
+            REAL d1 = VECTOR3.Dot(ab1, a01);
+
+            s = 0;
+            t = 0;
+
+            //Check if either or both segments degenerate into points.
+            if (MathUtil.IsZero(d00) && MathUtil.IsZero(d11))
+                return;
+
+            if (MathUtil.IsZero(d00))
+            {
+                //First segment degenerates into a point.
+                s = 0;
+                t = MathUtil.Clamp01(d1 / d11);
+            }
+            else
+            {
+                REAL c = VECTOR3.Dot(ab0, a01);
+
+                if (MathUtil.IsZero(d11))
+                {
+                    //Second segment degenerates into a point.
+                    s = MathUtil.Clamp01(-c / d00);
+                    t = 0;
+                }
+                else
+                {
+                    //The generate non degenerate case starts here.
+                    REAL d2 = VECTOR3.Dot(ab0, ab1);
+                    REAL denom = d00 * d11 - d2 * d2;
+
+                    //if segments not parallel compute closest point and clamp to segment.
+                    if (!MathUtil.IsZero(denom))
+                        s = MathUtil.Clamp01((d2 * d1 - c * d11) / denom);
+                    else
+                        s = 0;
+
+                    t = (d2 * s + d1) / d11;
+
+                    if (t < 0.0f)
+                    {
+                        t = 0.0f;
+                        s = MathUtil.Clamp01(-c / d00);
+                    }
+                    else if (t > 1.0f)
+                    {
+                        t = 1.0f;
+                        s = MathUtil.Clamp01((d2 - c) / d00);
+                    }
+                }
+            }
         }
 
     }

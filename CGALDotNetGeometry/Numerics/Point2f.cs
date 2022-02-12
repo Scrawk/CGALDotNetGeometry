@@ -522,10 +522,17 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Direction between two points.
         /// </summary>
+        /// <param name="v0">The first point.</param>
+        /// <param name="v1">The second point.</param>
+        /// <param name="normalize">Should the vector be normalized.</param>
+        /// <returns>The vector from v0 to v1.</returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Vector2f Direction(Point2f v0, Point2f v1)
+        public static Vector2f Direction(Point2f v0, Point2f v1, bool normalize = true)
         {
-            return (v1 - v0).Vector2f.Normalized;
+            if (normalize)
+                return (v1 - v0).Vector2f.Normalized;
+            else
+                return (v1 - v0).Vector2f;
         }
 
         /// <summary>

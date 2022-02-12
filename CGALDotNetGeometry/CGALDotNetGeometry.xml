@@ -707,6 +707,11 @@
             Are these points equal.
             </summary>
         </member>
+        <member name="M:CGALDotNetGeometry.Numerics.HPoint2d.AlmostEqual(CGALDotNetGeometry.Numerics.HPoint2d,CGALDotNetGeometry.Numerics.HPoint2d,System.Double)">
+            <summary>
+            Are these points equal given the error.
+            </summary>
+        </member>
         <member name="M:CGALDotNetGeometry.Numerics.HPoint2d.GetHashCode">
             <summary>
             Vectors hash code. 
@@ -890,6 +895,11 @@
         <member name="M:CGALDotNetGeometry.Numerics.HPoint2f.Equals(CGALDotNetGeometry.Numerics.HPoint2f)">
             <summary>
             Are these points equal.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.HPoint2f.AlmostEqual(CGALDotNetGeometry.Numerics.HPoint2f,CGALDotNetGeometry.Numerics.HPoint2f,System.Single)">
+            <summary>
+            Are these points equal given the error.
             </summary>
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.HPoint2f.GetHashCode">
@@ -1100,6 +1110,11 @@
         <member name="M:CGALDotNetGeometry.Numerics.HPoint3d.Equals(CGALDotNetGeometry.Numerics.HPoint3d)">
             <summary>
             Are these points equal.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.HPoint3d.AlmostEqual(CGALDotNetGeometry.Numerics.HPoint3d,CGALDotNetGeometry.Numerics.HPoint3d,System.Double)">
+            <summary>
+            Are these points equal given the error.
             </summary>
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.HPoint3d.GetHashCode">
@@ -1315,6 +1330,11 @@
         <member name="M:CGALDotNetGeometry.Numerics.HPoint3f.Equals(CGALDotNetGeometry.Numerics.HPoint3f)">
             <summary>
             Are these points equal.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.HPoint3f.AlmostEqual(CGALDotNetGeometry.Numerics.HPoint3f,CGALDotNetGeometry.Numerics.HPoint3f,System.Single)">
+            <summary>
+            Are these points equal given the error.
             </summary>
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.HPoint3f.GetHashCode">
@@ -3168,10 +3188,14 @@
             Square distance between two points.
             </summary>
         </member>
-        <member name="M:CGALDotNetGeometry.Numerics.Point2d.Direction(CGALDotNetGeometry.Numerics.Point2d,CGALDotNetGeometry.Numerics.Point2d)">
+        <member name="M:CGALDotNetGeometry.Numerics.Point2d.Direction(CGALDotNetGeometry.Numerics.Point2d,CGALDotNetGeometry.Numerics.Point2d,System.Boolean)">
             <summary>
             Direction between two points.
             </summary>
+            <param name="v0">The first point.</param>
+            <param name="v1">The second point.</param>
+            <param name="normalize">Should the vector be normalized.</param>
+            <returns>The vector from v0 to v1.</returns>
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Point2d.Min(CGALDotNetGeometry.Numerics.Point2d,System.Double)">
             <summary>
@@ -3515,10 +3539,14 @@
             Square distance between two points.
             </summary>
         </member>
-        <member name="M:CGALDotNetGeometry.Numerics.Point2f.Direction(CGALDotNetGeometry.Numerics.Point2f,CGALDotNetGeometry.Numerics.Point2f)">
+        <member name="M:CGALDotNetGeometry.Numerics.Point2f.Direction(CGALDotNetGeometry.Numerics.Point2f,CGALDotNetGeometry.Numerics.Point2f,System.Boolean)">
             <summary>
             Direction between two points.
             </summary>
+            <param name="v0">The first point.</param>
+            <param name="v1">The second point.</param>
+            <param name="normalize">Should the vector be normalized.</param>
+            <returns>The vector from v0 to v1.</returns>
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Point2f.Min(CGALDotNetGeometry.Numerics.Point2f,System.Single)">
             <summary>
@@ -4127,6 +4155,11 @@
             Are these points equal.
             </summary>
         </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Point3d.AlmostEqual(CGALDotNetGeometry.Numerics.Point3d,CGALDotNetGeometry.Numerics.Point3d,System.Double)">
+            <summary>
+            Are these points equal given the error.
+            </summary>
+        </member>
         <member name="M:CGALDotNetGeometry.Numerics.Point3d.GetHashCode">
             <summary>
             Vectors hash code. 
@@ -4152,10 +4185,14 @@
             Square distance between two points.
             </summary>
         </member>
-        <member name="M:CGALDotNetGeometry.Numerics.Point3d.Direction(CGALDotNetGeometry.Numerics.Point3d,CGALDotNetGeometry.Numerics.Point3d)">
+        <member name="M:CGALDotNetGeometry.Numerics.Point3d.Direction(CGALDotNetGeometry.Numerics.Point3d,CGALDotNetGeometry.Numerics.Point3d,System.Boolean)">
             <summary>
             Direction between two points.
             </summary>
+            <param name="v0">The first point.</param>
+            <param name="v1">The second point.</param>
+            <param name="normalize">Should the vector be normalized.</param>
+            <returns>The vector from v0 to v1.</returns>
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Point3d.Min(CGALDotNetGeometry.Numerics.Point3d,System.Double)">
             <summary>
@@ -4484,6 +4521,11 @@
             Are these points equal.
             </summary>
         </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Point3f.AlmostEqual(CGALDotNetGeometry.Numerics.Point3f,CGALDotNetGeometry.Numerics.Point3f,System.Single)">
+            <summary>
+            Are these points equal given the error.
+            </summary>
+        </member>
         <member name="M:CGALDotNetGeometry.Numerics.Point3f.GetHashCode">
             <summary>
             Vectors hash code. 
@@ -4509,10 +4551,14 @@
             Square distance between two points.
             </summary>
         </member>
-        <member name="M:CGALDotNetGeometry.Numerics.Point3f.Direction(CGALDotNetGeometry.Numerics.Point3f,CGALDotNetGeometry.Numerics.Point3f)">
+        <member name="M:CGALDotNetGeometry.Numerics.Point3f.Direction(CGALDotNetGeometry.Numerics.Point3f,CGALDotNetGeometry.Numerics.Point3f,System.Boolean)">
             <summary>
             Direction between two points.
             </summary>
+            <param name="v0">The first point.</param>
+            <param name="v1">The second point.</param>
+            <param name="normalize">Should the vector be normalized.</param>
+            <returns>The vector from v0 to v1.</returns>
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Point3f.Min(CGALDotNetGeometry.Numerics.Point3f,System.Single)">
             <summary>
@@ -5101,6 +5147,11 @@
             Are these points equal.
             </summary>
         </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Point4d.AlmostEqual(CGALDotNetGeometry.Numerics.Point4d,CGALDotNetGeometry.Numerics.Point4d,System.Double)">
+            <summary>
+            Are these points equal given the error.
+            </summary>
+        </member>
         <member name="M:CGALDotNetGeometry.Numerics.Point4d.GetHashCode">
             <summary>
             Vectors hash code. 
@@ -5125,6 +5176,15 @@
             <summary>
             Square distance between two points.
             </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Point4d.Direction(CGALDotNetGeometry.Numerics.Point4d,CGALDotNetGeometry.Numerics.Point4d,System.Boolean)">
+            <summary>
+            Direction between two points.
+            </summary>
+            <param name="v0">The first point.</param>
+            <param name="v1">The second point.</param>
+            <param name="normalize">Should the vector be normalized.</param>
+            <returns>The vector from v0 to v1.</returns>
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Point4d.Min(CGALDotNetGeometry.Numerics.Point4d,System.Double)">
             <summary>
@@ -5429,6 +5489,11 @@
             Are these points equal.
             </summary>
         </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Point4f.AlmostEqual(CGALDotNetGeometry.Numerics.Point4f,CGALDotNetGeometry.Numerics.Point4f,System.Single)">
+            <summary>
+            Are these points equal given the error.
+            </summary>
+        </member>
         <member name="M:CGALDotNetGeometry.Numerics.Point4f.GetHashCode">
             <summary>
             Vectors hash code. 
@@ -5453,6 +5518,15 @@
             <summary>
             Square distance between two points.
             </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Point4f.Direction(CGALDotNetGeometry.Numerics.Point4f,CGALDotNetGeometry.Numerics.Point4f,System.Boolean)">
+            <summary>
+            Direction between two points.
+            </summary>
+            <param name="v0">The first point.</param>
+            <param name="v1">The second point.</param>
+            <param name="normalize">Should the vector be normalized.</param>
+            <returns>The vector from v0 to v1.</returns>
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Point4f.Min(CGALDotNetGeometry.Numerics.Point4f,System.Single)">
             <summary>
@@ -9648,29 +9722,37 @@
             If point is inside circle field is negative.
             </summary>
         </member>
-        <member name="M:CGALDotNetGeometry.Shapes.Circle2d.Contains(CGALDotNetGeometry.Numerics.Point2d)">
+        <member name="M:CGALDotNetGeometry.Shapes.Circle2d.Contains(CGALDotNetGeometry.Numerics.Point2d,System.Boolean)">
             <summary>
             Does the circle contain the point.
             </summary>
-            <param name="p">The point</param>
+            <param name="point">The point.</param>
+            <param name="includeBorder">Does the border conunt as inside the circle.</param>
             <returns>true if circle contains point</returns>
         </member>
-        <member name="M:CGALDotNetGeometry.Shapes.Circle2d.Contains(CGALDotNetGeometry.Shapes.Box2d)">
+        <member name="M:CGALDotNetGeometry.Shapes.Circle2d.Contains(CGALDotNetGeometry.Shapes.Box2d,System.Boolean)">
             <summary>
             Does the circle fully contain the box.
             </summary>
+            <param name="box">The box.</param>
+            <param name="includeBorder">Does the border conunt as inside the circle.</param>
+            <returns>Does the circle fully contain the box.</returns>
         </member>
-        <member name="M:CGALDotNetGeometry.Shapes.Circle2d.Intersects(CGALDotNetGeometry.Shapes.Circle2d)">
+        <member name="M:CGALDotNetGeometry.Shapes.Circle2d.Intersects(CGALDotNetGeometry.Shapes.Circle2d,System.Boolean)">
             <summary>
             Does this circle intersect with the other circle.
             </summary>
             <param name="circle">The other circle</param>
+            <param name="includeBorder">Does the border conunt as inside the circle.</param>
             <returns>True if the circles intersect</returns>
         </member>
-        <member name="M:CGALDotNetGeometry.Shapes.Circle2d.Intersects(CGALDotNetGeometry.Shapes.Box2d)">
+        <member name="M:CGALDotNetGeometry.Shapes.Circle2d.Intersects(CGALDotNetGeometry.Shapes.Box2d,System.Boolean)">
             <summary>
             Does the circle intersect the box.
             </summary>
+            <param name="box">The box.</param>
+            <param name="includeBorder">Does the border conunt as inside the circle.</param>
+            <returns>Does the circle intersect the box.</returns>
         </member>
         <member name="M:CGALDotNetGeometry.Shapes.Circle2d.Enlarge(CGALDotNetGeometry.Shapes.Circle2d,CGALDotNetGeometry.Numerics.Point2d)">
             <summary>
@@ -9760,29 +9842,37 @@
             If point is inside circle field is negative.
             </summary>
         </member>
-        <member name="M:CGALDotNetGeometry.Shapes.Circle2f.Contains(CGALDotNetGeometry.Numerics.Point2f)">
+        <member name="M:CGALDotNetGeometry.Shapes.Circle2f.Contains(CGALDotNetGeometry.Numerics.Point2f,System.Boolean)">
             <summary>
             Does the circle contain the point.
             </summary>
-            <param name="p">The point</param>
+            <param name="point">The point.</param>
+            <param name="includeBorder">Does the border conunt as inside the circle.</param>
             <returns>true if circle contains point</returns>
         </member>
-        <member name="M:CGALDotNetGeometry.Shapes.Circle2f.Contains(CGALDotNetGeometry.Shapes.Box2f)">
+        <member name="M:CGALDotNetGeometry.Shapes.Circle2f.Contains(CGALDotNetGeometry.Shapes.Box2f,System.Boolean)">
             <summary>
             Does the circle fully contain the box.
             </summary>
+            <param name="box">The box.</param>
+            <param name="includeBorder">Does the border conunt as inside the circle.</param>
+            <returns>Does the circle fully contain the box.</returns>
         </member>
-        <member name="M:CGALDotNetGeometry.Shapes.Circle2f.Intersects(CGALDotNetGeometry.Shapes.Circle2f)">
+        <member name="M:CGALDotNetGeometry.Shapes.Circle2f.Intersects(CGALDotNetGeometry.Shapes.Circle2f,System.Boolean)">
             <summary>
             Does this circle intersect with the other circle.
             </summary>
             <param name="circle">The other circle</param>
+            <param name="includeBorder">Does the border conunt as inside the circle.</param>
             <returns>True if the circles intersect</returns>
         </member>
-        <member name="M:CGALDotNetGeometry.Shapes.Circle2f.Intersects(CGALDotNetGeometry.Shapes.Box2f)">
+        <member name="M:CGALDotNetGeometry.Shapes.Circle2f.Intersects(CGALDotNetGeometry.Shapes.Box2f,System.Boolean)">
             <summary>
             Does the circle intersect the box.
             </summary>
+            <param name="box">The box.</param>
+            <param name="includeBorder">Does the border conunt as inside the circle.</param>
+            <returns>Does the circle intersect the box.</returns>
         </member>
         <member name="M:CGALDotNetGeometry.Shapes.Circle2f.Enlarge(CGALDotNetGeometry.Shapes.Circle2f,CGALDotNetGeometry.Numerics.Point2f)">
             <summary>
@@ -10876,13 +10966,6 @@
             </summary>
             <param name="digits">The number of digits to round to.</param>
         </member>
-        <member name="M:CGALDotNetGeometry.Shapes.Segment2d.Contains(CGALDotNetGeometry.Numerics.Point2d)">
-            <summary>
-            Does the point line on the segemnts.
-            </summary>
-            <param name="p"></param>
-            <returns></returns>
-        </member>
         <member name="M:CGALDotNetGeometry.Shapes.Segment2d.Contains(CGALDotNetGeometry.Numerics.Point2d,System.Double)">
             <summary>
             Does the point line on the segemnts.
@@ -11080,13 +11163,6 @@
             </summary>
             <param name="digits">The number of digits to round to.</param>
         </member>
-        <member name="M:CGALDotNetGeometry.Shapes.Segment2f.Contains(CGALDotNetGeometry.Numerics.Point2f)">
-            <summary>
-            Does the point line on the segemnts.
-            </summary>
-            <param name="p"></param>
-            <returns></returns>
-        </member>
         <member name="M:CGALDotNetGeometry.Shapes.Segment2f.Contains(CGALDotNetGeometry.Numerics.Point2f,System.Single)">
             <summary>
             Does the point line on the segemnts.
@@ -11249,6 +11325,47 @@
             </summary>
             <param name="digits">number of digits to round to.</param>
         </member>
+        <member name="M:CGALDotNetGeometry.Shapes.Segment3d.Contains(CGALDotNetGeometry.Numerics.Point3d,System.Double)">
+            <summary>
+            Does the point line on the segemnts.
+            </summary>
+            <param name="point"></param>
+            <param name="eps"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CGALDotNetGeometry.Shapes.Segment3d.SignedDistance(CGALDotNetGeometry.Numerics.Point3d)">
+            <summary>
+            Return the signed distance to the point. 
+            Always positive.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Shapes.Segment3d.Closest(CGALDotNetGeometry.Numerics.Point3d)">
+            <summary>
+            The closest point on segment to point.
+            </summary>
+            <param name="point">point</param>
+        </member>
+        <member name="M:CGALDotNetGeometry.Shapes.Segment3d.Closest(CGALDotNetGeometry.Numerics.Point3d,System.Double@)">
+            <summary>
+            The closest point on segment to point.
+            </summary>
+            <param name="point">point</param>
+            <param name="t">closest point = A + t * (B - A)</param>
+        </member>
+        <member name="M:CGALDotNetGeometry.Shapes.Segment3d.Closest(CGALDotNetGeometry.Shapes.Segment3d)">
+            <summary>
+            The closest segment spanning two other segments.
+            </summary>
+            <param name="seg">the other segment</param>
+        </member>
+        <member name="M:CGALDotNetGeometry.Shapes.Segment3d.Closest(CGALDotNetGeometry.Shapes.Segment3d,System.Double@,System.Double@)">
+            <summary>
+            The closest segment spanning two other segments.
+            </summary>
+            <param name="seg">the other segment</param>
+            <param name="s">closest point = A + s * (B - A)</param>
+            <param name="t">other closest point = seg.A + t * (seg.B - seg.A)</param>
+        </member>
         <member name="T:CGALDotNetGeometry.Shapes.Segment3f">
             <summary>
             A 3D segment.
@@ -11341,6 +11458,47 @@
             Round the segments points.
             </summary>
             <param name="digits">number of digits to round to.</param>
+        </member>
+        <member name="M:CGALDotNetGeometry.Shapes.Segment3f.Contains(CGALDotNetGeometry.Numerics.Point3f,System.Single)">
+            <summary>
+            Does the point line on the segemnts.
+            </summary>
+            <param name="point"></param>
+            <param name="eps"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CGALDotNetGeometry.Shapes.Segment3f.SignedDistance(CGALDotNetGeometry.Numerics.Point3f)">
+            <summary>
+            Return the signed distance to the point. 
+            Always positive.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Shapes.Segment3f.Closest(CGALDotNetGeometry.Numerics.Point3f)">
+            <summary>
+            The closest point on segment to point.
+            </summary>
+            <param name="point">point</param>
+        </member>
+        <member name="M:CGALDotNetGeometry.Shapes.Segment3f.Closest(CGALDotNetGeometry.Numerics.Point3f,System.Single@)">
+            <summary>
+            The closest point on segment to point.
+            </summary>
+            <param name="point">point</param>
+            <param name="t">closest point = A + t * (B - A)</param>
+        </member>
+        <member name="M:CGALDotNetGeometry.Shapes.Segment3f.Closest(CGALDotNetGeometry.Shapes.Segment3f)">
+            <summary>
+            The closest segment spanning two other segments.
+            </summary>
+            <param name="seg">the other segment</param>
+        </member>
+        <member name="M:CGALDotNetGeometry.Shapes.Segment3f.Closest(CGALDotNetGeometry.Shapes.Segment3f,System.Single@,System.Single@)">
+            <summary>
+            The closest segment spanning two other segments.
+            </summary>
+            <param name="seg">the other segment</param>
+            <param name="s">closest point = A + s * (B - A)</param>
+            <param name="t">other closest point = seg.A + t * (seg.B - seg.A)</param>
         </member>
         <member name="T:CGALDotNetGeometry.Shapes.SegmentIndex">
             <summary>
@@ -11498,29 +11656,37 @@
             If point is inside spher field is negative.
             </summary>
         </member>
-        <member name="M:CGALDotNetGeometry.Shapes.Sphere3d.Contains(CGALDotNetGeometry.Numerics.Point3d)">
+        <member name="M:CGALDotNetGeometry.Shapes.Sphere3d.Contains(CGALDotNetGeometry.Numerics.Point3d,System.Boolean)">
             <summary>
             Does the sphere contain the point.
             </summary>
-            <param name="p">The point</param>
+            <param name="point">The point</param>
+            <param name="inculdeBorder">Does the border count as being in side the sphere.</param>
             <returns>true if sphere contains point</returns>
         </member>
-        <member name="M:CGALDotNetGeometry.Shapes.Sphere3d.Contains(CGALDotNetGeometry.Shapes.Box3d)">
+        <member name="M:CGALDotNetGeometry.Shapes.Sphere3d.Contains(CGALDotNetGeometry.Shapes.Box3d,System.Boolean)">
             <summary>
             Does the sphere fully contain the box.
             </summary>
+            <param name="box">The box.</param>
+            <param name="inculdeBorder">Does the border count as being in side the sphere.</param>
+            <returns>oes the sphere fully contain the box.</returns>
         </member>
-        <member name="M:CGALDotNetGeometry.Shapes.Sphere3d.Intersects(CGALDotNetGeometry.Shapes.Sphere3d)">
+        <member name="M:CGALDotNetGeometry.Shapes.Sphere3d.Intersects(CGALDotNetGeometry.Shapes.Sphere3d,System.Boolean)">
             <summary>
             Does this sphere intersect with the other sphere.
             </summary>
             <param name="sphere">The other sphere</param>
+            <param name="inculdeBorder">Does the border count as being in side the sphere.</param>
             <returns>True if the spheres intersect</returns>
         </member>
-        <member name="M:CGALDotNetGeometry.Shapes.Sphere3d.Intersects(CGALDotNetGeometry.Shapes.Box3d)">
+        <member name="M:CGALDotNetGeometry.Shapes.Sphere3d.Intersects(CGALDotNetGeometry.Shapes.Box3d,System.Boolean)">
             <summary>
             Does the sphere intersect the box.
             </summary>
+            <param name="box"></param>
+            <param name="inculdeBorder">Does the border count as being in side the sphere.</param>
+            <returns>Does the sphere intersect the box.</returns>
         </member>
         <member name="M:CGALDotNetGeometry.Shapes.Sphere3d.CircumSphere(CGALDotNetGeometry.Numerics.Point3d,CGALDotNetGeometry.Numerics.Point3d)">
             <summary>
@@ -11647,29 +11813,37 @@
             If point is inside spher field is negative.
             </summary>
         </member>
-        <member name="M:CGALDotNetGeometry.Shapes.Sphere3f.Contains(CGALDotNetGeometry.Numerics.Point3f)">
+        <member name="M:CGALDotNetGeometry.Shapes.Sphere3f.Contains(CGALDotNetGeometry.Numerics.Point3f,System.Boolean)">
             <summary>
             Does the sphere contain the point.
             </summary>
-            <param name="p">The point</param>
+            <param name="point">The point</param>
+            <param name="inculdeBorder">Does the border count as being in side the sphere.</param>
             <returns>true if sphere contains point</returns>
         </member>
-        <member name="M:CGALDotNetGeometry.Shapes.Sphere3f.Contains(CGALDotNetGeometry.Shapes.Box3f)">
+        <member name="M:CGALDotNetGeometry.Shapes.Sphere3f.Contains(CGALDotNetGeometry.Shapes.Box3f,System.Boolean)">
             <summary>
             Does the sphere fully contain the box.
             </summary>
+            <param name="box">The box.</param>
+            <param name="inculdeBorder">Does the border count as being in side the sphere.</param>
+            <returns>oes the sphere fully contain the box.</returns>
         </member>
-        <member name="M:CGALDotNetGeometry.Shapes.Sphere3f.Intersects(CGALDotNetGeometry.Shapes.Sphere3f)">
+        <member name="M:CGALDotNetGeometry.Shapes.Sphere3f.Intersects(CGALDotNetGeometry.Shapes.Sphere3f,System.Boolean)">
             <summary>
             Does this sphere intersect with the other sphere.
             </summary>
             <param name="sphere">The other sphere</param>
+            <param name="inculdeBorder">Does the border count as being in side the sphere.</param>
             <returns>True if the spheres intersect</returns>
         </member>
-        <member name="M:CGALDotNetGeometry.Shapes.Sphere3f.Intersects(CGALDotNetGeometry.Shapes.Box3f)">
+        <member name="M:CGALDotNetGeometry.Shapes.Sphere3f.Intersects(CGALDotNetGeometry.Shapes.Box3f,System.Boolean)">
             <summary>
             Does the sphere intersect the box.
             </summary>
+            <param name="box"></param>
+            <param name="inculdeBorder">Does the border count as being in side the sphere.</param>
+            <returns>Does the sphere intersect the box.</returns>
         </member>
         <member name="M:CGALDotNetGeometry.Shapes.Sphere3f.CircumSphere(CGALDotNetGeometry.Numerics.Point3f,CGALDotNetGeometry.Numerics.Point3f)">
             <summary>

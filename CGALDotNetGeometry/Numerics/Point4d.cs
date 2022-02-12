@@ -452,6 +452,19 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
+        /// Are these points equal given the error.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool AlmostEqual(Point4d v0, Point4d v1, REAL eps = MathUtil.EPS_64)
+        {
+            if (Math.Abs(v0.x - v1.x) > eps) return false;
+            if (Math.Abs(v0.y - v1.y) > eps) return false;
+            if (Math.Abs(v0.z - v1.z) > eps) return false;
+            if (Math.Abs(v0.w - v1.w) > eps) return false;
+            return true;
+        }
+
+        /// <summary>
         /// Vectors hash code. 
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -506,6 +519,22 @@ namespace CGALDotNetGeometry.Numerics
             REAL z = v0.z - v1.z;
             REAL w = v0.w - v1.w;
             return x * x + y * y + z * z + w * w;
+        }
+
+        /// <summary>
+        /// Direction between two points.
+        /// </summary>
+        /// <param name="v0">The first point.</param>
+        /// <param name="v1">The second point.</param>
+        /// <param name="normalize">Should the vector be normalized.</param>
+        /// <returns>The vector from v0 to v1.</returns>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Vector4d Direction(Point4d v0, Point4d v1, bool normalize = true)
+        {
+            if (normalize)
+                return (v1 - v0).Vector4d.Normalized;
+            else
+                return (v1 - v0).Vector4d;
         }
 
         /// <summary>
