@@ -455,7 +455,7 @@ namespace CGALDotNetGeometry.Colors
         }
 
         /// <summary>
-        /// Create a palette of colors..
+        /// Create a palette of colors.
         /// </summary>
         /// <returns></returns>
         public static ColorRGB[] Palette()

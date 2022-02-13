@@ -268,7 +268,7 @@
         </member>
         <member name="M:CGALDotNetGeometry.Colors.ColorRGB.Palette">
             <summary>
-            Create a palette of colors..
+            Create a palette of colors.
             </summary>
             <returns></returns>
         </member>
@@ -1534,6 +1534,11 @@
             Access the varible at index i
             </summary>
         </member>
+        <member name="P:CGALDotNetGeometry.Numerics.Matrix2x2d.IsIdentity">
+            <summary>
+            Is this the identity matrix.
+            </summary>
+        </member>
         <member name="P:CGALDotNetGeometry.Numerics.Matrix2x2d.Item(System.Int32,System.Int32)">
             <summary>
             Access the varible at index ij
@@ -1721,6 +1726,11 @@
             Access the varible at index ij
             </summary>
         </member>
+        <member name="P:CGALDotNetGeometry.Numerics.Matrix2x2f.IsIdentity">
+            <summary>
+            Is this the identity matrix.
+            </summary>
+        </member>
         <member name="P:CGALDotNetGeometry.Numerics.Matrix2x2f.Transpose">
             <summary>
             The transpose of the matrix. The rows and columns are flipped.
@@ -1896,6 +1906,16 @@
         <member name="M:CGALDotNetGeometry.Numerics.Matrix3x3d.#ctor(System.Double[0:,0:])">
             <summary>
             A matrix copied from a array of varibles.
+            </summary>
+        </member>
+        <member name="P:CGALDotNetGeometry.Numerics.Matrix3x3d.IsIdentity">
+            <summary>
+            Is this the identity matrix.
+            </summary>
+        </member>
+        <member name="P:CGALDotNetGeometry.Numerics.Matrix3x3d.HasScale">
+            <summary>
+            Does the matric have scale.
             </summary>
         </member>
         <member name="P:CGALDotNetGeometry.Numerics.Matrix3x3d.Item(System.Int32)">
@@ -2147,6 +2167,16 @@
             Access the varible at index ij
             </summary>
         </member>
+        <member name="P:CGALDotNetGeometry.Numerics.Matrix3x3f.IsIdentity">
+            <summary>
+            Is this the identity matrix.
+            </summary>
+        </member>
+        <member name="P:CGALDotNetGeometry.Numerics.Matrix3x3f.HasScale">
+            <summary>
+            Does the matric have scale.
+            </summary>
+        </member>
         <member name="P:CGALDotNetGeometry.Numerics.Matrix3x3f.Transpose">
             <summary>
             The transpose of the matrix. The rows and columns are flipped.
@@ -2389,6 +2419,16 @@
         <member name="P:CGALDotNetGeometry.Numerics.Matrix4x4d.Item(System.Int32,System.Int32)">
             <summary>
             Access the varible at index ij
+            </summary>
+        </member>
+        <member name="P:CGALDotNetGeometry.Numerics.Matrix4x4d.IsIdentity">
+            <summary>
+            Is this the identity matrix.
+            </summary>
+        </member>
+        <member name="P:CGALDotNetGeometry.Numerics.Matrix4x4d.HasScale">
+            <summary>
+            Does the matric have scale.
             </summary>
         </member>
         <member name="P:CGALDotNetGeometry.Numerics.Matrix4x4d.Transpose">
@@ -2679,6 +2719,16 @@
         <member name="P:CGALDotNetGeometry.Numerics.Matrix4x4f.Item(System.Int32,System.Int32)">
             <summary>
             Access the varible at index ij
+            </summary>
+        </member>
+        <member name="P:CGALDotNetGeometry.Numerics.Matrix4x4f.IsIdentity">
+            <summary>
+            Is this the identity matrix.
+            </summary>
+        </member>
+        <member name="P:CGALDotNetGeometry.Numerics.Matrix4x4f.HasScale">
+            <summary>
+            Does the matric have scale.
             </summary>
         </member>
         <member name="P:CGALDotNetGeometry.Numerics.Matrix4x4f.Transpose">
@@ -8708,7 +8758,7 @@
             <summary>
             Calculate the bounds of 2 points.
             </summary>
-            <param name="box">The first point.</param>
+            <param name="a">The first point.</param>
             <param name="b">The second point</param>
             <returns>The bounding box.</returns>
         </member>

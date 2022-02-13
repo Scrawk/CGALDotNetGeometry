@@ -113,6 +113,49 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
+        /// Is this the identity matrix.
+        /// </summary>
+        public bool IsIdentity
+        {
+            get
+            {
+                for (int y = 0; y < 3; y++)
+                {
+                    for (int x = 0; x < 3; x++)
+                    {
+                        if (x == y)
+                        {
+                            if (!MathUtil.IsOne(this[x, y]))
+                                return false;
+                        }
+                        else
+                        {
+                            if (!MathUtil.IsZero(this[x, y]))
+                                return false;
+                        }
+
+                    }
+                }
+
+                return true;
+            }
+        }
+
+        /// <summary>
+        /// Does the matric have scale.
+        /// </summary>
+        public bool HasScale
+        {
+            get
+            {
+                if (!MathUtil.IsOne((this * VECTOR2.UnitX).SqrMagnitude)) return true;
+                if (!MathUtil.IsOne((this * VECTOR2.UnitY).SqrMagnitude)) return true;
+
+                return false;
+            }
+        }
+
+        /// <summary>
         /// The transpose of the matrix. The rows and columns are flipped.
         /// </summary>
         public Matrix3x3f Transpose

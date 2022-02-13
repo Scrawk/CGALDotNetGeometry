@@ -460,7 +460,7 @@ namespace CGALDotNetGeometry.Shapes
         /// <summary>
         /// Calculate the bounds of 2 points.
         /// </summary>
-        /// <param name="box">The first point.</param>
+        /// <param name="a">The first point.</param>
         /// <param name="b">The second point</param>
         /// <returns>The bounding box.</returns>
         public static Box2d CalculateBounds(POINT2 a, POINT2 b)

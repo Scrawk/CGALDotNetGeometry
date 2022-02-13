@@ -96,6 +96,35 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
+        /// Is this the identity matrix.
+        /// </summary>
+        public bool IsIdentity
+        {
+            get
+            {
+                for (int y = 0; y < 2; y++)
+                {
+                    for (int x = 0; x < 2; x++)
+                    {
+                        if (x == y)
+                        {
+                            if (!MathUtil.IsOne(this[x, y]))
+                                return false;
+                        }
+                        else
+                        {
+                            if (!MathUtil.IsZero(this[x, y]))
+                                return false;
+                        }
+
+                    }
+                }
+
+                return true;
+            }
+        }
+
+        /// <summary>
         /// The transpose of the matrix. The rows and columns are flipped.
         /// </summary>
         public Matrix2x2f Transpose
