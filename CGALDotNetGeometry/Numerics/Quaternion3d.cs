@@ -177,12 +177,30 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
+        /// Subtract two quaternions.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Quaternion3d operator -(Quaternion3d q1, Quaternion3d q2)
+        {
+            return new Quaternion3d(q1.x - q2.x, q1.y - q2.y, q1.z - q2.z, q1.w - q2.w);
+        }
+
+        /// <summary>
         /// Add a quaternion and a scalar.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Quaternion3d operator +(Quaternion3d q, REAL s)
         {
             return new Quaternion3d(q.x + s, q.y + s, q.z + s, q.w + s);
+        }
+
+        /// <summary>
+        /// Add two quaternions.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Quaternion3d operator +(Quaternion3d q1, Quaternion3d q2)
+        {
+            return new Quaternion3d(q1.x + q2.x, q1.y + q2.y, q1.z + q2.z, q1.w + q2.w);
         }
 
         /// <summary>

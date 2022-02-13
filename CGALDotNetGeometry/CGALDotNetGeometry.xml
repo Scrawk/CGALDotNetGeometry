@@ -5983,9 +5983,19 @@
             Negate a quaternion.
             </summary>
         </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Quaternion3d.op_Subtraction(CGALDotNetGeometry.Numerics.Quaternion3d,CGALDotNetGeometry.Numerics.Quaternion3d)">
+            <summary>
+            Subtract two quaternions.
+            </summary>
+        </member>
         <member name="M:CGALDotNetGeometry.Numerics.Quaternion3d.op_Addition(CGALDotNetGeometry.Numerics.Quaternion3d,System.Double)">
             <summary>
             Add a quaternion and a scalar.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Quaternion3d.op_Addition(CGALDotNetGeometry.Numerics.Quaternion3d,CGALDotNetGeometry.Numerics.Quaternion3d)">
+            <summary>
+            Add two quaternions.
             </summary>
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Quaternion3d.op_Multiply(CGALDotNetGeometry.Numerics.Quaternion3d,System.Double)">
@@ -6155,6 +6165,11 @@
             Subtract a quaternion and a scalar.
             </summary>
         </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Quaternion3f.op_Subtraction(CGALDotNetGeometry.Numerics.Quaternion3f,CGALDotNetGeometry.Numerics.Quaternion3f)">
+            <summary>
+            Subtract two quaternions.
+            </summary>
+        </member>
         <member name="M:CGALDotNetGeometry.Numerics.Quaternion3f.op_UnaryNegation(CGALDotNetGeometry.Numerics.Quaternion3f)">
             <summary>
             Negate a quaternion.
@@ -6163,6 +6178,11 @@
         <member name="M:CGALDotNetGeometry.Numerics.Quaternion3f.op_Addition(CGALDotNetGeometry.Numerics.Quaternion3f,System.Single)">
             <summary>
             Add a quaternion and a scalar.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Quaternion3f.op_Addition(CGALDotNetGeometry.Numerics.Quaternion3f,CGALDotNetGeometry.Numerics.Quaternion3f)">
+            <summary>
+            Add two quaternions.
             </summary>
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Quaternion3f.op_Multiply(CGALDotNetGeometry.Numerics.Quaternion3f,System.Single)">

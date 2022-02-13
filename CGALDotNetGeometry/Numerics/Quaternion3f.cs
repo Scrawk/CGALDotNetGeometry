@@ -180,6 +180,15 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
+        /// Subtract two quaternions.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Quaternion3f operator -(Quaternion3f q1, Quaternion3f q2)
+        {
+            return new Quaternion3f(q1.x - q2.x, q1.y - q2.y, q1.z - q2.z, q1.w - q2.w);
+        }
+
+        /// <summary>
         /// Negate a quaternion.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -195,6 +204,15 @@ namespace CGALDotNetGeometry.Numerics
         public static Quaternion3f operator +(Quaternion3f q, REAL s)
         {
             return new Quaternion3f(q.x + s, q.y + s, q.z + s, q.w + s);
+        }
+
+        /// <summary>
+        /// Add two quaternions.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Quaternion3f operator +(Quaternion3f q1, Quaternion3f q2)
+        {
+            return new Quaternion3f(q1.x + q2.x, q1.y + q2.y, q1.z + q2.z, q1.w + q2.w);
         }
 
         /// <summary>
