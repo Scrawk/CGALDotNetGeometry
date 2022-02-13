@@ -166,6 +166,78 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
+        /// Is the degree less than the scalar.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool operator <(Degree v, double s)
+        {
+            return v.angle < s;
+        }
+
+        /// <summary>
+        /// Is the degree less than or equal to the scalar.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool operator <=(Degree v, double s)
+        {
+            return v.angle <= s;
+        }
+
+        /// <summary>
+        /// Is the degree greater than the scalar.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool operator >(Degree v, double s)
+        {
+            return v.angle > s;
+        }
+
+        /// <summary>
+        /// Is the degree greater than or equal to the scalar.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool operator >=(Degree v, double s)
+        {
+            return v.angle >= s;
+        }
+
+        /// <summary>
+        /// Is the degree less than the other degree.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool operator <(Degree v, Degree v2)
+        {
+            return v.angle < v2.angle;
+        }
+
+        /// <summary>
+        /// Is the degree less than or equal to the other degree.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool operator <=(Degree v, Degree v2)
+        {
+            return v.angle <= v2.angle;
+        }
+
+        /// <summary>
+        /// Is the degree greater than the other degree.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool operator >(Degree v, Degree v2)
+        {
+            return v.angle < v2.angle;
+        }
+
+        /// <summary>
+        /// Is the degree greater than or equal to the other degree.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool operator >=(Degree v, Degree v2)
+        {
+            return v.angle < v2.angle;
+        }
+
+        /// <summary>
         /// Cast from a radian to degrees.
         /// </summary>
         /// <param name="v">The angle in radians.</param>

@@ -88,6 +88,12 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static double Sin(Radian a)
+        {
+            return Math.Sin(a.angle);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static float Asin(float a)
         {
             return (float)Math.Asin(a);
@@ -97,6 +103,12 @@ namespace CGALDotNetGeometry.Numerics
         public static double Asin(double a)
         {
             return Math.Asin(a);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static double Asin(Radian a)
+        {
+            return Math.Asin(a.angle);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -112,6 +124,12 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static double SafeAsin(Radian r)
+        {
+            return Asin(Clamp(r.angle, -1.0, 1.0));
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static float Cos(float a)
         {
             return (float)Math.Cos(a);
@@ -121,6 +139,12 @@ namespace CGALDotNetGeometry.Numerics
         public static double Cos(double a)
         {
             return Math.Cos(a);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static double Cos(Radian a)
+        {
+            return Math.Cos(a.angle);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -136,6 +160,12 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static double Acos(Radian a)
+        {
+            return Math.Acos(a.angle);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static float SafeAcos(float r)
         {
             return Acos(Clamp(r, -1.0f, 1.0f));
@@ -145,6 +175,12 @@ namespace CGALDotNetGeometry.Numerics
         public static double SafeAcos(double r)
         {
             return Acos(Clamp(r, -1.0, 1.0));
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static double SafeAcos(Radian r)
+        {
+            return Acos(Clamp(r.angle, -1.0, 1.0));
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -160,6 +196,12 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static double Tan(Radian a)
+        {
+            return Math.Tan(a.angle);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static float Atan(float a)
         {
             return (float)Math.Atan(a);
@@ -169,6 +211,12 @@ namespace CGALDotNetGeometry.Numerics
         public static double Atan(double a)
         {
             return Math.Atan(a);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static double Atan(Radian a)
+        {
+            return Math.Atan(a.angle);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

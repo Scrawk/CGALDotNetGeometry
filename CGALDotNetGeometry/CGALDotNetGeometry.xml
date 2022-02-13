@@ -527,6 +527,46 @@
             Divide a angle and a scalar.
             </summary>
         </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Degree.op_LessThan(CGALDotNetGeometry.Numerics.Degree,System.Double)">
+            <summary>
+            Is the degree less than the scalar.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Degree.op_LessThanOrEqual(CGALDotNetGeometry.Numerics.Degree,System.Double)">
+            <summary>
+            Is the degree less than or equal to the scalar.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Degree.op_GreaterThan(CGALDotNetGeometry.Numerics.Degree,System.Double)">
+            <summary>
+            Is the degree greater than the scalar.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Degree.op_GreaterThanOrEqual(CGALDotNetGeometry.Numerics.Degree,System.Double)">
+            <summary>
+            Is the degree greater than or equal to the scalar.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Degree.op_LessThan(CGALDotNetGeometry.Numerics.Degree,CGALDotNetGeometry.Numerics.Degree)">
+            <summary>
+            Is the degree less than the other degree.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Degree.op_LessThanOrEqual(CGALDotNetGeometry.Numerics.Degree,CGALDotNetGeometry.Numerics.Degree)">
+            <summary>
+            Is the degree less than or equal to the other degree.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Degree.op_GreaterThan(CGALDotNetGeometry.Numerics.Degree,CGALDotNetGeometry.Numerics.Degree)">
+            <summary>
+            Is the degree greater than the other degree.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Degree.op_GreaterThanOrEqual(CGALDotNetGeometry.Numerics.Degree,CGALDotNetGeometry.Numerics.Degree)">
+            <summary>
+            Is the degree greater than or equal to the other degree.
+            </summary>
+        </member>
         <member name="M:CGALDotNetGeometry.Numerics.Degree.op_Implicit(CGALDotNetGeometry.Numerics.Radian)~CGALDotNetGeometry.Numerics.Degree">
             <summary>
             Cast from a radian to degrees.
@@ -6289,6 +6329,46 @@
         <member name="M:CGALDotNetGeometry.Numerics.Radian.op_Multiply(CGALDotNetGeometry.Numerics.Radian,System.Double)">
             <summary>
             Multiply a angle and a scalar.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Radian.op_LessThan(CGALDotNetGeometry.Numerics.Radian,System.Double)">
+            <summary>
+            Is the radian less than the scalar.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Radian.op_LessThanOrEqual(CGALDotNetGeometry.Numerics.Radian,System.Double)">
+            <summary>
+            Is the radian less than or equal to the scalar.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Radian.op_GreaterThan(CGALDotNetGeometry.Numerics.Radian,System.Double)">
+            <summary>
+            Is the radian greater than the scalar.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Radian.op_GreaterThanOrEqual(CGALDotNetGeometry.Numerics.Radian,System.Double)">
+            <summary>
+            Is the radian greater than or equal to the scalar.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Radian.op_LessThan(CGALDotNetGeometry.Numerics.Radian,CGALDotNetGeometry.Numerics.Radian)">
+            <summary>
+            Is the radian less than the other radian.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Radian.op_LessThanOrEqual(CGALDotNetGeometry.Numerics.Radian,CGALDotNetGeometry.Numerics.Radian)">
+            <summary>
+            Is the radian less than or equal to the other radian.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Radian.op_GreaterThan(CGALDotNetGeometry.Numerics.Radian,CGALDotNetGeometry.Numerics.Radian)">
+            <summary>
+            Is the radian greater than the other radian.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Radian.op_GreaterThanOrEqual(CGALDotNetGeometry.Numerics.Radian,CGALDotNetGeometry.Numerics.Radian)">
+            <summary>
+            Is the radian greater than or equal to the other radian.
             </summary>
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Radian.op_Multiply(System.Double,CGALDotNetGeometry.Numerics.Radian)">
