@@ -159,6 +159,51 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
+        /// Subtract a quaternion and a scalar.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Quaternion3d operator -(Quaternion3d q, REAL s)
+        {
+            return new Quaternion3d(q.x - s, q.y - s, q.z - s, q.w - s);
+        }
+
+        /// <summary>
+        /// Negate a quaternion.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Quaternion3d operator -(Quaternion3d q)
+        {
+            return new Quaternion3d(-q.x, -q.y, -q.z, -q.w);
+        }
+
+        /// <summary>
+        /// Add a quaternion and a scalar.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Quaternion3d operator +(Quaternion3d q, REAL s)
+        {
+            return new Quaternion3d(q.x + s, q.y + s, q.z + s, q.w + s);
+        }
+
+        /// <summary>
+        /// Multiply a quaternion and a scalar.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Quaternion3d operator *(Quaternion3d q, REAL s)
+        {
+            return new Quaternion3d(q.x * s, q.y * s, q.z * s, q.w * s);
+        }
+
+        /// <summary>
+        /// Divide a quaternion and a scalar.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Quaternion3d operator /(Quaternion3d q, REAL s)
+        {
+            return new Quaternion3d(q.x / s, q.y / s, q.z / s, q.w / s);
+        }
+
+        /// <summary>
         /// Multiply two quternions together.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -5973,6 +5973,31 @@
             The a normalized quaternion.
             </summary>
         </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Quaternion3d.op_Subtraction(CGALDotNetGeometry.Numerics.Quaternion3d,System.Double)">
+            <summary>
+            Subtract a quaternion and a scalar.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Quaternion3d.op_UnaryNegation(CGALDotNetGeometry.Numerics.Quaternion3d)">
+            <summary>
+            Negate a quaternion.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Quaternion3d.op_Addition(CGALDotNetGeometry.Numerics.Quaternion3d,System.Double)">
+            <summary>
+            Add a quaternion and a scalar.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Quaternion3d.op_Multiply(CGALDotNetGeometry.Numerics.Quaternion3d,System.Double)">
+            <summary>
+            Multiply a quaternion and a scalar.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Quaternion3d.op_Division(CGALDotNetGeometry.Numerics.Quaternion3d,System.Double)">
+            <summary>
+            Divide a quaternion and a scalar.
+            </summary>
+        </member>
         <member name="M:CGALDotNetGeometry.Numerics.Quaternion3d.op_Multiply(CGALDotNetGeometry.Numerics.Quaternion3d,CGALDotNetGeometry.Numerics.Quaternion3d)">
             <summary>
             Multiply two quternions together.
@@ -6125,9 +6150,34 @@
             The a normalized quaternion.
             </summary>
         </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Quaternion3f.op_Subtraction(CGALDotNetGeometry.Numerics.Quaternion3f,System.Single)">
+            <summary>
+            Subtract a quaternion and a scalar.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Quaternion3f.op_UnaryNegation(CGALDotNetGeometry.Numerics.Quaternion3f)">
+            <summary>
+            Negate a quaternion.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Quaternion3f.op_Addition(CGALDotNetGeometry.Numerics.Quaternion3f,System.Single)">
+            <summary>
+            Add a quaternion and a scalar.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Quaternion3f.op_Multiply(CGALDotNetGeometry.Numerics.Quaternion3f,System.Single)">
+            <summary>
+            Multiply a quaternion and a scalar.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Quaternion3f.op_Division(CGALDotNetGeometry.Numerics.Quaternion3f,System.Single)">
+            <summary>
+            Divide a quaternion and a scalar.
+            </summary>
+        </member>
         <member name="M:CGALDotNetGeometry.Numerics.Quaternion3f.op_Multiply(CGALDotNetGeometry.Numerics.Quaternion3f,CGALDotNetGeometry.Numerics.Quaternion3f)">
             <summary>
-            Multiply two quternions together.
+            Multiply two quaternions together.
             </summary>
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Quaternion3f.op_Multiply(CGALDotNetGeometry.Numerics.Quaternion3f,CGALDotNetGeometry.Numerics.Vector3f)">
