@@ -24,7 +24,16 @@ namespace CGALDotNetGeometry.Numerics
         public byte Byte3;
 
         [FieldOffset(0)]
-        public bool Bool;
+        public ushort UShort0;
+
+        [FieldOffset(2)]
+        public ushort UShort1;
+
+        [FieldOffset(0)]
+        public short Short0;
+
+        [FieldOffset(2)]
+        public short Short1;
 
         [FieldOffset(0)]
         public int Int;
@@ -34,14 +43,6 @@ namespace CGALDotNetGeometry.Numerics
 
         [FieldOffset(0)]
         public float Float;
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static implicit operator Union32(bool b)
-        {
-            var u = new Union32();
-            u.Bool = b;
-            return u;
-        }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static implicit operator Union32(int i)
@@ -101,7 +102,7 @@ namespace CGALDotNetGeometry.Numerics
 
         public override string ToString()
         {
-            return string.Format("[Union32: Bool={0}, Int={1}, UInt={2}, Float={3}]", Bool, Int, UInt, Float);
+            return string.Format("[Union32: Int={0}, UInt={1}, Float={2}]", Int, UInt, Float);
         }
 
     }
