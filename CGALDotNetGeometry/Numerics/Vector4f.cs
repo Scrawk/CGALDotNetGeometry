@@ -438,16 +438,6 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
-        /// Implict cast from a tuple.
-        /// </summary>
-        /// <param name="v">The vector to cast from</param>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static implicit operator Vector4f(ValueTuple<REAL, REAL, REAL, REAL> v)
-        {
-            return new Vector4f(v.Item1, v.Item2, v.Item3, v.Item4);
-        }
-
-        /// <summary>
         /// Cast from Vector4d to Vector4f.
         /// </summary>
         /// <param name="v"></param>

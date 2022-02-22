@@ -407,16 +407,6 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
-        /// Implict cast from a tuple.
-        /// </summary>
-        /// <param name="v">The vector to cast from</param>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static implicit operator Point3d(ValueTuple<REAL, REAL, REAL> v)
-        {
-            return new Point3d(v.Item1, v.Item2, v.Item3);
-        }
-
-        /// <summary>
         /// Cast from Point43f to Point3d.
         /// </summary>
         /// <param name="v"></param>
