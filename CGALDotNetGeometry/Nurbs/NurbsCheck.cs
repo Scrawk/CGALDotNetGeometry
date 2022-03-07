@@ -123,7 +123,7 @@ namespace CGALDotNetGeometry.Nurbs
 		/// <returns>Whether valid</returns>
 		private static bool CurveIsValid(int degree, IList<double> knots, int numControlPoints)
 		{
-			if (degree < NurbsCurve2d.MIN_DEGREE || degree > NurbsCurve2d.Max_DEGREE)
+			if (degree < NurbsCurve2d.MIN_DEGREE || degree > NurbsCurve2d.MAX_DEGREE)
 				return false;
 
 			if (!IsValidRelation(degree, knots.Count, numControlPoints))
