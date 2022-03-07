@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="xcopy &quot;$(ProjectDir)bin\$(ConfigurationName)\netcoreapp3.1\CGALDotNetGeometry.dll&quot; &quot;F:\Projects\Unity Projects\CGALDotNetUnity\Assets\CGALDotNet\Plugins&quot; /y&#xD;&#xA;xcopy &quot;$(ProjectDir)bin\$(ConfigurationName)\netcoreapp3.1\CGALDotNetGeometry.pdb&quot; &quot;F:\Projects\Unity Projects\CGALDotNetUnity\Assets\CGALDotNet\Plugins&quot; /y&#xD;&#xA;xcopy &quot;$(ProjectDir)CGALDotNetGeometry.xml&quot; &quot;F:\Projects\Unity Projects\CGALDotNetUnity\Assets\CGALDotNet\Plugins&quot; /y" />
+    <Exec Command="xcopy &quot;$(ProjectDir)bin\$(ConfigurationName)\netcoreapp3.1\CGALDotNetGeometry.dll&quot; &quot;F:\Projects\Unity Projects\CGALDotNetUnity\Assets\CGALDotNetGeometry\Plugins&quot; /y&#xD;&#xA;xcopy &quot;$(ProjectDir)bin\$(ConfigurationName)\netcoreapp3.1\CGALDotNetGeometry.pdb&quot; &quot;F:\Projects\Unity Projects\CGALDotNetUnity\Assets\CGALDotNetGeometry\Plugins&quot; /y&#xD;&#xA;xcopy &quot;$(ProjectDir)CGALDotNetGeometry.xml&quot; &quot;F:\Projects\Unity Projects\CGALDotNetUnity\Assets\CGALDotNetGeometry\Plugins&quot; /y" />
   </Target>
 
 </Project>
