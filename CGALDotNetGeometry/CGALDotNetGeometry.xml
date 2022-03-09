@@ -2851,6 +2851,14 @@
             Create a rotation out of a vector.
             </summary>
         </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Matrix4x4d.Rotate(CGALDotNetGeometry.Numerics.Radian,CGALDotNetGeometry.Numerics.Vector3d)">
+            <summary>
+            Create a rotation from a angle and the rotation axis.
+            </summary>
+            <param name="radian">The rotation amount.</param>
+            <param name="axis">The axis to rotate on.</param>
+            <returns>The rotation matrix.</returns>
+        </member>
         <member name="M:CGALDotNetGeometry.Numerics.Matrix4x4d.Perspective(System.Double,System.Double,System.Double,System.Double)">
             <summary>
             Create a perspective matrix.
@@ -3150,6 +3158,14 @@
             <summary>
             Create a rotation out of a vector.
             </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Matrix4x4f.Rotate(CGALDotNetGeometry.Numerics.Radian,CGALDotNetGeometry.Numerics.Vector3f)">
+            <summary>
+            Create a rotation from a angle and the rotation axis.
+            </summary>
+            <param name="radian">The rotation amount.</param>
+            <param name="axis">The axis to rotate on.</param>
+            <returns>The rotation matrix.</returns>
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Matrix4x4f.Perspective(System.Single,System.Single,System.Single,System.Single)">
             <summary>

@@ -837,6 +837,39 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
+        /// Create a rotation from a angle and the rotation axis.
+        /// </summary>
+        /// <param name="radian">The rotation amount.</param>
+        /// <param name="axis">The axis to rotate on.</param>
+        /// <returns>The rotation matrix.</returns>
+        static public Matrix4x4d Rotate(Radian radian, VECTOR3 axis)
+        {
+            REAL sinTheta = (REAL)MathUtil.Sin(radian);
+            REAL cosTheta = (REAL)MathUtil.Cos(radian);
+
+            Matrix4x4d m = new Matrix4x4d();
+
+            // Compute rotation of first basis vector
+            m[0, 0] = axis.x * axis.x + (1 - axis.x * axis.x) * cosTheta;
+            m[0, 1] = axis.x * axis.y * (1 - cosTheta) - axis.z * sinTheta;
+            m[0, 2] = axis.x * axis.z * (1 - cosTheta) + axis.y * sinTheta;
+            m[0, 3] = 0;
+
+            // Compute rotations of second and third basis vectors
+            m[1, 0] = axis.x * axis.y * (1 - cosTheta) + axis.z * sinTheta;
+            m[1, 1] = axis.y * axis.y + (1 - axis.y * axis.y) * cosTheta;
+            m[1, 2] = axis.y * axis.z * (1 - cosTheta) - axis.x * sinTheta;
+            m[1, 3] = 0;
+
+            m[2, 0] = axis.x * axis.z * (1 - cosTheta) - axis.y * sinTheta;
+            m[2, 1] = axis.y * axis.z * (1 - cosTheta) + axis.x * sinTheta;
+            m[2, 2] = axis.z * axis.z + (1 - axis.z * axis.z) * cosTheta;
+            m[2, 3] = 0;
+
+            return m;
+        }
+
+        /// <summary>
         /// Create a perspective matrix.
         /// </summary>
         static public Matrix4x4d Perspective(REAL fovy, REAL aspect, REAL zNear, REAL zFar)
