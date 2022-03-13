@@ -442,13 +442,25 @@ namespace CGALDotNetGeometry.Numerics
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool IsFinite(float f)
         {
-            return !(float.IsInfinity(f) || float.IsNaN(f));
+            return float.IsFinite(f);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsNotFinite(float f)
+        {
+            return !float.IsFinite(f);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool IsFinite(double f)
         {
-            return !(double.IsInfinity(f) || double.IsNaN(f));
+            return double.IsFinite(f);
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static bool IsNotFinite(double f)
+        {
+            return !double.IsFinite(f);
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
