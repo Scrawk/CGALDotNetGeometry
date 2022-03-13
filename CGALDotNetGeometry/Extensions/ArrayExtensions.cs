@@ -44,38 +44,26 @@ namespace CGALDotNetGeometry.Extensions
                 array[i] = array[i].Finite;
         }
 
-        public static bool IsNAN(this IList<Point2d> array)
+        public static List<Point2d> RemoveNonFinite(this IList<Point2d> array)
         {
-            for (int i = 0; i < array.Count; i++)
-            {
-                if (!array[i].IsNAN)
-                    return false;
-            }
+            var a = new List<Point2d>(array.Count);
 
-            return true;
+            for (int i = 0; i < array.Count; i++)
+                if (array[i].IsFinite)
+                    a.Add(array[i]);
+
+            return a;
         }
 
-        public static void RemoveNAN(this IList<Point2d> array)
+        public static List<Point3d> RemoveNonFinite(this IList<Point3d> array)
         {
-            for (int i = 0; i < array.Count; i++)
-                array[i] = array[i].NoNAN;
-        }
+            var a = new List<Point3d>(array.Count);
 
-        public static bool IsNAN(this IList<Point3d> array)
-        {
             for (int i = 0; i < array.Count; i++)
-            {
-                if (!array[i].IsNAN)
-                    return false;
-            }
+                if (array[i].IsFinite)
+                    a.Add(array[i]);
 
-            return true;
-        }
-
-        public static void RemoveNAN(this IList<Point3d> array)
-        {
-            for (int i = 0; i < array.Count; i++)
-                array[i] = array[i].NoNAN;
+            return a;
         }
 
         public static void Round(this IList<Point2d> array, int digits)
