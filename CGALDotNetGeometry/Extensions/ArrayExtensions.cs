@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 using CGALDotNetGeometry.Numerics;
+using CGALDotNetGeometry.Shapes;
 
 namespace CGALDotNetGeometry.Extensions
 {
@@ -91,10 +92,109 @@ namespace CGALDotNetGeometry.Extensions
             return false;
         }
 
-        public static int[] RemoveNullTriangles(this int[] array)
+        public static List<SegmentIndex> RemoveDuplicateSegments(this IList<int> array)
+        {
+            var set = new HashSet<SegmentIndex>();
+
+            for (int i = 0; i < array.Count / 2; i++)
+            {
+                int i0 = array[i * 2 + 0];
+                int i1 = array[i * 2 + 1];
+
+                if (i0.IsNullIndex() ||
+                    i1.IsNullIndex())
+                    continue;
+
+                var seg = new SegmentIndex(i0, i1);
+
+                if (set.Contains(seg) || set.Contains(seg.Reversed))
+                    continue;
+
+                set.Add(seg);
+            }
+
+            var list = new List<SegmentIndex>(set.Count);
+            list.AddRange(set);
+
+            return list;
+        }
+
+
+        public static List<TriangleIndex> RemoveDuplicateTriangles(this IList<int> array)
+        {
+            var triangles = new TriangleIndex[6];
+            var set = new HashSet<TriangleIndex>();
+
+            for (int i = 0; i < array.Count / 3; i++)
+            {
+                int i0 = array[i * 3 + 0];
+                int i1 = array[i * 3 + 1];
+                int i2 = array[i * 3 + 2];
+
+                if (i0.IsNullIndex() ||
+                    i1.IsNullIndex() ||
+                    i2.IsNullIndex())
+                    continue;
+
+                triangles[0] = new TriangleIndex(i0, i1, i2);
+                triangles[1] = new TriangleIndex(i2, i0, i1);
+                triangles[2] = new TriangleIndex(i1, i2, i0);
+                triangles[3] = new TriangleIndex(i2, i1, i0);
+                triangles[4] = new TriangleIndex(i0, i2, i1);
+                triangles[5] = new TriangleIndex(i1, i0, i2);
+
+                for (int j = 0; j < 6; j++)
+                    if (set.Contains(triangles[j]))
+                        continue;
+
+                set.Add(triangles[0]);
+            }
+
+            var list = new List<TriangleIndex>(set.Count);
+            list.AddRange(set);
+
+            return list;
+        }
+
+        public static int[] RemoveNullSegments(this IList<int> array)
         {
             int count = 0;
-            for (int i = 0; i < array.Length / 3; i++)
+            for (int i = 0; i < array.Count / 2; i++)
+            {
+                int i0 = array[i * 2 + 0];
+                int i1 = array[i * 2 + 1];
+
+                if (i0.IsNullIndex() ||
+                    i1.IsNullIndex())
+                    continue;
+
+                count += 3;
+            }
+
+            int j = 0;
+            var new_array = new int[count];
+            for (int i = 0; i < array.Count / 2; i++)
+            {
+                int i0 = array[i * 2 + 0];
+                int i1 = array[i * 2 + 1];
+    
+                if (i0.IsNullIndex() ||
+                    i1.IsNullIndex())
+                    continue;
+
+                new_array[j * 2 + 0] = i0;
+                new_array[j * 2 + 1] = i1;
+ 
+                j++;
+            }
+
+            return new_array;
+        }
+
+        public static int[] RemoveNullTriangles(this IList<int> array)
+        {
+            int count = 0;
+            for (int i = 0; i < array.Count / 3; i++)
             {
                 int i0 = array[i * 3 + 0];
                 int i1 = array[i * 3 + 1];
@@ -110,7 +210,7 @@ namespace CGALDotNetGeometry.Extensions
 
             int j = 0;
             var new_array = new int[count];
-            for (int i = 0; i < array.Length / 3; i++)
+            for (int i = 0; i < array.Count / 3; i++)
             {
                 int i0 = array[i * 3 + 0];
                 int i1 = array[i * 3 + 1];
@@ -131,10 +231,10 @@ namespace CGALDotNetGeometry.Extensions
             return new_array;
         }
 
-        public static int[] RemoveNullQuads(this int[] array)
+        public static int[] RemoveNullQuads(this IList<int> array)
         {
             int count = 0;
-            for (int i = 0; i < array.Length / 4; i++)
+            for (int i = 0; i < array.Count / 4; i++)
             {
                 int i0 = array[i * 4 + 0];
                 int i1 = array[i * 4 + 1];
@@ -152,7 +252,7 @@ namespace CGALDotNetGeometry.Extensions
 
             int j = 0;
             var new_array = new int[count];
-            for (int i = 0; i < array.Length / 4; i++)
+            for (int i = 0; i < array.Count / 4; i++)
             {
                 int i0 = array[i * 4 + 0];
                 int i1 = array[i * 4 + 1];
