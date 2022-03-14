@@ -41,11 +41,11 @@ namespace CGALDotNetGeometry.Shapes
             Max = new POINT3(max);
         }
 
-        //public Box3f(REAL minX, REAL minY, REAL minZ, REAL maxX, REAL maxY, REAL maxZ)
-        //{
-        //    Min = new POINT3(minX, minY, minZ);
-        //    Max = new POINT3(maxX, maxY, maxZ);
-        //}
+        public Box3f(REAL minX, REAL minY, REAL minZ, REAL maxX, REAL maxY, REAL maxZ)
+        {
+            Min = new POINT3(minX, minY, minZ);
+            Max = new POINT3(maxX, maxY, maxZ);
+        }
 
         /// <summary>
         /// Construct a new box.
@@ -56,6 +56,19 @@ namespace CGALDotNetGeometry.Shapes
         {
             Min = min;
             Max = max;
+        }
+
+        /// <summary>
+        /// Does the shape contain no non finite points.
+        /// </summary>
+        public bool IsFinite
+        {
+            get
+            {
+                if (!Min.IsFinite) return false;
+                if (!Max.IsFinite) return false;
+                return true;
+            }
         }
 
         /// <summary>

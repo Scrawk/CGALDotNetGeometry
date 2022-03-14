@@ -55,6 +55,19 @@ namespace CGALDotNetGeometry.Shapes
         }
 
         /// <summary>
+        /// Does the shape contain no non finite points.
+        /// </summary>
+        public bool IsFinite
+        {
+            get
+            {
+                if (!A.IsFinite) return false;
+                if (!B.IsFinite) return false;
+                return true;
+            }
+        }
+
+        /// <summary>
         /// The segments center.
         /// </summary>
         public POINT2 Center => (A + B) * 0.5;

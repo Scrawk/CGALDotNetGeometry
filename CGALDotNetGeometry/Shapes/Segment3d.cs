@@ -89,6 +89,19 @@ namespace CGALDotNetGeometry.Shapes
         }
 
         /// <summary>
+        /// Does the shape contain no non finite points.
+        /// </summary>
+        public bool IsFinite
+        {
+            get
+            {
+                if (!A.IsFinite) return false;
+                if (!B.IsFinite) return false;
+                return true;
+            }
+        }
+
+        /// <summary>
         /// Array acess to the segments points.
         /// </summary>
         /// <param name="i">The index of the point to access (0-2)</param>

@@ -42,11 +42,11 @@ namespace CGALDotNetGeometry.Shapes
             Max = new POINT2(max);
         }
 
-        //public Box2f(REAL minX, REAL minY, REAL maxX, REAL maxY)
-        //{
-        //    Min = new POINT2(minX, minY);
-        //    Max = new POINT2(maxX, maxY);
-        //}
+        public Box2f(REAL minX, REAL minY, REAL maxX, REAL maxY)
+        {
+            Min = new POINT2(minX, minY);
+           Max = new POINT2(maxX, maxY);
+        }
 
         /// <summary>
         /// Construct a new box.
@@ -57,6 +57,19 @@ namespace CGALDotNetGeometry.Shapes
         {
             Min = min;
             Max = max;
+        }
+
+        /// <summary>
+        /// Does the shape contain no non finite points.
+        /// </summary>
+        public bool IsFinite
+        {
+            get
+            {
+                if (!Min.IsFinite) return false;
+                if (!Max.IsFinite) return false;
+                return true;
+            }
         }
 
         /// <summary>

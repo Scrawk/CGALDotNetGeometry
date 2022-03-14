@@ -67,6 +67,20 @@ namespace CGALDotNetGeometry.Shapes
         }
 
         /// <summary>
+        /// Does the shape contain no non finite points.
+        /// </summary>
+        public bool IsFinite
+        {
+            get
+            {
+                if (!A.IsFinite) return false;
+                if (!B.IsFinite) return false;
+                if (!C.IsFinite) return false;
+                return true;
+            }
+        }
+
+        /// <summary>
         /// The bounding box of the triangle.
         /// </summary>
         public BOX3 Bounds

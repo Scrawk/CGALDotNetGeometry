@@ -68,6 +68,20 @@ namespace CGALDotNetGeometry.Shapes
         }
 
         /// <summary>
+        /// Does the shape contain no non finite points.
+        /// </summary>
+        public bool IsFinite
+        {
+            get
+            {
+                if (!A.IsFinite) return false;
+                if (!B.IsFinite) return false;
+                if (!C.IsFinite) return false;
+                return true;
+            }
+        }
+
+        /// <summary>
         /// The average of the triangles positions.
         /// </summary>
         public POINT2 Center => (A + B + C) / 3.0;
@@ -179,6 +193,9 @@ namespace CGALDotNetGeometry.Shapes
         /// </summary>
         public REAL AspectRatio => CircumRadius / (2 * InRadius);
 
+        /// <summary>
+        /// The triangles bounding box.
+        /// </summary>
         public BOX2 Bounds
         {
             get
