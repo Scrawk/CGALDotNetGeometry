@@ -81,6 +81,33 @@ namespace CGALDotNetGeometry.Extensions
                 array[i] = array[i].Rounded(digits);
         }
 
+        public static double[] ToDouble(this IList<Point2d> array)
+        {
+            var a = new double[array.Count * 2];
+
+            for (int i = 0; i < array.Count; i++)
+            {
+                a[i * 2 + 0] = array[i].x;
+                a[i * 2 + 1] = array[i].y;
+            }
+                    
+            return a;
+        }
+
+        public static double[] ToDouble(this IList<Point3d> array)
+        {
+            var a = new double[array.Count * 3];
+
+            for (int i = 0; i < array.Count; i++)
+            {
+                a[i * 3 + 0] = array[i].x;
+                a[i * 3 + 1] = array[i].y;
+                a[i * 3 + 2] = array[i].z;
+            }
+
+            return a;
+        }
+
         public static bool HasNullIndex(this IList<int> array)
         {
             for (int i = 0; i < array.Count; i++)
