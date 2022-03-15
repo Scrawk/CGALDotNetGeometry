@@ -593,17 +593,17 @@ namespace CGALDotNetGeometry.Numerics
 
             return (k >= 0) ? eta * i - (eta * ni + MathUtil.SafeSqrt(k)) * n : Zero;
         }
-
         /// <summary>
         /// Angle between two vectors in degrees from 0 to 180.
         /// A and b origin treated as 0,0 and do not need to be normalized.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static REAL Angle180(Vector2f a, Vector2f b)
+        public static Degree Angle180(Vector2f a, Vector2f b)
         {
             REAL dp = Dot(a, b);
             REAL m = a.Magnitude * b.Magnitude;
-            return MathUtil.ToDegrees(MathUtil.SafeAcos(MathUtil.SafeDiv(dp, m)));
+            REAL angle = MathUtil.ToDegrees(MathUtil.SafeAcos(MathUtil.SafeDiv(dp, m)));
+            return new Degree(angle);
         }
 
         /// <summary>
@@ -612,7 +612,7 @@ namespace CGALDotNetGeometry.Numerics
         /// A and b origin treated as 0,0 and do not need to be normalized.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static REAL Angle360(Vector2f a, Vector2f b)
+        public static Degree Angle360(Vector2f a, Vector2f b)
         {
             REAL angle = MathUtil.Atan2(a.y, a.x) - MathUtil.Atan2(b.y, b.x);
 
@@ -620,7 +620,7 @@ namespace CGALDotNetGeometry.Numerics
                 angle = MathUtil.PI_32 * 2.0f + angle;
 
             angle = 360.0f - MathUtil.ToDegrees(angle);
-            return angle >= 360.0f ? 0 : angle;
+            return new Degree(angle >= 360.0f ? 0.0f : angle);
         }
 
         /// <summary>

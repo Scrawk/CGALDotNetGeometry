@@ -3465,6 +3465,19 @@
             <param name="normalize">Should the vector be normalized.</param>
             <returns>The vector from v0 to v1.</returns>
         </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Point2d.Angle180(CGALDotNetGeometry.Numerics.Point2d,CGALDotNetGeometry.Numerics.Point2d,CGALDotNetGeometry.Numerics.Point2d)">
+            <summary>
+            Angle between two vectors in degrees from 0 to 180.
+            A and b origin treated as 0,0 and do not need to be normalized.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Point2d.Angle360(CGALDotNetGeometry.Numerics.Point2d,CGALDotNetGeometry.Numerics.Point2d,CGALDotNetGeometry.Numerics.Point2d)">
+            <summary>
+            Angle between two vectors in degrees from 0 to 360.
+            Angle represents moving ccw from a to b.
+            A and b origin treated as 0,0 and do not need to be normalized.
+            </summary>
+        </member>
         <member name="M:CGALDotNetGeometry.Numerics.Point2d.Min(CGALDotNetGeometry.Numerics.Point2d,System.Double)">
             <summary>
             The minimum value between s and each component in point.
@@ -3809,6 +3822,19 @@
             <param name="v1">The second point.</param>
             <param name="normalize">Should the vector be normalized.</param>
             <returns>The vector from v0 to v1.</returns>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Point2f.Angle180(CGALDotNetGeometry.Numerics.Point2f,CGALDotNetGeometry.Numerics.Point2f,CGALDotNetGeometry.Numerics.Point2f)">
+            <summary>
+            Angle between two vectors in degrees from 0 to 180.
+            A and b origin treated as 0,0 and do not need to be normalized.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Point2f.Angle360(CGALDotNetGeometry.Numerics.Point2f,CGALDotNetGeometry.Numerics.Point2f,CGALDotNetGeometry.Numerics.Point2f)">
+            <summary>
+            Angle between two vectors in degrees from 0 to 360.
+            Angle represents moving ccw from a to b.
+            A and b origin treated as 0,0 and do not need to be normalized.
+            </summary>
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Point2f.Min(CGALDotNetGeometry.Numerics.Point2f,System.Single)">
             <summary>

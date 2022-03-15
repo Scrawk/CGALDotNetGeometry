@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using System.Runtime.CompilerServices;
 
 using REAL = System.Double;
+using VECTOR2 = CGALDotNetGeometry.Numerics.Vector2d;
 using BOX2 = CGALDotNetGeometry.Shapes.Box2f;
 
 namespace CGALDotNetGeometry.Numerics
@@ -520,6 +521,44 @@ namespace CGALDotNetGeometry.Numerics
                 return (v1 - v0).Vector2d.Normalized;
             else
                 return (v1 - v0).Vector2d;
+        }
+
+        /// <summary>
+        /// Angle between two vectors in degrees from 0 to 180.
+        /// A and b origin treated as 0,0 and do not need to be normalized.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Degree Angle180(Point2d a, Point2d b, Point2d c)
+        {
+            VECTOR2 u = Direction(b, a);
+            VECTOR2 v = Direction(c, a);
+
+            REAL dp = VECTOR2.Dot(u, v);
+            REAL m = u.Magnitude * v.Magnitude;
+            REAL angle = MathUtil.ToDegrees(MathUtil.SafeAcos(MathUtil.SafeDiv(dp, m)));
+
+            return new Degree(angle);
+        }
+
+        /// <summary>
+        /// Angle between two vectors in degrees from 0 to 360.
+        /// Angle represents moving ccw from a to b.
+        /// A and b origin treated as 0,0 and do not need to be normalized.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Degree Angle360(Point2d a, Point2d b, Point2d c)
+        {
+            VECTOR2 u = Direction(b, a);
+            VECTOR2 v = Direction(c, a);
+
+            REAL angle = MathUtil.Atan2(u.y, u.x) - MathUtil.Atan2(v.y, v.x);
+
+            if (angle <= 0.0)
+                angle = MathUtil.PI_64 * 2.0 + angle;
+
+            angle = 360.0 - MathUtil.ToDegrees(angle);
+
+            return new Degree(angle >= 360.0 ? 0 : angle);
         }
 
         /// <summary>

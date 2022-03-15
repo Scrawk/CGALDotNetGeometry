@@ -572,11 +572,12 @@ namespace CGALDotNetGeometry.Numerics
         /// A and b origin treated as 0,0 and do not need to be normalized.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static REAL Angle180(Vector3d a, Vector3d b)
+        public static Degree Angle180(Vector3d a, Vector3d b)
         {
             REAL dp = Dot(a, b);
             REAL m = a.Magnitude * b.Magnitude;
-            return MathUtil.ToDegrees(MathUtil.SafeAcos(MathUtil.SafeDiv(dp, m)));
+            REAL angle = MathUtil.ToDegrees(MathUtil.SafeAcos(MathUtil.SafeDiv(dp, m)));
+            return new Degree(angle);
         }
 
         /// <summary>
