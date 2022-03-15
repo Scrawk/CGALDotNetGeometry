@@ -40,6 +40,32 @@ namespace CGALDotNetGeometry.Shapes
             Direction = direction.Normalized;
         }
 
+        /// <summary>
+        /// Does the shape contain no non finite points.
+        /// </summary>
+        public bool IsFinite
+        {
+            get
+            {
+                if (!Direction.IsFinite) return false;
+                if (!Position.IsFinite) return false;
+                return true;
+            }
+        }
+
+        /// <summary>
+        /// Is the ray degenerate.
+        /// </summary>
+        public bool IsDegenerate
+        {
+            get
+            {
+                if (Direction == VECTOR3.Zero) return true;
+                if (!IsFinite) return true;
+                return false;
+            }
+        }
+
         public static Ray3f operator *(MATRIX3 m, Ray3f ray)
         {
             return new Ray3f(m * ray.Position, m * ray.Direction);

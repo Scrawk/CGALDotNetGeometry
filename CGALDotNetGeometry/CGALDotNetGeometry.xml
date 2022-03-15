@@ -12382,6 +12382,16 @@
             <param name="position">The rays position.</param>
             <param name="direction">The rays directio</param>
         </member>
+        <member name="P:CGALDotNetGeometry.Shapes.Ray2d.IsFinite">
+            <summary>
+            Does the shape contain no non finite points.
+            </summary>
+        </member>
+        <member name="P:CGALDotNetGeometry.Shapes.Ray2d.IsDegenerate">
+            <summary>
+            Is the ray degenerate.
+            </summary>
+        </member>
         <member name="M:CGALDotNetGeometry.Shapes.Ray2d.Equals(System.Object)">
             <summary>
             Is the ray equal to the other object.
@@ -12485,6 +12495,16 @@
             <param name="position">The rays position.</param>
             <param name="direction">The rays directio</param>
         </member>
+        <member name="P:CGALDotNetGeometry.Shapes.Ray2f.IsFinite">
+            <summary>
+            Does the shape contain no non finite points.
+            </summary>
+        </member>
+        <member name="P:CGALDotNetGeometry.Shapes.Ray2f.IsDegenerate">
+            <summary>
+            Is the ray degenerate.
+            </summary>
+        </member>
         <member name="M:CGALDotNetGeometry.Shapes.Ray2f.Equals(System.Object)">
             <summary>
             Is the ray equal to the other object.
@@ -12583,6 +12603,16 @@
             <param name="position">The rays position.</param>
             <param name="direction">The rays direction (will be normalized)</param>
         </member>
+        <member name="P:CGALDotNetGeometry.Shapes.Ray3d.IsFinite">
+            <summary>
+            Does the shape contain no non finite points.
+            </summary>
+        </member>
+        <member name="P:CGALDotNetGeometry.Shapes.Ray3d.IsDegenerate">
+            <summary>
+            Is the ray degenerate.
+            </summary>
+        </member>
         <member name="M:CGALDotNetGeometry.Shapes.Ray3d.op_Equality(CGALDotNetGeometry.Shapes.Ray3d,CGALDotNetGeometry.Shapes.Ray3d)">
             <summary>
             Check if the two rays are equal.
@@ -12675,6 +12705,16 @@
             </summary>
             <param name="position">The rays position.</param>
             <param name="direction">The rays direction (will be normalized)</param>
+        </member>
+        <member name="P:CGALDotNetGeometry.Shapes.Ray3f.IsFinite">
+            <summary>
+            Does the shape contain no non finite points.
+            </summary>
+        </member>
+        <member name="P:CGALDotNetGeometry.Shapes.Ray3f.IsDegenerate">
+            <summary>
+            Is the ray degenerate.
+            </summary>
         </member>
         <member name="M:CGALDotNetGeometry.Shapes.Ray3f.op_Equality(CGALDotNetGeometry.Shapes.Ray3f,CGALDotNetGeometry.Shapes.Ray3f)">
             <summary>

@@ -43,6 +43,32 @@ namespace CGALDotNetGeometry.Shapes
             Direction = direction;
         }
 
+        /// <summary>
+        /// Does the shape contain no non finite points.
+        /// </summary>
+        public bool IsFinite
+        {
+            get
+            {
+                if (!Direction.IsFinite) return false;
+                if (!Position.IsFinite) return false;
+                return true;
+            }
+        }
+
+        /// <summary>
+        /// Is the ray degenerate.
+        /// </summary>
+        public bool IsDegenerate
+        {
+            get
+            {
+                if (Direction == VECTOR2.Zero) return true;
+                if (!IsFinite) return true;
+                return false;
+            }
+        }
+
         public static bool operator ==(Ray2d r1, Ray2d r2)
         {
             return r1.Position == r2.Position && r1.Direction == r2.Direction;
