@@ -39,11 +39,11 @@ namespace CGALDotNetGeometry.Shapes
             Max = new POINT2(max);
         }
 
-        //public Box2i(REAL minX, REAL minY, REAL maxX, REAL maxY)
-        //{
-        //    Min = new POINT2(minX, minY);
-        //    Max = new POINT2(maxX, maxY);
-        //}
+        public Box2i(REAL minX, REAL minY, REAL maxX, REAL maxY)
+        {
+            Min = new POINT2(minX, minY);
+            Max = new POINT2(maxX, maxY);
+        }
 
         /// <summary>
         /// Construct a new box.
