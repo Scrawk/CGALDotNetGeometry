@@ -189,6 +189,16 @@ namespace CGALDotNetGeometry.Numerics
         public Vector4d Vector4d => new Vector4d(x, y, z, w);
 
         /// <summary>
+        /// Convert to float point.
+        /// </summary>
+        public Point4f Point4f => new Point4f(x, y, z, w);
+
+        /// <summary>
+        /// Convert to int point.
+        /// </summary>
+        public Point4d Point4i => new Point4i((int)x, (int)y, (int)z, (int)w);
+
+        /// <summary>
         /// The sum of the points components.
         /// </summary>
         public REAL Sum

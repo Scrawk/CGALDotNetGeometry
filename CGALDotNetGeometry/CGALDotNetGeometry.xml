@@ -3284,6 +3284,16 @@
             Point as a vector.
             </summary>
         </member>
+        <member name="P:CGALDotNetGeometry.Numerics.Point2d.Point2f">
+            <summary>
+            Convert to float point.
+            </summary>
+        </member>
+        <member name="P:CGALDotNetGeometry.Numerics.Point2d.Point2i">
+            <summary>
+            Convert to int point.
+            </summary>
+        </member>
         <member name="P:CGALDotNetGeometry.Numerics.Point2d.Homogenous">
             <summary>
             Point as a homogenous point.
@@ -4289,6 +4299,16 @@
             Point as vector.
             </summary>
         </member>
+        <member name="P:CGALDotNetGeometry.Numerics.Point3d.Point3f">
+            <summary>
+            Convert to float point.
+            </summary>
+        </member>
+        <member name="P:CGALDotNetGeometry.Numerics.Point3d.Point3i">
+            <summary>
+            Convert to int point.
+            </summary>
+        </member>
         <member name="P:CGALDotNetGeometry.Numerics.Point3d.Homogenous">
             <summary>
             Point as a homogenous point.
@@ -5271,6 +5291,16 @@
         <member name="P:CGALDotNetGeometry.Numerics.Point4d.Vector4d">
             <summary>
             Point as vector.
+            </summary>
+        </member>
+        <member name="P:CGALDotNetGeometry.Numerics.Point4d.Point4f">
+            <summary>
+            Convert to float point.
+            </summary>
+        </member>
+        <member name="P:CGALDotNetGeometry.Numerics.Point4d.Point4i">
+            <summary>
+            Convert to int point.
             </summary>
         </member>
         <member name="P:CGALDotNetGeometry.Numerics.Point4d.Sum">

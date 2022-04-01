@@ -178,6 +178,16 @@ namespace CGALDotNetGeometry.Numerics
         public Vector2d Vector2d => new Vector2d(x, y);
 
         /// <summary>
+        /// Convert to float point.
+        /// </summary>
+        public Point2f Point2f => new Point2f(x, y);
+
+        /// <summary>
+        /// Convert to int point.
+        /// </summary>
+        public Point2d Point2i => new Point2i((int)x, (int)y);
+
+        /// <summary>
         /// Point as a homogenous point.
         /// </summary>
         public HPoint2d Homogenous => new HPoint2d(x, y, 1);

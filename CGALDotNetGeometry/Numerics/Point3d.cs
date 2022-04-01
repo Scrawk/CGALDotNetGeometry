@@ -199,6 +199,16 @@ namespace CGALDotNetGeometry.Numerics
         public Vector4d Vector4d => new Vector4d(x, y, z, 1);
 
         /// <summary>
+        /// Convert to float point.
+        /// </summary>
+        public Point3f Point3f => new Point3f(x, y, z);
+
+        /// <summary>
+        /// Convert to int point.
+        /// </summary>
+        public Point3d Point3i => new Point3i((int)x, (int)y, (int)z);
+
+        /// <summary>
         /// Point as a homogenous point.
         /// </summary>
         public HPoint3d Homogenous => new HPoint3d(x, y, z, 1);
