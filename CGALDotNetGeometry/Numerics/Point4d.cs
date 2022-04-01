@@ -196,7 +196,7 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Convert to int point.
         /// </summary>
-        public Point4d Point4i => new Point4i((int)x, (int)y, (int)z, (int)w);
+        public Point4i Point4i => new Point4i((int)x, (int)y, (int)z, (int)w);
 
         /// <summary>
         /// The sum of the points components.

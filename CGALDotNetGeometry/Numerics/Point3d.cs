@@ -206,7 +206,7 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Convert to int point.
         /// </summary>
-        public Point3d Point3i => new Point3i((int)x, (int)y, (int)z);
+        public Point3i Point3i => new Point3i((int)x, (int)y, (int)z);
 
         /// <summary>
         /// Point as a homogenous point.

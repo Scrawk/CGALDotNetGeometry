@@ -185,7 +185,7 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Convert to int point.
         /// </summary>
-        public Point2d Point2i => new Point2i((int)x, (int)y);
+        public Point2i Point2i => new Point2i((int)x, (int)y);
 
         /// <summary>
         /// Point as a homogenous point.
