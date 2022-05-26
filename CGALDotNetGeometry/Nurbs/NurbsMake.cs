@@ -338,10 +338,10 @@ namespace CGALDotNetGeometry.Nurbs
 			result = new CurveCurveIntersection();
 
 			var dab = Vector2d.Dot(a, b);
-			var dab0 = Vector2d.Dot(a, b0.Vector2d);
-			var daa0 = Vector2d.Dot(a, a0.Vector2d);
-			var dbb0 = Vector2d.Dot(b, b0.Vector2d);
-			var dba0 = Vector2d.Dot(b, a0.Vector2d);
+			var dab0 = Vector2d.Dot(a, b0);
+			var daa0 = Vector2d.Dot(a, a0);
+			var dbb0 = Vector2d.Dot(b, b0);
+			var dba0 = Vector2d.Dot(b, a0);
 			var daa = Vector2d.Dot(a, a);
 			var dbb = Vector2d.Dot(b, b);
 			var div = daa * dbb - dab * dab;

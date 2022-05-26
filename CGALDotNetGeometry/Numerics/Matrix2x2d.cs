@@ -363,7 +363,17 @@ namespace CGALDotNetGeometry.Numerics
         /// </summary>
         public override string ToString()
         {
-            return this[0, 0] + "," + this[0, 1] + "\n" + this[1, 0] + "," + this[1, 1];
+            return this[0, 0] + "," + this[0, 1] + "\n" 
+                 + this[1, 0] + "," + this[1, 1];
+        }
+
+        /// <summary>
+        /// A matrix as a string.
+        /// </summary>
+        public string ToString(string f)
+        {
+            return this[0, 0].ToString(f) + "," + this[0, 1].ToString(f) + "\n"
+                 + this[1, 0].ToString(f) + "," + this[1, 1].ToString(f);
         }
 
         /// <summary>

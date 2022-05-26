@@ -20,7 +20,6 @@ namespace CGALDotNetGeometry.Colors
 
         public float h, s, v;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ColorHSV(float h, float s, float v)
         {
             this.h = h;
@@ -28,7 +27,6 @@ namespace CGALDotNetGeometry.Colors
             this.v = v;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ColorHSV(double h, double s, double v)
         {
             this.h = (float)h;
@@ -198,7 +196,6 @@ namespace CGALDotNetGeometry.Colors
         /// <summary>
         /// Are these colors equal.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object obj)
         {
             if (!(obj is ColorHSV)) return false;
@@ -211,7 +208,6 @@ namespace CGALDotNetGeometry.Colors
         /// <summary>
         /// Are these colors equal given the error.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool AlmostEqual(ColorHSV c0, ColorHSV c1, float eps = MathUtil.EPS_32)
         {
             if (Math.Abs(c0.h - c1.h) > eps) return false;
@@ -223,7 +219,6 @@ namespace CGALDotNetGeometry.Colors
         /// <summary>
         /// Are these colors equal.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool Equals(ColorHSV hsv)
         {
             return this == hsv;
@@ -232,15 +227,14 @@ namespace CGALDotNetGeometry.Colors
         /// <summary>
         /// colors hash code. 
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override int GetHashCode()
         {
             unchecked
             {
-                int hash = (int)MathUtil.HASH_PRIME_1;
-                hash = (hash * MathUtil.HASH_PRIME_2) ^ h.GetHashCode();
-                hash = (hash * MathUtil.HASH_PRIME_2) ^ s.GetHashCode();
-                hash = (hash * MathUtil.HASH_PRIME_2) ^ v.GetHashCode();
+                int hash = (int)2166136261;
+                hash = (hash * 16777619) ^ h.GetHashCode();
+                hash = (hash * 16777619) ^ s.GetHashCode();
+                hash = (hash * 16777619) ^ v.GetHashCode();
                 return hash;
             }
         }
@@ -283,6 +277,30 @@ namespace CGALDotNetGeometry.Colors
         public static float SqrDistance(ColorHSV c0, ColorHSV c1)
         {
             return (c0 - c1).SqrMagnitude;
+        }
+
+        /// <summary>
+        /// Lerp between two colors.
+        /// </summary>
+        public static ColorHSV Lerp(ColorHSV c1, ColorHSV c2, float a)
+        {
+            ColorHSV col = new ColorHSV();
+            col.h = MathUtil.Lerp(c1.h, c2.h, a);
+            col.s = MathUtil.Lerp(c1.s, c2.s, a);
+            col.v = MathUtil.Lerp(c1.v, c2.v, a);
+            return col;
+        }
+
+        /// <summary>
+        /// BLerp between four colors.
+        /// </summary>
+        public static ColorHSV BLerp(ColorHSV c00, ColorHSV c10, ColorHSV c01, ColorHSV c11, float a0, float a1)
+        {
+            ColorHSV col = new ColorHSV();
+            col.h = MathUtil.BLerp(c00.h, c10.h, c01.h, c11.h, a0, a1);
+            col.s = MathUtil.BLerp(c00.s, c10.s, c01.s, c11.s, a0, a1);
+            col.v = MathUtil.BLerp(c00.v, c10.v, c01.v, c11.v, a0, a1);
+            return col;
         }
 
         /// <summary>

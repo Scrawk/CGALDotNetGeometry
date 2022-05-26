@@ -489,6 +489,16 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
+        /// A matrix as a string.
+        /// </summary>
+        public string ToString(string f)
+        {
+            return this[0, 0].ToString(f) + "," + this[0, 1].ToString(f) + "," + this[0, 2].ToString(f) + "\n" +
+                    this[1, 0].ToString(f) + "," + this[1, 1].ToString(f) + "," + this[1, 2].ToString(f) + "\n" +
+                    this[2, 0].ToString(f) + "," + this[2, 1].ToString(f) + "," + this[2, 2].ToString(f);
+        }
+
+        /// <summary>
         /// The Inverse of the matrix copied into mInv.
         /// Returns false if the matrix has no inverse.
         /// A matrix multipled by its inverse is the idenity.

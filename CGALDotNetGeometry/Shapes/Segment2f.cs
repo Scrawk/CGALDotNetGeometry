@@ -18,7 +18,7 @@ namespace CGALDotNetGeometry.Shapes
     /// </summary>
     [Serializable]
     [StructLayout(LayoutKind.Sequential)]
-    public struct Segment2f : IEquatable<Segment2f>
+    public struct Segment2f : IEquatable<Segment2f>, IShape2f
     {
         /// <summary>
         /// The segments first point.
@@ -287,13 +287,25 @@ namespace CGALDotNetGeometry.Shapes
         /// <summary>
         /// Does the point line on the segemnts.
         /// </summary>
-        /// <param name="p"></param>
-        /// <param name="eps"></param>
-        /// <returns></returns>
-        public bool Contains(POINT2 p, REAL eps = MathUtil.EPS_32)
+        /// <param name="p">The point</param>
+        /// <param name="eps">A small value to give the segment some width.</param>
+        /// <returns>Does the point line on the segemnts.</returns>
+        public bool Contains(POINT2 p, REAL eps)
         {
             var c = Closest(p);
             return POINT2.AlmostEqual(c, p, eps);
+        }
+
+        /// <summary>
+        /// Does the point line on the segemnts.
+        /// </summary>
+        /// <param name="p">The point</param>
+        /// <param name="includeBorder">NA here. Needed for IShape interface.</param>
+        /// <returns>Does the point line on the segemnts.</returns>
+        public bool Contains(POINT2 p, bool includeBorder)
+        {
+            var c = Closest(p);
+            return POINT2.AlmostEqual(c, p, MathUtil.EPS_32);
         }
 
         /// <summary>
@@ -303,6 +315,17 @@ namespace CGALDotNetGeometry.Shapes
         public REAL SignedDistance(POINT2 p)
         {
             return POINT2.Distance(Closest(p), p);
+        }
+
+        /// <summary>
+        /// Does the shape intersect the box.
+        /// </summary>
+        /// <param name="box">The box.</param>
+        /// <param name="includeBorder"></param>
+        /// <returns>Does the shape intersect the box.</returns>
+        public bool Intersects(BOX2 box, bool includeBorder = true)
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -456,9 +479,9 @@ namespace CGALDotNetGeometry.Shapes
         public void Closest(Segment2f seg, out REAL s, out REAL t)
         {
 
-            VECTOR2 ab0 = (B - A).Vector2f;
-            VECTOR2 ab1 = (seg.B - seg.A).Vector2f;
-            VECTOR2 a01 = (A - seg.A).Vector2f;
+            VECTOR2 ab0 = B - A;
+            VECTOR2 ab1 = seg.B - seg.A;
+            VECTOR2 a01 = A - seg.A;
 
             REAL d00 = VECTOR2.Dot(ab0, ab0);
             REAL d11 = VECTOR2.Dot(ab1, ab1);

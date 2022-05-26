@@ -9,6 +9,7 @@ using VECTOR4 = CGALDotNetGeometry.Numerics.Vector4d;
 using POINT2 = CGALDotNetGeometry.Numerics.Point2d;
 using POINT3 = CGALDotNetGeometry.Numerics.Point3d;
 using POINT4 = CGALDotNetGeometry.Numerics.Point4d;
+using QUATERNION = CGALDotNetGeometry.Numerics.Quaternion3d;
 
 namespace CGALDotNetGeometry.Numerics
 {
@@ -628,6 +629,17 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
+        /// A matrix as a string.
+        /// </summary>
+        public string ToString(string f)
+        {
+            return this[0, 0].ToString(f) + "," + this[0, 1].ToString(f) + "," + this[0, 2].ToString(f) + "," + this[0, 3].ToString(f) + "\n" +
+                    this[1, 0].ToString(f) + "," + this[1, 1].ToString(f) + "," + this[1, 2].ToString(f) + "," + this[1, 3].ToString(f) + "\n" +
+                    this[2, 0].ToString(f) + "," + this[2, 1].ToString(f) + "," + this[2, 2].ToString(f) + "," + this[2, 3].ToString(f) + "\n" +
+                    this[3, 0].ToString(f) + "," + this[3, 1].ToString(f) + "," + this[3, 2].ToString(f) + "," + this[3, 3].ToString(f);
+        }
+
+        /// <summary>
         /// The minor of a matrix. 
         /// </summary>
         private REAL Minor(int r0, int r1, int r2, int c0, int c1, int c2)
@@ -708,7 +720,7 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Create a translation, rotation and scale.
         /// </summary>
-        static public Matrix4x4d TranslateRotateScale(POINT3 t, Quaternion3d r, POINT3 s)
+        static public Matrix4x4d TranslateRotateScale(POINT3 t, QUATERNION r, POINT3 s)
         {
             Matrix4x4d T = Translate(t);
             Matrix4x4d R = r.ToMatrix4x4d();
@@ -720,7 +732,7 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Create a translation and rotation.
         /// </summary>
-        static public Matrix4x4d TranslateRotate(POINT3 t, Quaternion3d r)
+        static public Matrix4x4d TranslateRotate(POINT3 t, QUATERNION r)
         {
             Matrix4x4d T = Translate(t);
             Matrix4x4d R = r.ToMatrix4x4d();
@@ -742,7 +754,7 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Create a rotation and scale.
         /// </summary>
-        static public Matrix4x4d RotateScale(Quaternion3d r, POINT3 s)
+        static public Matrix4x4d RotateScale(QUATERNION r, POINT3 s)
         {
             Matrix4x4d R = r.ToMatrix4x4d();
             Matrix4x4d S = Scale(s);
@@ -762,6 +774,17 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
+        /// Create a translation out of a vector.
+        /// </summary>
+        static public Matrix4x4d Translate(REAL x, REAL y, REAL z)
+        {
+            return new Matrix4x4d(1, 0, 0, x,
+                                    0, 1, 0, y,
+                                    0, 0, 1, z,
+                                    0, 0, 0, 1);
+        }
+
+        /// <summary>
         /// Create a scale out of a vector.
         /// </summary>
         static public Matrix4x4d Scale(POINT3 v)
@@ -769,6 +792,17 @@ namespace CGALDotNetGeometry.Numerics
             return new Matrix4x4d(v.x, 0, 0, 0,
                                     0, v.y, 0, 0,
                                     0, 0, v.z, 0,
+                                    0, 0, 0, 1);
+        }
+
+        /// <summary>
+        /// Create a scale out of a vector.
+        /// </summary>
+        static public Matrix4x4d Scale(REAL x, REAL y, REAL z)
+        {
+            return new Matrix4x4d(x, 0, 0, 0,
+                                    0, y, 0, 0,
+                                    0, 0, z, 0,
                                     0, 0, 0, 1);
         }
 
@@ -833,7 +867,7 @@ namespace CGALDotNetGeometry.Numerics
         /// </summary>
         static public Matrix4x4d Rotate(VECTOR3 euler)
         {
-            return Quaternion3d.FromEuler(euler).ToMatrix4x4d();
+            return QUATERNION.FromEuler(euler).ToMatrix4x4d();
         }
 
         /// <summary>
@@ -872,13 +906,25 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Create a perspective matrix.
         /// </summary>
-        static public Matrix4x4d Perspective(REAL fovy, REAL aspect, REAL zNear, REAL zFar)
+        static public Matrix4x4d Perspective(Radian fovy, REAL aspect, REAL zNear, REAL zFar)
         {
-            REAL f = 1.0f / (REAL)Math.Tan((fovy * Math.PI / 180.0) / 2.0);
+            REAL f = 1.0f / (REAL)Math.Tan(fovy.angle / 2.0);
             return new Matrix4x4d(f / aspect, 0, 0, 0,
                                     0, f, 0, 0,
                                     0, 0, (zFar + zNear) / (zNear - zFar), (2.0f * zFar * zNear) / (zNear - zFar),
                                     0, 0, -1, 0);
+
+            /*
+            // Perform projective divide for perspective projection
+            Matrix4x4 persp(1, 0, 0, 0, 
+                            0, 1, 0, 0, 
+                            0, 0, f / (f - n), -f * n / (f - n),
+                            0, 0, 1, 0);
+
+            // Scale canonical perspective view to specified field of view
+            Float invTanAng = 1 / std::tan(Radians(fov) / 2);
+            return Scale(invTanAng, invTanAng, 1) * Transform(persp);
+            */
         }
 
         /// <summary>
@@ -894,6 +940,15 @@ namespace CGALDotNetGeometry.Numerics
                                     0, 2.0f / (yTop - yBottom), 0, ty,
                                     0, 0, -2.0f / (zFar - zNear), tz,
                                     0, 0, 0, 1);
+
+        }
+
+        /// <summary>
+        /// Create a ortho matrix.
+        /// </summary>
+        static public Matrix4x4d Ortho(REAL zNear, REAL zFar)
+        {
+            return Scale(1, 1, 1 / (zFar - zNear)) * Translate(0, 0, -zNear);
         }
 
         /// <summary>

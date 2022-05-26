@@ -114,6 +114,16 @@
             The square distance between two colors.
             </summary>
         </member>
+        <member name="M:CGALDotNetGeometry.Colors.ColorHSV.Lerp(CGALDotNetGeometry.Colors.ColorHSV,CGALDotNetGeometry.Colors.ColorHSV,System.Single)">
+            <summary>
+            Lerp between two colors.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Colors.ColorHSV.BLerp(CGALDotNetGeometry.Colors.ColorHSV,CGALDotNetGeometry.Colors.ColorHSV,CGALDotNetGeometry.Colors.ColorHSV,CGALDotNetGeometry.Colors.ColorHSV,System.Single,System.Single)">
+            <summary>
+            BLerp between four colors.
+            </summary>
+        </member>
         <member name="M:CGALDotNetGeometry.Colors.ColorHSV.ToRGB(System.Single,System.Single,System.Single)">
             <summary>
             Convert to RGB color space.
@@ -220,10 +230,54 @@
             color as a string.
             </summary>
         </member>
+        <member name="M:CGALDotNetGeometry.Colors.ColorRGB.RGBA(System.Single)">
+            <summary>
+            Create a rgba color form this colors rgb 
+            values and the provided alpha value.
+            </summary>
+            <param name="a">The alpha value.</param>
+            <returns>THe RGBA color.</returns>
+        </member>
+        <member name="M:CGALDotNetGeometry.Colors.ColorRGB.AlphaBlend(CGALDotNetGeometry.Colors.ColorRGB,CGALDotNetGeometry.Colors.ColorRGB,System.Single,System.Single)">
+            <summary>
+            Alpha blend the two pixels.
+            </summary>
+            <param name="c0">The first pixel.</param>
+            <param name="c1">The second pixel.</param>
+            <param name="a0">The first pixels alpha.</param>
+            <param name="a1">The second pixels alpha.</param>
+            <returns>The alpha blened pixel.</returns>
+        </member>
         <member name="M:CGALDotNetGeometry.Colors.ColorRGB.FromBytes(System.Int32,System.Int32,System.Int32)">
             <summary>
             color from bytes.
+            The values will be converted from a 0-255 range to a 0-1 range.
             </summary>
+            <returns>A color will values in the 0-1 range.</returns>
+        </member>
+        <member name="M:CGALDotNetGeometry.Colors.ColorRGB.FromInteger(System.Int32,System.Boolean)">
+            <summary>
+            Create a color from a integer where each byte in the 
+            integer represents a channl in the color.
+            </summary>
+            <param name="i">The integer.</param>
+            <param name="bgr">are the channels packed bgr or rgb.</param>
+            <returns>The color.</returns>
+        </member>
+        <member name="M:CGALDotNetGeometry.Colors.ColorRGB.ToInteger(System.Boolean)">
+            <summary>
+            Convert the color to a integer where each byte 
+            represents a channel in the color.
+            </summary>
+            <param name="abgr">are the channels packed bgr or rgb.</param>
+            <returns>A integer where each byte represents a channel in the color.</returns>
+        </member>
+        <member name="M:CGALDotNetGeometry.Colors.ColorRGB.Gamma(System.Single,System.Single)">
+            <summary>
+            Apply the gamma function to the color.
+            </summary>
+            <param name="lambda">The power to raise each channel to.</param>
+            <param name="A">The constant the result is multiplied by. Defaults to 1.</param>
         </member>
         <member name="M:CGALDotNetGeometry.Colors.ColorRGB.Distance(CGALDotNetGeometry.Colors.ColorRGB,CGALDotNetGeometry.Colors.ColorRGB)">
             <summary>
@@ -252,7 +306,12 @@
         </member>
         <member name="M:CGALDotNetGeometry.Colors.ColorRGB.Lerp(CGALDotNetGeometry.Colors.ColorRGB,CGALDotNetGeometry.Colors.ColorRGB,System.Single)">
             <summary>
-            Lerp between two vectors.
+            Lerp between two colors.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Colors.ColorRGB.BLerp(CGALDotNetGeometry.Colors.ColorRGB,CGALDotNetGeometry.Colors.ColorRGB,CGALDotNetGeometry.Colors.ColorRGB,CGALDotNetGeometry.Colors.ColorRGB,System.Single,System.Single)">
+            <summary>
+            BLerp between four colors.
             </summary>
         </member>
         <member name="M:CGALDotNetGeometry.Colors.ColorRGB.ToHSV(System.Single,System.Single,System.Single)">
@@ -268,7 +327,7 @@
         </member>
         <member name="M:CGALDotNetGeometry.Colors.ColorRGB.Palette">
             <summary>
-            Create a palette of colors.
+            Create a palette of colors..
             </summary>
             <returns></returns>
         </member>
@@ -376,10 +435,45 @@
             color as a string.
             </summary>
         </member>
-        <member name="M:CGALDotNetGeometry.Colors.ColorRGBA.FromBytes(System.Int32,System.Int32,System.Int32)">
+        <member name="M:CGALDotNetGeometry.Colors.ColorRGBA.AlphaBlend(CGALDotNetGeometry.Colors.ColorRGBA,CGALDotNetGeometry.Colors.ColorRGBA)">
+            <summary>
+            Alpha blend the two pixels.
+            </summary>
+            <param name="c0">The first pixel.</param>
+            <param name="c1">The second pixel.</param>
+            <returns>The alpha blened pixel.</returns>
+        </member>
+        <member name="M:CGALDotNetGeometry.Colors.ColorRGBA.FromBytes(System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             color from bytes.
+            The values will be converted from a 0-255 range to a 0-1 range.
             </summary>
+            <returns>A color will values in the 0-1 range.</returns>
+        </member>
+        <member name="M:CGALDotNetGeometry.Colors.ColorRGBA.FromInteger(System.Int32,System.Boolean)">
+            <summary>
+            Create a color from a integer where each byte in the 
+            integer represents a channl in the color.
+            </summary>
+            <param name="i">The integer.</param>
+            <param name="abgr">are the channels packed bgr or rgb.</param>
+            <returns>The color.</returns>
+        </member>
+        <member name="M:CGALDotNetGeometry.Colors.ColorRGBA.ToInteger(System.Boolean)">
+            <summary>
+            Convert the color to a integer where each byte 
+            represents a channel in the color.
+            </summary>
+            <param name="abgr">are the channels packed bgr or rgb.</param>
+            <returns>A integer where each byte represents a channel in the color.</returns>
+        </member>
+        <member name="M:CGALDotNetGeometry.Colors.ColorRGBA.Gamma(System.Single,System.Single)">
+            <summary>
+            Apply the gamma function to the color.
+            Gamma is not applied to the alpha channel.
+            </summary>
+            <param name="lambda">The power to raise each channel to.</param>
+            <param name="A">The constant the result is multiplied by. Defaults to 1.</param>
         </member>
         <member name="M:CGALDotNetGeometry.Colors.ColorRGBA.Distance(CGALDotNetGeometry.Colors.ColorRGBA,CGALDotNetGeometry.Colors.ColorRGBA)">
             <summary>
@@ -389,11 +483,6 @@
         <member name="M:CGALDotNetGeometry.Colors.ColorRGBA.SqrDistance(CGALDotNetGeometry.Colors.ColorRGBA,CGALDotNetGeometry.Colors.ColorRGBA)">
             <summary>
             The square distance between two colors.
-            </summary>
-        </member>
-        <member name="M:CGALDotNetGeometry.Colors.ColorRGBA.FromBytes(System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            color from ints.
             </summary>
         </member>
         <member name="M:CGALDotNetGeometry.Colors.ColorRGBA.Min(CGALDotNetGeometry.Colors.ColorRGBA,System.Single)">
@@ -414,6 +503,11 @@
         <member name="M:CGALDotNetGeometry.Colors.ColorRGBA.Lerp(CGALDotNetGeometry.Colors.ColorRGBA,CGALDotNetGeometry.Colors.ColorRGBA,System.Single)">
             <summary>
             Lerp between two colors.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Colors.ColorRGBA.BLerp(CGALDotNetGeometry.Colors.ColorRGBA,CGALDotNetGeometry.Colors.ColorRGBA,CGALDotNetGeometry.Colors.ColorRGBA,CGALDotNetGeometry.Colors.ColorRGBA,System.Single,System.Single)">
+            <summary>
+            BLerp between four colors.
             </summary>
         </member>
         <member name="M:CGALDotNetGeometry.Colors.ColorRGBA.ToHSV">
@@ -1608,6 +1702,34 @@
             Mirror a value between 0 and count-1 (inclusive).
             </summary>
         </member>
+        <member name="M:CGALDotNetGeometry.Numerics.MathUtil.Swap(System.Single@,System.Single@)">
+            <summary>
+            Swaps the two values.
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.MathUtil.Swap(System.Double@,System.Double@)">
+            <summary>
+            Swaps the two values.
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.MathUtil.Swap(System.Int32@,System.Int32@)">
+            <summary>
+            Swaps the two values.
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.MathUtil.Swap``1(``0@,``0@)">
+            <summary>
+            Swaps the two values.
+            </summary>
+            <param name="v1"></param>
+            <param name="v2"></param>
+        </member>
         <member name="M:CGALDotNetGeometry.Numerics.MathUtil.IsPow2(System.Int32)">
             <summary>
             Is number a power of 2.
@@ -1628,6 +1750,14 @@
             Simple int pow function.
             System Math.Pow may produce precision errors.
             </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.MathUtil.IntPow(System.UInt32,System.UInt32)">
+            <summary>
+            
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.MathUtil.Binomial(System.Int32,System.Int32)">
             <summary>
@@ -1693,6 +1823,28 @@
             <summary>
             Creates a look up table for factorials.
             </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.MathUtil.SolveQuadratic(System.Single,System.Single,System.Single,System.Single@,System.Single@)">
+            <summary>
+            Solve the quadratic equation.
+            </summary>
+            <param name="A"></param>
+            <param name="B"></param>
+            <param name="C"></param>
+            <param name="t0">The first root.</param>
+            <param name="t1">The second root.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.MathUtil.SolveQuadratic(System.Double,System.Double,System.Double,System.Double@,System.Double@)">
+            <summary>
+            Solve the quadratic equation.
+            </summary>
+            <param name="A"></param>
+            <param name="B"></param>
+            <param name="C"></param>
+            <param name="t0">The first root.</param>
+            <param name="t1">The second root.</param>
+            <returns></returns>
         </member>
         <member name="T:CGALDotNetGeometry.Numerics.Matrix2x2d">
             <summary>
@@ -1840,6 +1992,11 @@
             </summary>
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Matrix2x2d.ToString">
+            <summary>
+            A matrix as a string.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Matrix2x2d.ToString(System.String)">
             <summary>
             A matrix as a string.
             </summary>
@@ -2238,6 +2395,11 @@
             A matrix as a string.
             </summary>
         </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Matrix3x3d.ToString(System.String)">
+            <summary>
+            A matrix as a string.
+            </summary>
+        </member>
         <member name="M:CGALDotNetGeometry.Numerics.Matrix3x3d.TryInverse(CGALDotNetGeometry.Numerics.Matrix3x3d@)">
             <summary>
             The Inverse of the matrix copied into mInv.
@@ -2483,6 +2645,11 @@
             </summary>
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Matrix3x3f.ToString">
+            <summary>
+            A matrix as a string.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Matrix3x3f.ToString(System.String)">
             <summary>
             A matrix as a string.
             </summary>
@@ -2760,6 +2927,11 @@
             A matrix as a string.
             </summary>
         </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Matrix4x4d.ToString(System.String)">
+            <summary>
+            A matrix as a string.
+            </summary>
+        </member>
         <member name="M:CGALDotNetGeometry.Numerics.Matrix4x4d.Minor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             The minor of a matrix. 
@@ -2821,7 +2993,17 @@
             Create a translation out of a vector.
             </summary>
         </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Matrix4x4d.Translate(System.Double,System.Double,System.Double)">
+            <summary>
+            Create a translation out of a vector.
+            </summary>
+        </member>
         <member name="M:CGALDotNetGeometry.Numerics.Matrix4x4d.Scale(CGALDotNetGeometry.Numerics.Point3d)">
+            <summary>
+            Create a scale out of a vector.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Matrix4x4d.Scale(System.Double,System.Double,System.Double)">
             <summary>
             Create a scale out of a vector.
             </summary>
@@ -2859,12 +3041,17 @@
             <param name="axis">The axis to rotate on.</param>
             <returns>The rotation matrix.</returns>
         </member>
-        <member name="M:CGALDotNetGeometry.Numerics.Matrix4x4d.Perspective(System.Double,System.Double,System.Double,System.Double)">
+        <member name="M:CGALDotNetGeometry.Numerics.Matrix4x4d.Perspective(CGALDotNetGeometry.Numerics.Radian,System.Double,System.Double,System.Double)">
             <summary>
             Create a perspective matrix.
             </summary>
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Matrix4x4d.Ortho(System.Double,System.Double,System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            Create a ortho matrix.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Matrix4x4d.Ortho(System.Double,System.Double)">
             <summary>
             Create a ortho matrix.
             </summary>
@@ -3068,6 +3255,11 @@
             A matrix as a string.
             </summary>
         </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Matrix4x4f.ToString(System.String)">
+            <summary>
+            A matrix as a string.
+            </summary>
+        </member>
         <member name="M:CGALDotNetGeometry.Numerics.Matrix4x4f.Minor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             The minor of a matrix. 
@@ -3129,7 +3321,17 @@
             Create a translation out of a vector.
             </summary>
         </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Matrix4x4f.Translate(System.Single,System.Single,System.Single)">
+            <summary>
+            Create a translation out of a vector.
+            </summary>
+        </member>
         <member name="M:CGALDotNetGeometry.Numerics.Matrix4x4f.Scale(CGALDotNetGeometry.Numerics.Point3f)">
+            <summary>
+            Create a scale out of a vector.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Matrix4x4f.Scale(System.Single,System.Single,System.Single)">
             <summary>
             Create a scale out of a vector.
             </summary>
@@ -3167,12 +3369,17 @@
             <param name="axis">The axis to rotate on.</param>
             <returns>The rotation matrix.</returns>
         </member>
-        <member name="M:CGALDotNetGeometry.Numerics.Matrix4x4f.Perspective(System.Single,System.Single,System.Single,System.Single)">
+        <member name="M:CGALDotNetGeometry.Numerics.Matrix4x4f.Perspective(CGALDotNetGeometry.Numerics.Radian,System.Single,System.Single,System.Single)">
             <summary>
             Create a perspective matrix.
             </summary>
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Matrix4x4f.Ortho(System.Single,System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            Create a ortho matrix.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Matrix4x4f.Ortho(System.Single,System.Single)">
             <summary>
             Create a ortho matrix.
             </summary>
@@ -3277,21 +3484,6 @@
         <member name="P:CGALDotNetGeometry.Numerics.Point2d.NoNAN">
             <summary>
             Make a point with no nan conponents.
-            </summary>
-        </member>
-        <member name="P:CGALDotNetGeometry.Numerics.Point2d.Vector2d">
-            <summary>
-            Point as a vector.
-            </summary>
-        </member>
-        <member name="P:CGALDotNetGeometry.Numerics.Point2d.Point2f">
-            <summary>
-            Convert to float point.
-            </summary>
-        </member>
-        <member name="P:CGALDotNetGeometry.Numerics.Point2d.Point2i">
-            <summary>
-            Convert to int point.
             </summary>
         </member>
         <member name="P:CGALDotNetGeometry.Numerics.Point2d.Homogenous">
@@ -3416,6 +3608,18 @@
             </summary>
             <param name="v"></param>
         </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Point2d.op_Implicit(CGALDotNetGeometry.Numerics.Vector2f)~CGALDotNetGeometry.Numerics.Point2d">
+            <summary>
+            Cast from Vector2f to Point2d.
+            </summary>
+            <param name="v"></param>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Point2d.op_Implicit(CGALDotNetGeometry.Numerics.Vector2d)~CGALDotNetGeometry.Numerics.Point2d">
+            <summary>
+            Cast from Vector2d to Point2d.
+            </summary>
+            <param name="v"></param>
+        </member>
         <member name="M:CGALDotNetGeometry.Numerics.Point2d.op_Equality(CGALDotNetGeometry.Numerics.Point2d,CGALDotNetGeometry.Numerics.Point2d)">
             <summary>
             Are these points equal.
@@ -3521,6 +3725,11 @@
         <member name="M:CGALDotNetGeometry.Numerics.Point2d.Lerp(CGALDotNetGeometry.Numerics.Point2d,CGALDotNetGeometry.Numerics.Point2d,System.Double)">
             <summary>
             Lerp between two points.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Point2d.BLerp(CGALDotNetGeometry.Numerics.Point2d,CGALDotNetGeometry.Numerics.Point2d,CGALDotNetGeometry.Numerics.Point2d,CGALDotNetGeometry.Numerics.Point2d,System.Double,System.Double)">
+            <summary>
+            BLerp between four points.
             </summary>
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Point2d.Rounded(System.Int32)">
@@ -3657,11 +3866,6 @@
             Make a point with no nan conponents.
             </summary>
         </member>
-        <member name="P:CGALDotNetGeometry.Numerics.Point2f.Vector2f">
-            <summary>
-            Point as a vector.
-            </summary>
-        </member>
         <member name="P:CGALDotNetGeometry.Numerics.Point2f.Sum">
             <summary>
             The sum of the points components.
@@ -3774,6 +3978,18 @@
             </summary>
             <param name="v"></param>
         </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Point2f.op_Explicit(CGALDotNetGeometry.Numerics.Vector2d)~CGALDotNetGeometry.Numerics.Point2f">
+            <summary>
+            Cast from Vector2d to Point2f.
+            </summary>
+            <param name="v"></param>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Point2f.op_Implicit(CGALDotNetGeometry.Numerics.Vector2f)~CGALDotNetGeometry.Numerics.Point2f">
+            <summary>
+            Cast from Vector2f to Point2f.
+            </summary>
+            <param name="v"></param>
+        </member>
         <member name="M:CGALDotNetGeometry.Numerics.Point2f.op_Equality(CGALDotNetGeometry.Numerics.Point2f,CGALDotNetGeometry.Numerics.Point2f)">
             <summary>
             Are these points equal.
@@ -3881,6 +4097,11 @@
             Lerp between two points.
             </summary>
         </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Point2f.BLerp(CGALDotNetGeometry.Numerics.Point2f,CGALDotNetGeometry.Numerics.Point2f,CGALDotNetGeometry.Numerics.Point2f,CGALDotNetGeometry.Numerics.Point2f,System.Single,System.Single)">
+            <summary>
+            BLerp between four points.
+            </summary>
+        </member>
         <member name="M:CGALDotNetGeometry.Numerics.Point2f.Rounded(System.Int32)">
             <summary>
             A rounded point.
@@ -3978,32 +4199,22 @@
             A point from the varibles.
             </summary>
         </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Point2i.#ctor(System.Single,System.Single)">
+            <summary>
+            A point from the varibles.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Point2i.#ctor(System.Double,System.Double)">
+            <summary>
+            A point from the varibles.
+            </summary>
+        </member>
         <member name="P:CGALDotNetGeometry.Numerics.Point2i.Item(System.Int32)">
             <summary>
             Array accessor for variables. 
             </summary>
             <param name="i">The variables index.</param>
             <returns>The variable value</returns>
-        </member>
-        <member name="P:CGALDotNetGeometry.Numerics.Point2i.Vector2f">
-            <summary>
-            Convert to float vector.
-            </summary>
-        </member>
-        <member name="P:CGALDotNetGeometry.Numerics.Point2i.Vector2d">
-            <summary>
-            Convert to double vector.
-            </summary>
-        </member>
-        <member name="P:CGALDotNetGeometry.Numerics.Point2i.Point2f">
-            <summary>
-            Convert to float point.
-            </summary>
-        </member>
-        <member name="P:CGALDotNetGeometry.Numerics.Point2i.Point2d">
-            <summary>
-            Convert to double point.
-            </summary>
         </member>
         <member name="P:CGALDotNetGeometry.Numerics.Point2i.Sum">
             <summary>
@@ -4102,6 +4313,18 @@
             </summary>
             <param name="v"></param>
         </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Point2i.op_Explicit(CGALDotNetGeometry.Numerics.Vector2f)~CGALDotNetGeometry.Numerics.Point2i">
+            <summary>
+            Cast from Vector2f to Point2i.
+            </summary>
+            <param name="v"></param>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Point2i.op_Explicit(CGALDotNetGeometry.Numerics.Vector2d)~CGALDotNetGeometry.Numerics.Point2i">
+            <summary>
+            Cast from Vector2d to Point2i.
+            </summary>
+            <param name="v"></param>
+        </member>
         <member name="M:CGALDotNetGeometry.Numerics.Point2i.op_Equality(CGALDotNetGeometry.Numerics.Point2i,CGALDotNetGeometry.Numerics.Point2i)">
             <summary>
             Are these points equal.
@@ -4145,11 +4368,6 @@
         <member name="M:CGALDotNetGeometry.Numerics.Point2i.SqrDistance(CGALDotNetGeometry.Numerics.Point2i,CGALDotNetGeometry.Numerics.Point2i)">
             <summary>
             Square distance between two points.
-            </summary>
-        </member>
-        <member name="M:CGALDotNetGeometry.Numerics.Point2i.Direction(CGALDotNetGeometry.Numerics.Point2i,CGALDotNetGeometry.Numerics.Point2i)">
-            <summary>
-            Direction between two points.
             </summary>
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Point2i.Min(CGALDotNetGeometry.Numerics.Point2i,System.Int32)">
@@ -4289,26 +4507,6 @@
             Make a point with no nan conponents.
             </summary>
         </member>
-        <member name="P:CGALDotNetGeometry.Numerics.Point3d.Vector3d">
-            <summary>
-            Point as vector.
-            </summary>
-        </member>
-        <member name="P:CGALDotNetGeometry.Numerics.Point3d.Vector4d">
-            <summary>
-            Point as vector.
-            </summary>
-        </member>
-        <member name="P:CGALDotNetGeometry.Numerics.Point3d.Point3f">
-            <summary>
-            Convert to float point.
-            </summary>
-        </member>
-        <member name="P:CGALDotNetGeometry.Numerics.Point3d.Point3i">
-            <summary>
-            Convert to int point.
-            </summary>
-        </member>
         <member name="P:CGALDotNetGeometry.Numerics.Point3d.Homogenous">
             <summary>
             Point as a homogenous point.
@@ -4421,13 +4619,25 @@
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Point3d.op_Implicit(CGALDotNetGeometry.Numerics.Point3f)~CGALDotNetGeometry.Numerics.Point3d">
             <summary>
-            Cast from Point43f to Point3d.
+            Cast from Point3f to Point3d.
             </summary>
             <param name="v"></param>
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Point3d.op_Implicit(CGALDotNetGeometry.Numerics.Point3i)~CGALDotNetGeometry.Numerics.Point3d">
             <summary>
             Cast from Point3i to Point3d.
+            </summary>
+            <param name="v"></param>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Point3d.op_Implicit(CGALDotNetGeometry.Numerics.Vector3f)~CGALDotNetGeometry.Numerics.Point3d">
+            <summary>
+            Cast from Vector3f to Point3d.
+            </summary>
+            <param name="v"></param>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Point3d.op_Implicit(CGALDotNetGeometry.Numerics.Vector3d)~CGALDotNetGeometry.Numerics.Point3d">
+            <summary>
+            Cast from Vector3d to Point3d.
             </summary>
             <param name="v"></param>
         </member>
@@ -4523,6 +4733,11 @@
         <member name="M:CGALDotNetGeometry.Numerics.Point3d.Lerp(CGALDotNetGeometry.Numerics.Point3d,CGALDotNetGeometry.Numerics.Point3d,System.Double)">
             <summary>
             Lerp between two points.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Point3d.BLerp(CGALDotNetGeometry.Numerics.Point3d,CGALDotNetGeometry.Numerics.Point3d,CGALDotNetGeometry.Numerics.Point3d,CGALDotNetGeometry.Numerics.Point3d,System.Double,System.Double)">
+            <summary>
+            BLerp between four points.
             </summary>
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Point3d.Rounded(System.Int32)">
@@ -4669,16 +4884,6 @@
             Make a point with no nan conponents.
             </summary>
         </member>
-        <member name="P:CGALDotNetGeometry.Numerics.Point3f.Vector3f">
-            <summary>
-            Point as vector.
-            </summary>
-        </member>
-        <member name="P:CGALDotNetGeometry.Numerics.Point3f.Vector4d">
-            <summary>
-            Point as vector.
-            </summary>
-        </member>
         <member name="P:CGALDotNetGeometry.Numerics.Point3f.Sum">
             <summary>
             The sum of the points components.
@@ -4791,6 +4996,18 @@
             </summary>
             <param name="v"></param>
         </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Point3f.op_Explicit(CGALDotNetGeometry.Numerics.Vector3d)~CGALDotNetGeometry.Numerics.Point3f">
+            <summary>
+            Cast from Vector3d to Point3f.
+            </summary>
+            <param name="v"></param>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Point3f.op_Implicit(CGALDotNetGeometry.Numerics.Vector3f)~CGALDotNetGeometry.Numerics.Point3f">
+            <summary>
+            Cast from Vector3f to Point3f.
+            </summary>
+            <param name="v"></param>
+        </member>
         <member name="M:CGALDotNetGeometry.Numerics.Point3f.op_Equality(CGALDotNetGeometry.Numerics.Point3f,CGALDotNetGeometry.Numerics.Point3f)">
             <summary>
             Are these points equal.
@@ -4883,6 +5100,11 @@
         <member name="M:CGALDotNetGeometry.Numerics.Point3f.Lerp(CGALDotNetGeometry.Numerics.Point3f,CGALDotNetGeometry.Numerics.Point3f,System.Single)">
             <summary>
             Lerp between two points.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Point3f.BLerp(CGALDotNetGeometry.Numerics.Point3f,CGALDotNetGeometry.Numerics.Point3f,CGALDotNetGeometry.Numerics.Point3f,CGALDotNetGeometry.Numerics.Point3f,System.Single,System.Single)">
+            <summary>
+            BLerp between four points.
             </summary>
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Point3f.Rounded(System.Int32)">
@@ -4987,32 +5209,22 @@
             A point from the varibles.
             </summary>
         </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Point3i.#ctor(System.Single,System.Single,System.Single)">
+            <summary>
+            A point from the varibles.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Point3i.#ctor(System.Double,System.Double,System.Double)">
+            <summary>
+            A point from the varibles.
+            </summary>
+        </member>
         <member name="P:CGALDotNetGeometry.Numerics.Point3i.Item(System.Int32)">
             <summary>
             Array accessor for variables. 
             </summary>
             <param name="i">The variables index.</param>
             <returns>The variable value</returns>
-        </member>
-        <member name="P:CGALDotNetGeometry.Numerics.Point3i.Vector3f">
-            <summary>
-            Convert to float vector.
-            </summary>
-        </member>
-        <member name="P:CGALDotNetGeometry.Numerics.Point3i.Vector3d">
-            <summary>
-            Convert to double vector.
-            </summary>
-        </member>
-        <member name="P:CGALDotNetGeometry.Numerics.Point3i.Point3f">
-            <summary>
-            Convert to float point.
-            </summary>
-        </member>
-        <member name="P:CGALDotNetGeometry.Numerics.Point3i.Point3d">
-            <summary>
-            Convert to double point.
-            </summary>
         </member>
         <member name="P:CGALDotNetGeometry.Numerics.Point3i.Sum">
             <summary>
@@ -5111,6 +5323,18 @@
             </summary>
             <param name="v"></param>
         </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Point3i.op_Explicit(CGALDotNetGeometry.Numerics.Vector3f)~CGALDotNetGeometry.Numerics.Point3i">
+            <summary>
+            Cast from Vector3f to Point3i.
+            </summary>
+            <param name="v"></param>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Point3i.op_Explicit(CGALDotNetGeometry.Numerics.Vector3d)~CGALDotNetGeometry.Numerics.Point3i">
+            <summary>
+            Cast from Vector3d to Point3i.
+            </summary>
+            <param name="v"></param>
+        </member>
         <member name="M:CGALDotNetGeometry.Numerics.Point3i.op_Equality(CGALDotNetGeometry.Numerics.Point3i,CGALDotNetGeometry.Numerics.Point3i)">
             <summary>
             Are these points equal.
@@ -5154,11 +5378,6 @@
         <member name="M:CGALDotNetGeometry.Numerics.Point3i.SqrDistance(CGALDotNetGeometry.Numerics.Point3i,CGALDotNetGeometry.Numerics.Point3i)">
             <summary>
             Square distance between two points.
-            </summary>
-        </member>
-        <member name="M:CGALDotNetGeometry.Numerics.Point3i.Direction(CGALDotNetGeometry.Numerics.Point3i,CGALDotNetGeometry.Numerics.Point3i)">
-            <summary>
-            Direction between two points.
             </summary>
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Point3i.Min(CGALDotNetGeometry.Numerics.Point3i,System.Int32)">
@@ -5283,26 +5502,6 @@
             Make a point with no nan conponents.
             </summary>
         </member>
-        <member name="P:CGALDotNetGeometry.Numerics.Point4d.Vector3d">
-            <summary>
-            Point as vector.
-            </summary>
-        </member>
-        <member name="P:CGALDotNetGeometry.Numerics.Point4d.Vector4d">
-            <summary>
-            Point as vector.
-            </summary>
-        </member>
-        <member name="P:CGALDotNetGeometry.Numerics.Point4d.Point4f">
-            <summary>
-            Convert to float point.
-            </summary>
-        </member>
-        <member name="P:CGALDotNetGeometry.Numerics.Point4d.Point4i">
-            <summary>
-            Convert to int point.
-            </summary>
-        </member>
         <member name="P:CGALDotNetGeometry.Numerics.Point4d.Sum">
             <summary>
             The sum of the points components.
@@ -5415,6 +5614,18 @@
             </summary>
             <param name="v"></param>
         </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Point4d.op_Implicit(CGALDotNetGeometry.Numerics.Vector4f)~CGALDotNetGeometry.Numerics.Point4d">
+            <summary>
+            Cast from Vector4f to Point4d.
+            </summary>
+            <param name="v"></param>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Point4d.op_Implicit(CGALDotNetGeometry.Numerics.Vector4d)~CGALDotNetGeometry.Numerics.Point4d">
+            <summary>
+            Cast from Vector4d to Point4d.
+            </summary>
+            <param name="v"></param>
+        </member>
         <member name="M:CGALDotNetGeometry.Numerics.Point4d.op_Equality(CGALDotNetGeometry.Numerics.Point4d,CGALDotNetGeometry.Numerics.Point4d)">
             <summary>
             Are these points equal.
@@ -5507,6 +5718,11 @@
         <member name="M:CGALDotNetGeometry.Numerics.Point4d.Lerp(CGALDotNetGeometry.Numerics.Point4d,CGALDotNetGeometry.Numerics.Point4d,System.Double)">
             <summary>
             Lerp between two points.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Point4d.BLerp(CGALDotNetGeometry.Numerics.Point4d,CGALDotNetGeometry.Numerics.Point4d,CGALDotNetGeometry.Numerics.Point4d,CGALDotNetGeometry.Numerics.Point4d,System.Double,System.Double)">
+            <summary>
+            BLerp between four points.
             </summary>
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Point4d.Rounded(System.Int32)">
@@ -5629,16 +5845,6 @@
             Make a point with no nan conponents.
             </summary>
         </member>
-        <member name="P:CGALDotNetGeometry.Numerics.Point4f.Vector3f">
-            <summary>
-            Point as vector.
-            </summary>
-        </member>
-        <member name="P:CGALDotNetGeometry.Numerics.Point4f.Vector4f">
-            <summary>
-            Point as vector.
-            </summary>
-        </member>
         <member name="P:CGALDotNetGeometry.Numerics.Point4f.Sum">
             <summary>
             The sum of the points components.
@@ -5751,6 +5957,18 @@
             </summary>
             <param name="v"></param>
         </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Point4f.op_Implicit(CGALDotNetGeometry.Numerics.Vector4f)~CGALDotNetGeometry.Numerics.Point4f">
+            <summary>
+            Cast from Vector4f to Point4f.
+            </summary>
+            <param name="v"></param>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Point4f.op_Explicit(CGALDotNetGeometry.Numerics.Vector4d)~CGALDotNetGeometry.Numerics.Point4f">
+            <summary>
+            Cast from Vector4d to Point4f.
+            </summary>
+            <param name="v"></param>
+        </member>
         <member name="M:CGALDotNetGeometry.Numerics.Point4f.op_Equality(CGALDotNetGeometry.Numerics.Point4f,CGALDotNetGeometry.Numerics.Point4f)">
             <summary>
             Are these points equal.
@@ -5778,17 +5996,17 @@
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Point4f.GetHashCode">
             <summary>
-            Vectors hash code. 
+            Points hash code. 
             </summary>
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Point4f.ToString">
             <summary>
-            Vector as a string.
+            Point as a string.
             </summary>
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Point4f.ToString(System.String)">
             <summary>
-            Vector as a string.
+            Point as a string.
             </summary>
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Point4f.Distance(CGALDotNetGeometry.Numerics.Point4f,CGALDotNetGeometry.Numerics.Point4f)">
@@ -5799,7 +6017,7 @@
         <member name="M:CGALDotNetGeometry.Numerics.Point4f.SqrDistance(CGALDotNetGeometry.Numerics.Point4f,CGALDotNetGeometry.Numerics.Point4f)">
             <summary>
             Square distance between two points.
-            </summary>
+            </summary>]
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Point4f.Direction(CGALDotNetGeometry.Numerics.Point4f,CGALDotNetGeometry.Numerics.Point4f,System.Boolean)">
             <summary>
@@ -5808,7 +6026,6 @@
             <param name="v0">The first point.</param>
             <param name="v1">The second point.</param>
             <param name="normalize">Should the vector be normalized.</param>
-            <returns>The vector from v0 to v1.</returns>
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Point4f.Min(CGALDotNetGeometry.Numerics.Point4f,System.Single)">
             <summary>
@@ -5843,6 +6060,11 @@
         <member name="M:CGALDotNetGeometry.Numerics.Point4f.Lerp(CGALDotNetGeometry.Numerics.Point4f,CGALDotNetGeometry.Numerics.Point4f,System.Single)">
             <summary>
             Lerp between two points.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Point4f.BLerp(CGALDotNetGeometry.Numerics.Point4f,CGALDotNetGeometry.Numerics.Point4f,CGALDotNetGeometry.Numerics.Point4f,CGALDotNetGeometry.Numerics.Point4f,System.Single,System.Single)">
+            <summary>
+            BLerp between four points.
             </summary>
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Point4f.Rounded(System.Int32)">
@@ -5928,32 +6150,22 @@
             A point from the varibles.
             </summary>
         </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Point4i.#ctor(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            A point from the varibles.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Point4i.#ctor(System.Double,System.Double,System.Double,System.Double)">
+            <summary>
+            A point from the varibles.
+            </summary>
+        </member>
         <member name="P:CGALDotNetGeometry.Numerics.Point4i.Item(System.Int32)">
             <summary>
             Array accessor for variables. 
             </summary>
             <param name="i">The variables index.</param>
             <returns>The variable value</returns>
-        </member>
-        <member name="P:CGALDotNetGeometry.Numerics.Point4i.Vector4f">
-            <summary>
-            Convert to float vector.
-            </summary>
-        </member>
-        <member name="P:CGALDotNetGeometry.Numerics.Point4i.Vector4d">
-            <summary>
-            Convert to double vector.
-            </summary>
-        </member>
-        <member name="P:CGALDotNetGeometry.Numerics.Point4i.Point4f">
-            <summary>
-            Convert to float point.
-            </summary>
-        </member>
-        <member name="P:CGALDotNetGeometry.Numerics.Point4i.Point4d">
-            <summary>
-            Convert to double point.
-            </summary>
         </member>
         <member name="P:CGALDotNetGeometry.Numerics.Point4i.Sum">
             <summary>
@@ -6052,6 +6264,18 @@
             </summary>
             <param name="v"></param>
         </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Point4i.op_Explicit(CGALDotNetGeometry.Numerics.Vector4f)~CGALDotNetGeometry.Numerics.Point4i">
+            <summary>
+            Cast from Vector4f to Point4i.
+            </summary>
+            <param name="v"></param>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Point4i.op_Explicit(CGALDotNetGeometry.Numerics.Vector4d)~CGALDotNetGeometry.Numerics.Point4i">
+            <summary>
+            Cast from Vector4d to Point4i.
+            </summary>
+            <param name="v"></param>
+        </member>
         <member name="M:CGALDotNetGeometry.Numerics.Point4i.op_Equality(CGALDotNetGeometry.Numerics.Point4i,CGALDotNetGeometry.Numerics.Point4i)">
             <summary>
             Are these points equal.
@@ -6122,17 +6346,12 @@
             A Quaternion from varibles.
             </summary>
         </member>
-        <member name="M:CGALDotNetGeometry.Numerics.Quaternion3d.#ctor(CGALDotNetGeometry.Numerics.Vector3d,System.Double)">
+        <member name="P:CGALDotNetGeometry.Numerics.Quaternion3d.Item(System.Int32)">
             <summary>
-            A Quaternion from a vector axis and angle.
-            The axis is the up direction and the angle is the rotation.
+            Array accessor for variables. 
             </summary>
-        </member>
-        <member name="M:CGALDotNetGeometry.Numerics.Quaternion3d.#ctor(CGALDotNetGeometry.Numerics.Vector3d,CGALDotNetGeometry.Numerics.Vector3d)">
-            <summary>
-            A quaternion with the rotation required to
-            rotation from the from direction to the to direction.
-            </summary>
+            <param name="i">The variables index.</param>
+            <returns>The variable value</returns>
         </member>
         <member name="P:CGALDotNetGeometry.Numerics.Quaternion3d.Conjugate">
             <summary>
@@ -6254,6 +6473,13 @@
             Convert to a single precision 4 dimension matrix.
             </summary>
         </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Quaternion3d.FromMatrix(CGALDotNetGeometry.Numerics.Matrix4x4d)">
+            <summary>
+            Extract the rotation from a matrix.
+            </summary>
+            <param name="m"></param>
+            <returns>The rotation as a quaternion from the matrix.</returns>
+        </member>
         <member name="M:CGALDotNetGeometry.Numerics.Quaternion3d.Normalize">
             <summary>
             The normalize the quaternion.
@@ -6264,40 +6490,58 @@
             The dot product of two quaternion..
             </summary>
         </member>
-        <member name="M:CGALDotNetGeometry.Numerics.Quaternion3d.Slerp(CGALDotNetGeometry.Numerics.Quaternion3d,CGALDotNetGeometry.Numerics.Quaternion3d,System.Double)">
-            <summary>
-            Slerp the quaternion from the from rotation to the to rotation by t.
-            </summary>
-        </member>
         <member name="M:CGALDotNetGeometry.Numerics.Quaternion3d.FromEuler(CGALDotNetGeometry.Numerics.Vector3d)">
             <summary>
             Create a rotation out of a vector.
             Uses Unity euler axis (+x right, +y up, +z forward)
             </summary>
         </member>
-        <member name="M:CGALDotNetGeometry.Numerics.Quaternion3d.RotateX(System.Double)">
+        <member name="M:CGALDotNetGeometry.Numerics.Quaternion3d.RotateX(CGALDotNetGeometry.Numerics.Radian)">
             <summary>
             Returns a 4x4 matrix that rotates around the x-axis by a given number of degrees.
             </summary>
-            <param name="angle">
+            <param name="radian">
             The clockwise rotation angle when looking along the x-axis towards the origin in degrees.
             </param>
         </member>
-        <member name="M:CGALDotNetGeometry.Numerics.Quaternion3d.RotateY(System.Double)">
+        <member name="M:CGALDotNetGeometry.Numerics.Quaternion3d.RotateY(CGALDotNetGeometry.Numerics.Radian)">
             <summary>
             Returns a 4x4 matrix that rotates around the y-axis by a given number of degrees.
             </summary>
-            <param name="angle">
+            <param name="radian">
             The clockwise rotation angle when looking along the y-axis towards the origin in degrees.
             </param>
         </member>
-        <member name="M:CGALDotNetGeometry.Numerics.Quaternion3d.RotateZ(System.Double)">
+        <member name="M:CGALDotNetGeometry.Numerics.Quaternion3d.RotateZ(CGALDotNetGeometry.Numerics.Radian)">
             <summary>
             Returns a 4x4 matrix that rotates around the z-axis by a given number of degrees.
             </summary>
-            <param name="angle">
+            <param name="radian">
             The clockwise rotation angle when looking along the z-axis towards the origin in degrees.
             </param>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Quaternion3d.Rotate(CGALDotNetGeometry.Numerics.Vector3d,CGALDotNetGeometry.Numerics.Radian)">
+            <summary>
+            A Quaternion from a vector axis and angle.
+            The axis is the up direction and the angle is the rotation.
+            </summary>
+            <param name="axis">The up axis.</param>
+            <param name="radian">The amount to rotate in radians.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Quaternion3d.Slerp(CGALDotNetGeometry.Numerics.Vector3d,CGALDotNetGeometry.Numerics.Vector3d)">
+            <summary>
+            A quaternion with the rotation required to
+            rotation from the from direction to the to direction.
+            </summary>
+            <param name="from">The vector to start from.</param>
+            <param name="to">The vector to slerp to.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Quaternion3d.Slerp(CGALDotNetGeometry.Numerics.Quaternion3d,CGALDotNetGeometry.Numerics.Quaternion3d,System.Double)">
+            <summary>
+            Slerp the quaternion from the from rotation to the to rotation by t.
+            </summary>
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Quaternion3f.#ctor(System.Single,System.Single,System.Single,System.Single)">
             <summary>
@@ -6309,17 +6553,12 @@
             A Quaternion from varibles.
             </summary>
         </member>
-        <member name="M:CGALDotNetGeometry.Numerics.Quaternion3f.#ctor(CGALDotNetGeometry.Numerics.Vector3f,System.Single)">
+        <member name="P:CGALDotNetGeometry.Numerics.Quaternion3f.Item(System.Int32)">
             <summary>
-            A Quaternion from a vector axis and angle.
-            The axis is the up direction and the angle is the rotation.
+            Array accessor for variables. 
             </summary>
-        </member>
-        <member name="M:CGALDotNetGeometry.Numerics.Quaternion3f.#ctor(CGALDotNetGeometry.Numerics.Vector3f,CGALDotNetGeometry.Numerics.Vector3f)">
-            <summary>
-            A quaternion with the rotation required to
-            rotation from the from direction to the to direction.
-            </summary>
+            <param name="i">The variables index.</param>
+            <returns>The variable value</returns>
         </member>
         <member name="P:CGALDotNetGeometry.Numerics.Quaternion3f.Conjugate">
             <summary>
@@ -6441,6 +6680,13 @@
             Convert to a single precision 4 dimension matrix.
             </summary>
         </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Quaternion3f.FromMatrix(CGALDotNetGeometry.Numerics.Matrix4x4f)">
+            <summary>
+            Extract the rotation from a matrix.
+            </summary>
+            <param name="m"></param>
+            <returns>The rotation as a quaternion from the matrix.</returns>
+        </member>
         <member name="M:CGALDotNetGeometry.Numerics.Quaternion3f.Normalize">
             <summary>
             The normalize the quaternion.
@@ -6451,40 +6697,58 @@
             The dot product of two quaternion..
             </summary>
         </member>
-        <member name="M:CGALDotNetGeometry.Numerics.Quaternion3f.Slerp(CGALDotNetGeometry.Numerics.Quaternion3f,CGALDotNetGeometry.Numerics.Quaternion3f,System.Single)">
-            <summary>
-            Slerp the quaternion from the from rotation to the to rotation by t.
-            </summary>
-        </member>
         <member name="M:CGALDotNetGeometry.Numerics.Quaternion3f.FromEuler(CGALDotNetGeometry.Numerics.Vector3f)">
             <summary>
             Create a rotation out of a vector.
             Uses Unity euler axis (+x right, +y up, +z forward)
             </summary>
         </member>
-        <member name="M:CGALDotNetGeometry.Numerics.Quaternion3f.RotateX(System.Single)">
+        <member name="M:CGALDotNetGeometry.Numerics.Quaternion3f.RotateX(CGALDotNetGeometry.Numerics.Radian)">
             <summary>
             Returns a 4x4 matrix that rotates around the x-axis by a given number of degrees.
             </summary>
-            <param name="angle">
+            <param name="radian">
             The clockwise rotation angle when looking along the x-axis towards the origin in degrees.
             </param>
         </member>
-        <member name="M:CGALDotNetGeometry.Numerics.Quaternion3f.RotateY(System.Single)">
+        <member name="M:CGALDotNetGeometry.Numerics.Quaternion3f.RotateY(CGALDotNetGeometry.Numerics.Radian)">
             <summary>
             Returns a 4x4 matrix that rotates around the y-axis by a given number of degrees.
             </summary>
-            <param name="angle">
+            <param name="radian">
             The clockwise rotation angle when looking along the y-axis towards the origin in degrees.
             </param>
         </member>
-        <member name="M:CGALDotNetGeometry.Numerics.Quaternion3f.RotateZ(System.Single)">
+        <member name="M:CGALDotNetGeometry.Numerics.Quaternion3f.RotateZ(CGALDotNetGeometry.Numerics.Radian)">
             <summary>
             Returns a 4x4 matrix that rotates around the z-axis by a given number of degrees.
             </summary>
-            <param name="angle">
+            <param name="radian">
             The clockwise rotation angle when looking along the z-axis towards the origin in degrees.
             </param>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Quaternion3f.Rotate(CGALDotNetGeometry.Numerics.Vector3f,CGALDotNetGeometry.Numerics.Radian)">
+            <summary>
+            A Quaternion from a vector axis and angle.
+            The axis is the up direction and the angle is the rotation.
+            </summary>
+            <param name="axis">The up axis.</param>
+            <param name="radian">The amount to rotate in radians.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Quaternion3f.Slerp(CGALDotNetGeometry.Numerics.Vector3f,CGALDotNetGeometry.Numerics.Vector3f)">
+            <summary>
+            A quaternion with the rotation required to
+            rotation from the from direction to the to direction.
+            </summary>
+            <param name="from">The vector to start from.</param>
+            <param name="to">The vector to slerp to.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Quaternion3f.Slerp(CGALDotNetGeometry.Numerics.Quaternion3f,CGALDotNetGeometry.Numerics.Quaternion3f,System.Single)">
+            <summary>
+            Slerp the quaternion from the from rotation to the to rotation by t.
+            </summary>
         </member>
         <member name="T:CGALDotNetGeometry.Numerics.Radian">
             <summary>
@@ -6765,11 +7029,6 @@
             Make a vector with no nan conponents.
             </summary>
         </member>
-        <member name="P:CGALDotNetGeometry.Numerics.Vector2d.Point2d">
-            <summary>
-            Convert the vector to a point.
-            </summary>
-        </member>
         <member name="P:CGALDotNetGeometry.Numerics.Vector2d.Sum">
             <summary>
             The sum of the vectors components.
@@ -6881,6 +7140,18 @@
             </summary>
             <param name="v"></param>
         </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Vector2d.op_Implicit(CGALDotNetGeometry.Numerics.Point2f)~CGALDotNetGeometry.Numerics.Vector2d">
+            <summary>
+            Cast from Point2f to Vector2f.
+            </summary>
+            <param name="v"></param>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Vector2d.op_Implicit(CGALDotNetGeometry.Numerics.Point2d)~CGALDotNetGeometry.Numerics.Vector2d">
+            <summary>
+            Cast from Point2d to Vector2f.
+            </summary>
+            <param name="v"></param>
+        </member>
         <member name="M:CGALDotNetGeometry.Numerics.Vector2d.op_Equality(CGALDotNetGeometry.Numerics.Vector2d,CGALDotNetGeometry.Numerics.Vector2d)">
             <summary>
             Are these vectors equal.
@@ -6934,6 +7205,11 @@
         <member name="M:CGALDotNetGeometry.Numerics.Vector2d.Dot(CGALDotNetGeometry.Numerics.Vector2d,CGALDotNetGeometry.Numerics.Point2d)">
             <summary>
             The dot product of vector and point.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Vector2d.Dot(CGALDotNetGeometry.Numerics.Point2d,CGALDotNetGeometry.Numerics.Point2d)">
+            <summary>
+            The dot product of two pointss.
             </summary>
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Vector2d.AbsDot(CGALDotNetGeometry.Numerics.Vector2d,CGALDotNetGeometry.Numerics.Vector2d)">
@@ -7013,6 +7289,11 @@
         <member name="M:CGALDotNetGeometry.Numerics.Vector2d.Lerp(CGALDotNetGeometry.Numerics.Vector2d,CGALDotNetGeometry.Numerics.Vector2d,System.Double)">
             <summary>
             Lerp between two vectors.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Vector2d.BLerp(CGALDotNetGeometry.Numerics.Vector2d,CGALDotNetGeometry.Numerics.Vector2d,CGALDotNetGeometry.Numerics.Vector2d,CGALDotNetGeometry.Numerics.Vector2d,System.Double,System.Double)">
+            <summary>
+            BLerp between four vectors.
             </summary>
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Vector2d.Slerp(CGALDotNetGeometry.Numerics.Vector2d,CGALDotNetGeometry.Numerics.Vector2d,System.Double)">
@@ -7104,7 +7385,7 @@
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Vector2f.#ctor(System.Single,System.Single)">
             <summary>
-            A vector from the variables.
+            A vector from the varibles.
             </summary>
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Vector2f.#ctor(System.Double,System.Double)">
@@ -7130,11 +7411,6 @@
         <member name="P:CGALDotNetGeometry.Numerics.Vector2f.NoNAN">
             <summary>
             Make a vector with no nan conponents.
-            </summary>
-        </member>
-        <member name="P:CGALDotNetGeometry.Numerics.Vector2f.Point2f">
-            <summary>
-            Convert the vector to a point.
             </summary>
         </member>
         <member name="P:CGALDotNetGeometry.Numerics.Vector2f.Sum">
@@ -7244,7 +7520,19 @@
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Vector2f.op_Explicit(CGALDotNetGeometry.Numerics.Vector2d)~CGALDotNetGeometry.Numerics.Vector2f">
             <summary>
-            Cast from Vector2d to Vector2f.
+            Cast from Vector2f to Vector2f.
+            </summary>
+            <param name="v"></param>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Vector2f.op_Explicit(CGALDotNetGeometry.Numerics.Point2d)~CGALDotNetGeometry.Numerics.Vector2f">
+            <summary>
+            Cast from Point2f to Vector2f.
+            </summary>
+            <param name="v"></param>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Vector2f.op_Implicit(CGALDotNetGeometry.Numerics.Point2f)~CGALDotNetGeometry.Numerics.Vector2f">
+            <summary>
+            Cast from Point2f to Vector2f.
             </summary>
             <param name="v"></param>
         </member>
@@ -7301,6 +7589,11 @@
         <member name="M:CGALDotNetGeometry.Numerics.Vector2f.Dot(CGALDotNetGeometry.Numerics.Vector2f,CGALDotNetGeometry.Numerics.Point2f)">
             <summary>
             The dot product of vector and point.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Vector2f.Dot(CGALDotNetGeometry.Numerics.Point2f,CGALDotNetGeometry.Numerics.Point2f)">
+            <summary>
+            The dot product of two pointss.
             </summary>
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Vector2f.AbsDot(CGALDotNetGeometry.Numerics.Vector2f,CGALDotNetGeometry.Numerics.Vector2f)">
@@ -7380,6 +7673,11 @@
         <member name="M:CGALDotNetGeometry.Numerics.Vector2f.Lerp(CGALDotNetGeometry.Numerics.Vector2f,CGALDotNetGeometry.Numerics.Vector2f,System.Single)">
             <summary>
             Lerp between two vectors.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Vector2f.BLerp(CGALDotNetGeometry.Numerics.Vector2f,CGALDotNetGeometry.Numerics.Vector2f,CGALDotNetGeometry.Numerics.Vector2f,CGALDotNetGeometry.Numerics.Vector2f,System.Single,System.Single)">
+            <summary>
+            BLerp between four vectors.
             </summary>
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Vector2f.Slerp(CGALDotNetGeometry.Numerics.Vector2f,CGALDotNetGeometry.Numerics.Vector2f,System.Single)">
@@ -7514,11 +7812,6 @@
             Make a vector with no nan conponents.
             </summary>
         </member>
-        <member name="P:CGALDotNetGeometry.Numerics.Vector3d.Point3d">
-            <summary>
-            Convert the vector to a point.
-            </summary>
-        </member>
         <member name="P:CGALDotNetGeometry.Numerics.Vector3d.Sum">
             <summary>
             The sum of the vectors components.
@@ -7625,6 +7918,18 @@
             </summary>
             <param name="v"></param>
         </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Vector3d.op_Implicit(CGALDotNetGeometry.Numerics.Point3f)~CGALDotNetGeometry.Numerics.Vector3d">
+            <summary>
+            Cast from Point3f to Vector3d.
+            </summary>
+            <param name="v"></param>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Vector3d.op_Implicit(CGALDotNetGeometry.Numerics.Point3d)~CGALDotNetGeometry.Numerics.Vector3d">
+            <summary>
+            Cast from Point3d to Vector3d.
+            </summary>
+            <param name="v"></param>
+        </member>
         <member name="M:CGALDotNetGeometry.Numerics.Vector3d.op_Equality(CGALDotNetGeometry.Numerics.Vector3d,CGALDotNetGeometry.Numerics.Vector3d)">
             <summary>
             Are these vectors equal.
@@ -7680,6 +7985,11 @@
             The dot product of vector and point.
             </summary>
         </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Vector3d.Dot(CGALDotNetGeometry.Numerics.Point3d,CGALDotNetGeometry.Numerics.Point3d)">
+            <summary>
+            The dot product of two points.
+            </summary>
+        </member>
         <member name="M:CGALDotNetGeometry.Numerics.Vector3d.AbsDot(CGALDotNetGeometry.Numerics.Vector3d,CGALDotNetGeometry.Numerics.Vector3d)">
             <summary>
             The abs dot product of two vectors.
@@ -7726,11 +8036,16 @@
             Given an incident vector i and a normal vector n.
             </summary>
         </member>
-        <member name="M:CGALDotNetGeometry.Numerics.Vector3d.Refract(CGALDotNetGeometry.Numerics.Vector3d,CGALDotNetGeometry.Numerics.Vector3d,System.Single)">
+        <member name="M:CGALDotNetGeometry.Numerics.Vector3d.Refract(CGALDotNetGeometry.Numerics.Vector3d,CGALDotNetGeometry.Numerics.Vector3d,System.Double,CGALDotNetGeometry.Numerics.Vector3d@)">
             <summary>
             Returns the refraction vector given the incident vector i, 
             the normal vector n and the refraction index eta.
             </summary>
+            <param name="i">The incident vector</param>
+            <param name="n">The normal vector</param>
+            <param name="eta">The refraction index</param>
+            <param name="r">The reflected ray.</param>
+            <returns>True if there is a solution.</returns>
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Vector3d.Orthonormal(CGALDotNetGeometry.Numerics.Vector3d@,CGALDotNetGeometry.Numerics.Vector3d@,CGALDotNetGeometry.Numerics.Vector3d@)">
             <summary>
@@ -7770,6 +8085,11 @@
         <member name="M:CGALDotNetGeometry.Numerics.Vector3d.Lerp(CGALDotNetGeometry.Numerics.Vector3d,CGALDotNetGeometry.Numerics.Vector3d,System.Double)">
             <summary>
             Lerp between two vectors.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Vector3d.BLerp(CGALDotNetGeometry.Numerics.Vector3d,CGALDotNetGeometry.Numerics.Vector3d,CGALDotNetGeometry.Numerics.Vector3d,CGALDotNetGeometry.Numerics.Vector3d,System.Double,System.Double)">
+            <summary>
+            BLerp between four vectors.
             </summary>
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Vector3d.Slerp(CGALDotNetGeometry.Numerics.Vector3d,CGALDotNetGeometry.Numerics.Vector3d,System.Double)">
@@ -7886,7 +8206,7 @@
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Vector3f.#ctor(CGALDotNetGeometry.Numerics.Vector2f,System.Single)">
             <summary>
-            A vector from a 2d vector and the z varible.
+            A vector from a 2f vector and the z varible.
             </summary>
         </member>
         <member name="P:CGALDotNetGeometry.Numerics.Vector3f.IsFinite">
@@ -7907,11 +8227,6 @@
         <member name="P:CGALDotNetGeometry.Numerics.Vector3f.NoNAN">
             <summary>
             Make a vector with no nan conponents.
-            </summary>
-        </member>
-        <member name="P:CGALDotNetGeometry.Numerics.Vector3f.Point3f">
-            <summary>
-            Convert the vector to a point.
             </summary>
         </member>
         <member name="P:CGALDotNetGeometry.Numerics.Vector3f.Sum">
@@ -8016,7 +8331,19 @@
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Vector3f.op_Explicit(CGALDotNetGeometry.Numerics.Vector3d)~CGALDotNetGeometry.Numerics.Vector3f">
             <summary>
-            Cast from Vector3d to Vector3f.
+            Cast from Vector3f to Vector3f.
+            </summary>
+            <param name="v"></param>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Vector3f.op_Implicit(CGALDotNetGeometry.Numerics.Point3f)~CGALDotNetGeometry.Numerics.Vector3f">
+            <summary>
+            Cast from Point3f to Vector3f.
+            </summary>
+            <param name="v"></param>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Vector3f.op_Explicit(CGALDotNetGeometry.Numerics.Point3d)~CGALDotNetGeometry.Numerics.Vector3f">
+            <summary>
+            Cast from Point3f to Vector3f.
             </summary>
             <param name="v"></param>
         </member>
@@ -8075,6 +8402,11 @@
             The dot product of vector and point.
             </summary>
         </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Vector3f.Dot(CGALDotNetGeometry.Numerics.Point3f,CGALDotNetGeometry.Numerics.Point3f)">
+            <summary>
+            The dot product of two points.
+            </summary>
+        </member>
         <member name="M:CGALDotNetGeometry.Numerics.Vector3f.AbsDot(CGALDotNetGeometry.Numerics.Vector3f,CGALDotNetGeometry.Numerics.Vector3f)">
             <summary>
             The abs dot product of two vectors.
@@ -8121,11 +8453,16 @@
             Given an incident vector i and a normal vector n.
             </summary>
         </member>
-        <member name="M:CGALDotNetGeometry.Numerics.Vector3f.Refract(CGALDotNetGeometry.Numerics.Vector3f,CGALDotNetGeometry.Numerics.Vector3f,System.Single)">
+        <member name="M:CGALDotNetGeometry.Numerics.Vector3f.Refract(CGALDotNetGeometry.Numerics.Vector3f,CGALDotNetGeometry.Numerics.Vector3f,System.Single,CGALDotNetGeometry.Numerics.Vector3f@)">
             <summary>
             Returns the refraction vector given the incident vector i, 
             the normal vector n and the refraction index eta.
             </summary>
+            <param name="i">The incident vector</param>
+            <param name="n">The normal vector</param>
+            <param name="eta">The refraction index</param>
+            <param name="r">The reflected ray.</param>
+            <returns>True if there is a solution.</returns>
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Vector3f.Orthonormal(CGALDotNetGeometry.Numerics.Vector3f@,CGALDotNetGeometry.Numerics.Vector3f@,CGALDotNetGeometry.Numerics.Vector3f@)">
             <summary>
@@ -8165,6 +8502,11 @@
         <member name="M:CGALDotNetGeometry.Numerics.Vector3f.Lerp(CGALDotNetGeometry.Numerics.Vector3f,CGALDotNetGeometry.Numerics.Vector3f,System.Single)">
             <summary>
             Lerp between two vectors.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Vector3f.BLerp(CGALDotNetGeometry.Numerics.Vector3f,CGALDotNetGeometry.Numerics.Vector3f,CGALDotNetGeometry.Numerics.Vector3f,CGALDotNetGeometry.Numerics.Vector3f,System.Single,System.Single)">
+            <summary>
+            BLerp between four vectors.
             </summary>
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Vector3f.Slerp(CGALDotNetGeometry.Numerics.Vector3f,CGALDotNetGeometry.Numerics.Vector3f,System.Single)">
@@ -8299,11 +8641,6 @@
             Make a vector with no nan conponents.
             </summary>
         </member>
-        <member name="P:CGALDotNetGeometry.Numerics.Vector4d.Point4d">
-            <summary>
-            Convert the vector to a point.
-            </summary>
-        </member>
         <member name="P:CGALDotNetGeometry.Numerics.Vector4d.Sum">
             <summary>
             The sum of the vectors components.
@@ -8405,6 +8742,18 @@
             </summary>
             <param name="v"></param>
         </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Vector4d.op_Implicit(CGALDotNetGeometry.Numerics.Point4f)~CGALDotNetGeometry.Numerics.Vector4d">
+            <summary>
+            Cast from Point4f to Vector4d.
+            </summary>
+            <param name="v"></param>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Vector4d.op_Implicit(CGALDotNetGeometry.Numerics.Point4d)~CGALDotNetGeometry.Numerics.Vector4d">
+            <summary>
+            Cast from Point4d to Vector4d.
+            </summary>
+            <param name="v"></param>
+        </member>
         <member name="M:CGALDotNetGeometry.Numerics.Vector4d.op_Equality(CGALDotNetGeometry.Numerics.Vector4d,CGALDotNetGeometry.Numerics.Vector4d)">
             <summary>
             Are these vectors equal.
@@ -8455,6 +8804,11 @@
             The dot product of two vectors.
             </summary>
         </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Vector4d.Dot(CGALDotNetGeometry.Numerics.Point4d,CGALDotNetGeometry.Numerics.Point4d)">
+            <summary>
+            The dot product of two points.
+            </summary>
+        </member>
         <member name="M:CGALDotNetGeometry.Numerics.Vector4d.Dot(CGALDotNetGeometry.Numerics.Vector4d,CGALDotNetGeometry.Numerics.Point4d)">
             <summary>
             The dot product of vector and point.
@@ -8503,6 +8857,11 @@
         <member name="M:CGALDotNetGeometry.Numerics.Vector4d.Lerp(CGALDotNetGeometry.Numerics.Vector4d,CGALDotNetGeometry.Numerics.Vector4d,System.Double)">
             <summary>
             Lerp between two vectors.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Vector4d.BLerp(CGALDotNetGeometry.Numerics.Vector4d,CGALDotNetGeometry.Numerics.Vector4d,CGALDotNetGeometry.Numerics.Vector4d,CGALDotNetGeometry.Numerics.Vector4d,System.Double,System.Double)">
+            <summary>
+            BLerp between four vectors.
             </summary>
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Vector4d.Rounded(System.Int32)">
@@ -8637,11 +8996,6 @@
             Make a vector with no nan conponents.
             </summary>
         </member>
-        <member name="P:CGALDotNetGeometry.Numerics.Vector4f.Point4f">
-            <summary>
-            Convert the vector to a point.
-            </summary>
-        </member>
         <member name="P:CGALDotNetGeometry.Numerics.Vector4f.Sum">
             <summary>
             The sum of the vectors components.
@@ -8743,6 +9097,18 @@
             </summary>
             <param name="v"></param>
         </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Vector4f.op_Explicit(CGALDotNetGeometry.Numerics.Point4d)~CGALDotNetGeometry.Numerics.Vector4f">
+            <summary>
+            Cast from Point4d to Vector4f.
+            </summary>
+            <param name="v"></param>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Vector4f.op_Implicit(CGALDotNetGeometry.Numerics.Point4f)~CGALDotNetGeometry.Numerics.Vector4f">
+            <summary>
+            Cast from Point4f to Vector4f.
+            </summary>
+            <param name="v"></param>
+        </member>
         <member name="M:CGALDotNetGeometry.Numerics.Vector4f.op_Equality(CGALDotNetGeometry.Numerics.Vector4f,CGALDotNetGeometry.Numerics.Vector4f)">
             <summary>
             Are these vectors equal.
@@ -8798,6 +9164,11 @@
             The dot product of vector and point.
             </summary>
         </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Vector4f.Dot(CGALDotNetGeometry.Numerics.Point4f,CGALDotNetGeometry.Numerics.Point4f)">
+            <summary>
+            The dot product of two points.
+            </summary>
+        </member>
         <member name="M:CGALDotNetGeometry.Numerics.Vector4f.AbsDot(CGALDotNetGeometry.Numerics.Vector4f,CGALDotNetGeometry.Numerics.Vector4f)">
             <summary>
             The abs dot product of two vectors.
@@ -8841,6 +9212,11 @@
         <member name="M:CGALDotNetGeometry.Numerics.Vector4f.Lerp(CGALDotNetGeometry.Numerics.Vector4f,CGALDotNetGeometry.Numerics.Vector4f,System.Single)">
             <summary>
             Lerp between two vectors.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Numerics.Vector4f.BLerp(CGALDotNetGeometry.Numerics.Vector4f,CGALDotNetGeometry.Numerics.Vector4f,CGALDotNetGeometry.Numerics.Vector4f,CGALDotNetGeometry.Numerics.Vector4f,System.Single,System.Single)">
+            <summary>
+            BLerp between four vectors.
             </summary>
         </member>
         <member name="M:CGALDotNetGeometry.Numerics.Vector4f.Rounded(System.Int32)">
@@ -10336,6 +10712,12 @@
             <param name="min">The boxes min point.</param>
             <param name="max">The boxes max point.</param>
         </member>
+        <member name="P:CGALDotNetGeometry.Shapes.Box2d.Bounds">
+            <summary>
+            The boxes bounding box is just itself.
+            Needed for the IShape interface.
+            </summary>
+        </member>
         <member name="P:CGALDotNetGeometry.Shapes.Box2d.IsFinite">
             <summary>
             Does the shape contain no non finite points.
@@ -10544,6 +10926,12 @@
             </summary>
             <param name="min">The boxes min point.</param>
             <param name="max">The boxes max point.</param>
+        </member>
+        <member name="P:CGALDotNetGeometry.Shapes.Box2f.Bounds">
+            <summary>
+            The boxes bounding box is just itself.
+            Needed for the IShape interface.
+            </summary>
         </member>
         <member name="P:CGALDotNetGeometry.Shapes.Box2f.IsFinite">
             <summary>
@@ -10799,16 +11187,19 @@
             The area of the box.
             </summary>
         </member>
-        <member name="M:CGALDotNetGeometry.Shapes.Box2i.EnumeratePerimeter">
+        <member name="M:CGALDotNetGeometry.Shapes.Box2i.EnumeratePerimeter(System.Int32)">
             <summary>
-            Enumerate each point on the boxes perimeter.
+            Enumerate each point on the boxes perimeter in ccw order.
             </summary>
             <returns></returns>
+            <param name="width">The width of the perimeter.</param>
+            <returns></returns>
         </member>
-        <member name="M:CGALDotNetGeometry.Shapes.Box2i.EnumerateBounds">
+        <member name="M:CGALDotNetGeometry.Shapes.Box2i.EnumerateBounds(System.Boolean)">
             <summary>
             Enumerate each point in the box.
             </summary>
+            <param name="inclusive">Should the max values be included.</param>
             <returns></returns>
         </member>
         <member name="M:CGALDotNetGeometry.Shapes.Box2i.Equals(System.Object)">
@@ -10949,6 +11340,12 @@
             </summary>
             <param name="min">The boxes min point.</param>
             <param name="max">The boxes max point.</param>
+        </member>
+        <member name="P:CGALDotNetGeometry.Shapes.Box3d.Bounds">
+            <summary>
+            The boxes bounding box is just itself.
+            Needed for the IShape interface.
+            </summary>
         </member>
         <member name="P:CGALDotNetGeometry.Shapes.Box3d.IsFinite">
             <summary>
@@ -11145,6 +11542,12 @@
             </summary>
             <param name="min">The boxes min point.</param>
             <param name="max">The boxes max point.</param>
+        </member>
+        <member name="P:CGALDotNetGeometry.Shapes.Box3f.Bounds">
+            <summary>
+            The boxes bounding box is just itself.
+            Needed for the IShape interface.
+            </summary>
         </member>
         <member name="P:CGALDotNetGeometry.Shapes.Box3f.IsFinite">
             <summary>
@@ -12474,6 +12877,11 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:CGALDotNetGeometry.Shapes.Ray2d.Normalize">
+            <summary>
+            Normalize the lines direction.
+            </summary>
+        </member>
         <member name="M:CGALDotNetGeometry.Shapes.Ray2d.Round(System.Int32)">
             <summary>
             Round the rays components.
@@ -12586,6 +12994,11 @@
             
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:CGALDotNetGeometry.Shapes.Ray2f.Normalize">
+            <summary>
+            Normalize the lines direction.
+            </summary>
         </member>
         <member name="M:CGALDotNetGeometry.Shapes.Ray2f.GetPosition(System.Single)">
             <summary>
@@ -12739,6 +13152,22 @@
             </summary>
             <param name="digits">number of digits to round to.</param>
         </member>
+        <member name="M:CGALDotNetGeometry.Shapes.Ray3d.Intersects(CGALDotNetGeometry.Shapes.Box3d)">
+            <summary>
+            Does the ray intersect the box.
+            </summary>
+            <param name="bounds">The box.</param>
+            <returns>Does the ray intersect the box.</returns>
+        </member>
+        <member name="M:CGALDotNetGeometry.Shapes.Ray3d.Intersects(CGALDotNetGeometry.Shapes.Box3d,System.Double@,System.Double@)">
+            <summary>
+            Does the ray intersect the box.
+            </summary>
+            <param name="bounds">The box.</param>
+            <param name="s">Intersection point = Position + s * Direction where ray enters box.</param>
+            <param name="t">Intersection point = Position + t * Direction where ray exits box.</param>
+            <returns>Does the ray intersect the box.</returns>
+        </member>
         <member name="T:CGALDotNetGeometry.Shapes.Ray3f">
             <summary>
             A 3D ray struct represented by a position and a direction.
@@ -12841,6 +13270,22 @@
             Round the rays position and direction.
             </summary>
             <param name="digits">number of digits to round to.</param>
+        </member>
+        <member name="M:CGALDotNetGeometry.Shapes.Ray3f.Intersects(CGALDotNetGeometry.Shapes.Box3f)">
+            <summary>
+            Does the ray intersect the box.
+            </summary>
+            <param name="bounds">The box.</param>
+            <returns>Does the ray intersect the box.</returns>
+        </member>
+        <member name="M:CGALDotNetGeometry.Shapes.Ray3f.Intersects(CGALDotNetGeometry.Shapes.Box3f,System.Single@,System.Single@)">
+            <summary>
+            Does the ray intersect the box.
+            </summary>
+            <param name="bounds">The box.</param>
+            <param name="s">Intersection point = Position + s * Direction where ray enters box.</param>
+            <param name="t">Intersection point = Position + t * Direction where ray exits box.</param>
+            <returns>Does the ray intersect the box.</returns>
         </member>
         <member name="T:CGALDotNetGeometry.Shapes.Segment2d">
             <summary>
@@ -12979,15 +13424,31 @@
             <summary>
             Does the point line on the segemnts.
             </summary>
-            <param name="p"></param>
-            <param name="eps"></param>
-            <returns></returns>
+            <param name="p">The point</param>
+            <param name="eps">A small value to give the segment some width.</param>
+            <returns>Does the point line on the segemnts.</returns>
+        </member>
+        <member name="M:CGALDotNetGeometry.Shapes.Segment2d.Contains(CGALDotNetGeometry.Numerics.Point2d,System.Boolean)">
+            <summary>
+            Does the point line on the segemnts.
+            </summary>
+            <param name="p">The point</param>
+            <param name="includeBorder">NA here. Needed for IShape interface.</param>
+            <returns>Does the point line on the segemnts.</returns>
         </member>
         <member name="M:CGALDotNetGeometry.Shapes.Segment2d.SignedDistance(CGALDotNetGeometry.Numerics.Point2d)">
             <summary>
             Return the signed distance to the point. 
             Always positive.
             </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Shapes.Segment2d.Intersects(CGALDotNetGeometry.Shapes.Box2d,System.Boolean)">
+            <summary>
+            Does the shape intersect the box.
+            </summary>
+            <param name="box">The box.</param>
+            <param name="includeBorder">NA here. Needed for IShape interface.</param>
+            <returns>Does the shape intersect the box.</returns>
         </member>
         <member name="M:CGALDotNetGeometry.Shapes.Segment2d.Intersects(CGALDotNetGeometry.Shapes.Segment2d)">
             <summary>
@@ -13181,15 +13642,31 @@
             <summary>
             Does the point line on the segemnts.
             </summary>
-            <param name="p"></param>
-            <param name="eps"></param>
-            <returns></returns>
+            <param name="p">The point</param>
+            <param name="eps">A small value to give the segment some width.</param>
+            <returns>Does the point line on the segemnts.</returns>
+        </member>
+        <member name="M:CGALDotNetGeometry.Shapes.Segment2f.Contains(CGALDotNetGeometry.Numerics.Point2f,System.Boolean)">
+            <summary>
+            Does the point line on the segemnts.
+            </summary>
+            <param name="p">The point</param>
+            <param name="includeBorder">NA here. Needed for IShape interface.</param>
+            <returns>Does the point line on the segemnts.</returns>
         </member>
         <member name="M:CGALDotNetGeometry.Shapes.Segment2f.SignedDistance(CGALDotNetGeometry.Numerics.Point2f)">
             <summary>
             Return the signed distance to the point. 
             Always positive.
             </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Shapes.Segment2f.Intersects(CGALDotNetGeometry.Shapes.Box2f,System.Boolean)">
+            <summary>
+            Does the shape intersect the box.
+            </summary>
+            <param name="box">The box.</param>
+            <param name="includeBorder"></param>
+            <returns>Does the shape intersect the box.</returns>
         </member>
         <member name="M:CGALDotNetGeometry.Shapes.Segment2f.Intersects(CGALDotNetGeometry.Shapes.Segment2f)">
             <summary>
@@ -13348,9 +13825,25 @@
             <summary>
             Does the point line on the segemnts.
             </summary>
-            <param name="point"></param>
-            <param name="eps"></param>
-            <returns></returns>
+            <param name="p">The point</param>
+            <param name="eps">A small value to give the segment some width.</param>
+            <returns>Does the point line on the segemnts.</returns>
+        </member>
+        <member name="M:CGALDotNetGeometry.Shapes.Segment3d.Contains(CGALDotNetGeometry.Numerics.Point3d,System.Boolean)">
+            <summary>
+            Does the point line on the segemnts.
+            </summary>
+            <param name="p">The point</param>
+            <param name="includeBorder">NA here. Needed for IShape interface.</param>
+            <returns>Does the point line on the segemnts.</returns>
+        </member>
+        <member name="M:CGALDotNetGeometry.Shapes.Segment3d.Intersects(CGALDotNetGeometry.Shapes.Box3d,System.Boolean)">
+            <summary>
+            Does the shape intersect the box.
+            </summary>
+            <param name="box">The box.</param>
+            <param name="includeBorder"></param>
+            <returns>Does the shape intersect the box.</returns>
         </member>
         <member name="M:CGALDotNetGeometry.Shapes.Segment3d.SignedDistance(CGALDotNetGeometry.Numerics.Point3d)">
             <summary>
@@ -13487,9 +13980,25 @@
             <summary>
             Does the point line on the segemnts.
             </summary>
-            <param name="point"></param>
-            <param name="eps"></param>
-            <returns></returns>
+            <param name="p">The point</param>
+            <param name="eps">A small value to give the segment some width.</param>
+            <returns>Does the point line on the segemnts.</returns>
+        </member>
+        <member name="M:CGALDotNetGeometry.Shapes.Segment3f.Contains(CGALDotNetGeometry.Numerics.Point3f,System.Boolean)">
+            <summary>
+            Does the point line on the segemnts.
+            </summary>
+            <param name="p">The point</param>
+            <param name="includeBorder">NA here. Needed for IShape interface.</param>
+            <returns>Does the point line on the segemnts.</returns>
+        </member>
+        <member name="M:CGALDotNetGeometry.Shapes.Segment3f.Intersects(CGALDotNetGeometry.Shapes.Box3f,System.Boolean)">
+            <summary>
+            Does the shape intersect the box.
+            </summary>
+            <param name="box">The box.</param>
+            <param name="includeBorder"></param>
+            <returns>Does the shape intersect the box.</returns>
         </member>
         <member name="M:CGALDotNetGeometry.Shapes.Segment3f.SignedDistance(CGALDotNetGeometry.Numerics.Point3f)">
             <summary>
@@ -13582,6 +14091,158 @@
             The segment as a string.
             </summary>
             <returns>The segment as a string.</returns>
+        </member>
+        <member name="P:CGALDotNetGeometry.Shapes.IShape2d.Bounds">
+            <summary>
+            The bounding box that contains the shape.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Shapes.IShape2d.Contains(CGALDotNetGeometry.Numerics.Point2d,System.Boolean)">
+            <summary>
+            Does the shape contain the point.
+            Points on the shapes surface count as 
+            being contained in the shape.
+            </summary>
+            <param name="p"></param>
+            <param name="includeBorder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CGALDotNetGeometry.Shapes.IShape2d.Intersects(CGALDotNetGeometry.Shapes.Box2d,System.Boolean)">
+            <summary>
+            Does the shape intersect the box.
+            </summary>
+            <param name="box"></param>
+            <param name="includeBorder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CGALDotNetGeometry.Shapes.IShape2d.Closest(CGALDotNetGeometry.Numerics.Point2d)">
+            <summary>
+            The closest point to the shape.
+            If point inside shape return the same point.
+            </summary>
+            <param name="p"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CGALDotNetGeometry.Shapes.IShape2d.SignedDistance(CGALDotNetGeometry.Numerics.Point2d)">
+            <summary>
+            The signed distance between the shapes surface and the point.
+            </summary>
+            <param name="p"></param>
+            <returns>Positive if outside shape, negative if inside and 0 on boundary</returns>
+        </member>
+        <member name="P:CGALDotNetGeometry.Shapes.Shape2d.Bounds">
+            <summary>
+            The bounding box that contains the shape.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Shapes.Shape2d.Contains(CGALDotNetGeometry.Numerics.Point2d,System.Boolean)">
+            <summary>
+            Does the shape contain the point.
+            Points on the shapes surface count as 
+            being contained in the shape.
+            </summary>
+            <param name="p"></param>
+            <param name="includeBorder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CGALDotNetGeometry.Shapes.Shape2d.Intersects(CGALDotNetGeometry.Shapes.Box2d,System.Boolean)">
+            <summary>
+            Does the shape intersect the box.
+            </summary>
+            <param name="box"></param>
+            <param name="includeBorder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CGALDotNetGeometry.Shapes.Shape2d.Closest(CGALDotNetGeometry.Numerics.Point2d)">
+            <summary>
+            The closest point to the shape.
+            If point inside shape return the same point.
+            </summary>
+            <param name="p"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CGALDotNetGeometry.Shapes.Shape2d.SignedDistance(CGALDotNetGeometry.Numerics.Point2d)">
+            <summary>
+            The signed distance between the shapes surface and the point.
+            </summary>
+            <param name="p"></param>
+            <returns>Positive if outside shape, negative if inside and 0 on boundary</returns>
+        </member>
+        <member name="P:CGALDotNetGeometry.Shapes.IShape2f.Bounds">
+            <summary>
+            The bounding box that contains the shape.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Shapes.IShape2f.Contains(CGALDotNetGeometry.Numerics.Point2f,System.Boolean)">
+            <summary>
+            Does the shape contain the point.
+            Points on the shapes surface count as 
+            being contained in the shape.
+            </summary>
+            <param name="p">The point.</param>
+            <param name="includeBorder"></param>
+            <returns>Does the shape contain the point.</returns>
+        </member>
+        <member name="M:CGALDotNetGeometry.Shapes.IShape2f.Intersects(CGALDotNetGeometry.Shapes.Box2f,System.Boolean)">
+            <summary>
+            Does the shape intersect the box.
+            </summary>
+            <param name="box">The box.</param>
+            <param name="includeBorder"></param>
+            <returns>Does the shape intersect the box.</returns>
+        </member>
+        <member name="M:CGALDotNetGeometry.Shapes.IShape2f.Closest(CGALDotNetGeometry.Numerics.Point2f)">
+            <summary>
+            The closest point to the shape.
+            If point inside shape return the same point.
+            </summary>
+            <param name="p">The point.</param>
+            <returns>The closest point to the shape.</returns>
+        </member>
+        <member name="M:CGALDotNetGeometry.Shapes.IShape2f.SignedDistance(CGALDotNetGeometry.Numerics.Point2f)">
+            <summary>
+            The signed distance between the shapes surface and the point.
+            </summary>
+            <param name="p">The point.</param>
+            <returns>Positive if outside shape, negative if inside and 0 on boundary</returns>
+        </member>
+        <member name="P:CGALDotNetGeometry.Shapes.Shape2f.Bounds">
+            <summary>
+            The bounding box that contains the shape.
+            </summary>
+        </member>
+        <member name="M:CGALDotNetGeometry.Shapes.Shape2f.Contains(CGALDotNetGeometry.Numerics.Point2f,System.Boolean)">
+            <summary>
+            Does the shape contain the point.
+            Points on the shapes surface count as 
+            being contained in the shape.
+            </summary>
+            <param name="p">The point.</param>
+            <param name="includeBorder"></param>
+            <returns>Does the shape contain the point.</returns>
+        </member>
+        <member name="M:CGALDotNetGeometry.Shapes.Shape2f.Intersects(CGALDotNetGeometry.Shapes.Box2f,System.Boolean)">
+            <summary>
+            Does the shape intersect the box.
+            </summary>
+            <param name="box">The box.</param>
+            <param name="includeBorder"></param>
+            <returns>Does the shape intersect the box.</returns>
+        </member>
+        <member name="M:CGALDotNetGeometry.Shapes.Shape2f.Closest(CGALDotNetGeometry.Numerics.Point2f)">
+            <summary>
+            The closest point to the shape.
+            If point inside shape return the same point.
+            </summary>
+            <param name="p">The point.</param>
+            <returns>The closest point to the shape.</returns>
+        </member>
+        <member name="M:CGALDotNetGeometry.Shapes.Shape2f.SignedDistance(CGALDotNetGeometry.Numerics.Point2f)">
+            <summary>
+            The signed distance between the shapes surface and the point.
+            </summary>
+            <param name="p">The point.</param>
+            <returns>Positive if outside shape, negative if inside and 0 on boundary</returns>
         </member>
         <member name="T:CGALDotNetGeometry.Shapes.Sphere3d">
             <summary>
@@ -14255,8 +14916,16 @@
             <summary>
             Does triangle contain point.
             </summary>
-            <param name="p">point</param>
+            <param name="p">The point</param>
             <returns>true if triangle contains point</returns>
+        </member>
+        <member name="M:CGALDotNetGeometry.Shapes.Triangle2d.Contains(CGALDotNetGeometry.Numerics.Point2d,System.Boolean)">
+            <summary>
+            Does triangle contain point.
+            </summary>
+            <param name="p">The point</param>
+            <param name="includeBorder"></param>
+            <returns></returns>
         </member>
         <member name="M:CGALDotNetGeometry.Shapes.Triangle2d.ContainsCCW(CGALDotNetGeometry.Numerics.Point2d)">
             <summary>
@@ -14266,10 +14935,14 @@
             <param name="p">point</param>
             <returns>true if triangle contains point</returns>
         </member>
-        <member name="M:CGALDotNetGeometry.Shapes.Triangle2d.Intersects(CGALDotNetGeometry.Shapes.Box2d)">
+        <member name="M:CGALDotNetGeometry.Shapes.Triangle2d.Intersects(CGALDotNetGeometry.Shapes.Box2d,System.Boolean)">
             <summary>
             Does the triangle intersect this box.
             </summary>
+            <param name="box"></param>
+            <param name="includeBorder"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
         </member>
         <member name="T:CGALDotNetGeometry.Shapes.Triangle2f">
             <summary>
@@ -14461,21 +15134,34 @@
             <summary>
             Does triangle contain point.
             </summary>
-            <param name="p">point</param>
+            <param name="p">The point</param>
             <returns>true if triangle contains point</returns>
         </member>
-        <member name="M:CGALDotNetGeometry.Shapes.Triangle2f.ContainsCCW(CGALDotNetGeometry.Numerics.Point2f)">
+        <member name="M:CGALDotNetGeometry.Shapes.Triangle2f.Contains(CGALDotNetGeometry.Numerics.Point2f,System.Boolean)">
+            <summary>
+            Does triangle contain point.
+            </summary>
+            <param name="p">The point</param>
+            <param name="includeBorder"></param>
+            <returns></returns>
+        </member>
+        <member name="M:CGALDotNetGeometry.Shapes.Triangle2f.ContainsCCW(CGALDotNetGeometry.Numerics.Point2f,System.Boolean)">
             <summary>
             Does triangle contain point.
             Asumes triangle is CCW;
             </summary>
             <param name="p">point</param>
+            <param name="includeBorder"></param>
             <returns>true if triangle contains point</returns>
         </member>
-        <member name="M:CGALDotNetGeometry.Shapes.Triangle2f.Intersects(CGALDotNetGeometry.Shapes.Box2f)">
+        <member name="M:CGALDotNetGeometry.Shapes.Triangle2f.Intersects(CGALDotNetGeometry.Shapes.Box2f,System.Boolean)">
             <summary>
             Does the triangle intersect this box.
             </summary>
+            <param name="box"></param>
+            <param name="includeBorder"></param>
+            <returns></returns>
+            <exception cref="T:System.NotImplementedException"></exception>
         </member>
         <member name="T:CGALDotNetGeometry.Shapes.Triangle3d">
             <summary>

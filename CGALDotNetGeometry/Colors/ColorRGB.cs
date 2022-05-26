@@ -36,7 +36,6 @@ namespace CGALDotNetGeometry.Colors
         
         public float r, g, b;
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ColorRGB(float r, float g, float b)
         {
             this.r = r;
@@ -44,21 +43,18 @@ namespace CGALDotNetGeometry.Colors
             this.b = b;
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ColorRGB(float v) 
             : this(v,v,v)
         {
 
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ColorRGB(double r, double g, double b) 
             : this((float)r, (float)g, (float)b)
         {
 
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public ColorRGB(double v) 
             : this(v, v, v)
         {
@@ -111,20 +107,6 @@ namespace CGALDotNetGeometry.Colors
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
             get { return 0.2126f * r + 0.7152f * g + 0.0722f * b; } 
-        }
-
-        public int Integer
-        {
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            get
-            {
-                int R = (int)MathUtil.Clamp(r * 255.0f, 0.0f, 255.0f);
-                int G = (int)MathUtil.Clamp(g * 255.0f, 0.0f, 255.0f);
-                int B = (int)MathUtil.Clamp(b * 255.0f, 0.0f, 255.0f);
-                int A = 255;
-
-                return R | (G << 8) | (B << 16) | (A << 24);
-            }
         }
 
         unsafe public float this[int i]
@@ -265,7 +247,6 @@ namespace CGALDotNetGeometry.Colors
         /// <summary>
         /// Are these colors equal.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object obj)
         {
             if (!(obj is ColorRGB)) return false;
@@ -278,7 +259,6 @@ namespace CGALDotNetGeometry.Colors
         /// <summary>
         /// Are these colors equal given the error.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool AlmostEqual(ColorRGB c0, ColorRGB c1, float eps = MathUtil.EPS_32)
         {
             if (Math.Abs(c0.r - c1.r) > eps) return false;
@@ -290,7 +270,6 @@ namespace CGALDotNetGeometry.Colors
         /// <summary>
         /// Are these colors equal.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool Equals(ColorRGB v)
         {
             return this == v;
@@ -299,15 +278,14 @@ namespace CGALDotNetGeometry.Colors
         /// <summary>
         /// colors hash code. 
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override int GetHashCode()
         {
             unchecked
             {
-                int hash = (int)MathUtil.HASH_PRIME_1;
-                hash = (hash * MathUtil.HASH_PRIME_2) ^ r.GetHashCode();
-                hash = (hash * MathUtil.HASH_PRIME_2) ^ g.GetHashCode();
-                hash = (hash * MathUtil.HASH_PRIME_2) ^ b.GetHashCode();
+                int hash = (int)2166136261;
+                hash = (hash * 16777619) ^ r.GetHashCode();
+                hash = (hash * 16777619) ^ g.GetHashCode();
+                hash = (hash * 16777619) ^ b.GetHashCode();
                 return hash;
             }
         }
@@ -329,11 +307,102 @@ namespace CGALDotNetGeometry.Colors
         }
 
         /// <summary>
-        /// color from bytes.
+        /// Create a rgba color form this colors rgb 
+        /// values and the provided alpha value.
         /// </summary>
+        /// <param name="a">The alpha value.</param>
+        /// <returns>THe RGBA color.</returns>
+        public ColorRGBA RGBA(float a)
+        {
+            return new ColorRGBA(r, g, b, a);
+        }
+
+        /// <summary>
+        /// Alpha blend the two pixels.
+        /// </summary>
+        /// <param name="c0">The first pixel.</param>
+        /// <param name="c1">The second pixel.</param>
+        /// <param name="a0">The first pixels alpha.</param>
+        /// <param name="a1">The second pixels alpha.</param>
+        /// <returns>The alpha blened pixel.</returns>
+        public static ColorRGB AlphaBlend(ColorRGB c0, ColorRGB c1, float a0, float a1)
+        {
+            float a = a0 + (1.0f - a1);
+            a = MathUtil.Clamp01(a);
+
+            if (a <= 0)
+                return ColorRGB.Black;
+
+            float inv_a = 1.0f / a;
+            float one_min_a = 1.0f - a0;
+
+            var c = new ColorRGB();
+            c.r = ((c0.r * a0) + (c1.r * a1) * one_min_a) * inv_a;
+            c.g = ((c0.g * a0) + (c1.g * a1) * one_min_a) * inv_a;
+            c.b = ((c0.b * a0) + (c1.b * a1) * one_min_a) * inv_a;
+
+            return c;
+        }
+
+        /// <summary>
+        /// color from bytes.
+        /// The values will be converted from a 0-255 range to a 0-1 range.
+        /// </summary>
+        /// <returns>A color will values in the 0-1 range.</returns>
         public static ColorRGB FromBytes(int r, int g, int b)
         {
-            return new ColorRGB(r, g, b) / 255.0f;
+            int R = MathUtil.Clamp(r, 0, 255);
+            int G = MathUtil.Clamp(g, 0, 255);
+            int B = MathUtil.Clamp(b, 0, 255);
+            return new ColorRGB(R, G, B) / 255.0f;
+        }
+
+
+        /// <summary>
+        /// Create a color from a integer where each byte in the 
+        /// integer represents a channl in the color.
+        /// </summary>
+        /// <param name="i">The integer.</param>
+        /// <param name="bgr">are the channels packed bgr or rgb.</param>
+        /// <returns>The color.</returns>
+        public static ColorRGB FromInteger(int i, bool bgr = false)
+        {
+            Union32 u = i;
+            if(bgr)
+                return FromBytes(u.Byte0, u.Byte1, u.Byte2);
+            else
+                return FromBytes(u.Byte2, u.Byte1, u.Byte0);
+        }
+
+        /// <summary>
+        /// Convert the color to a integer where each byte 
+        /// represents a channel in the color.
+        /// </summary>
+        /// <param name="abgr">are the channels packed bgr or rgb.</param>
+        /// <returns>A integer where each byte represents a channel in the color.</returns>
+        public int ToInteger(bool abgr = false)
+        {
+            int R = (int)MathUtil.Clamp(r * 255.0f, 0.0f, 255.0f);
+            int G = (int)MathUtil.Clamp(g * 255.0f, 0.0f, 255.0f);
+            int B = (int)MathUtil.Clamp(b * 255.0f, 0.0f, 255.0f);
+            int A = 255;
+
+            if (abgr)
+                return (A << 24) | (B << 16) | (G << 8) | R;
+            else
+                return R | (G << 8) | (B << 16) | (A << 24);
+        }
+
+        /// <summary>
+        /// Apply the gamma function to the color.
+        /// </summary>
+        /// <param name="lambda">The power to raise each channel to.</param>
+        /// <param name="A">The constant the result is multiplied by. Defaults to 1.</param>
+        public void Gamma(float lambda, float A = 1)
+        {
+            r = MathUtil.Pow(r, lambda) * A;
+            g = MathUtil.Pow(g, lambda) * A;
+            b = MathUtil.Pow(b, lambda) * A;
         }
 
         /// <summary>
@@ -355,7 +424,6 @@ namespace CGALDotNetGeometry.Colors
         /// <summary>
         /// The minimum value between s and each component in vector.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ColorRGB Min(ColorRGB col, float s)
         {
             col.r = Math.Min(col.r, s);
@@ -367,7 +435,6 @@ namespace CGALDotNetGeometry.Colors
         /// <summary>
         /// The maximum value between s and each component in vector.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ColorRGB Max(ColorRGB col, float s)
         {
             col.r = Math.Max(col.r, s);
@@ -379,7 +446,6 @@ namespace CGALDotNetGeometry.Colors
         /// <summary>
         /// Clamp the each component to specified min and max.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static ColorRGB Clamp(ColorRGB col, float min, float max)
         {
             col.r = Math.Max(Math.Min(col.r, max), min);
@@ -389,17 +455,31 @@ namespace CGALDotNetGeometry.Colors
         }
 
         /// <summary>
-        /// Lerp between two vectors.
+        /// Lerp between two colors.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static ColorRGB Lerp(ColorRGB v1, ColorRGB v2, float a)
+        public static ColorRGB Lerp(ColorRGB c1, ColorRGB c2, float a)
         {
-            float a1 = 1.0f - a;
-            ColorRGB v = new ColorRGB();
-            v.r = v1.r * a1 + v2.r * a;
-            v.g = v1.g * a1 + v2.g * a;
-            v.b = v1.b * a1 + v2.b * a;
-            return v;
+            a = MathUtil.Clamp01(a);
+            ColorRGB col = new ColorRGB();
+            col.r = MathUtil.Lerp(c1.r, c2.r, a);
+            col.g = MathUtil.Lerp(c1.g, c2.g, a);
+            col.b = MathUtil.Lerp(c1.b, c2.b, a);
+            return col;
+        }
+
+        /// <summary>
+        /// BLerp between four colors.
+        /// </summary>
+        public static ColorRGB BLerp(ColorRGB c00, ColorRGB c10, ColorRGB c01, ColorRGB c11, float a0, float a1)
+        {
+            a0 = MathUtil.Clamp01(a0);
+            a1 = MathUtil.Clamp01(a1);
+            ColorRGB col = new ColorRGB();
+            col.r = MathUtil.BLerp(c00.r, c10.r, c01.r, c11.r, a0, a1);
+            col.g = MathUtil.BLerp(c00.g, c10.g, c01.g, c11.g, a0, a1);
+            col.b = MathUtil.BLerp(c00.b, c10.b, c01.b, c11.b, a0, a1);
+
+            return col;
         }
 
         /// <summary>
@@ -455,7 +535,7 @@ namespace CGALDotNetGeometry.Colors
         }
 
         /// <summary>
-        /// Create a palette of colors.
+        /// Create a palette of colors..
         /// </summary>
         /// <returns></returns>
         public static ColorRGB[] Palette()

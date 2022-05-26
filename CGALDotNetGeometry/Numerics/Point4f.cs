@@ -191,16 +191,6 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
-        /// Point as vector.
-        /// </summary>
-        public Vector3f Vector3f => new Vector3f(x, y, z);
-
-        /// <summary>
-        /// Point as vector.
-        /// </summary>
-        public Vector4f Vector4f => new Vector4f(x, y, z, w);
-
-        /// <summary>
         /// The sum of the points components.
         /// </summary>
         public REAL Sum
@@ -403,7 +393,7 @@ namespace CGALDotNetGeometry.Numerics
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static explicit operator Point4f(Point4d v)
         {
-            return new Point4f((REAL)v.x, (REAL)v.y, (REAL)v.z, (REAL)v.w);
+            return new Point4f(v.x, v.y, v.z, v.w);
         }
 
         /// <summary>
@@ -412,6 +402,26 @@ namespace CGALDotNetGeometry.Numerics
         /// <param name="v"></param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static implicit operator Point4f(Point4i v)
+        {
+            return new Point4f(v.x, v.y, v.z, v.w);
+        }
+
+        /// <summary>
+        /// Cast from Vector4f to Point4f.
+        /// </summary>
+        /// <param name="v"></param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static implicit operator Point4f(Vector4f v)
+        {
+            return new Point4f(v.x, v.y, v.z, v.w);
+        }
+
+        /// <summary>
+        /// Cast from Vector4d to Point4f.
+        /// </summary>
+        /// <param name="v"></param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static explicit operator Point4f(Vector4d v)
         {
             return new Point4f(v.x, v.y, v.z, v.w);
         }
@@ -437,7 +447,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Are these points equal.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object obj)
         {
             if (!(obj is Point4f)) return false;
@@ -448,7 +457,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Are these points equal.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool Equals(Point4f v)
         {
             return this == v;
@@ -457,7 +465,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Are these points equal given the error.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool AlmostEqual(Point4f v0, Point4f v1, REAL eps = MathUtil.EPS_32)
         {
             if (Math.Abs(v0.x - v1.x) > eps) return false;
@@ -468,9 +475,8 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
-        /// Vectors hash code. 
+        /// Points hash code. 
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override int GetHashCode()
         {
             unchecked
@@ -485,18 +491,16 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
-        /// Vector as a string.
+        /// Point as a string.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override string ToString()
         {
             return string.Format("{0},{1},{2},{3}", x, y, z, w);
         }
 
         /// <summary>
-        /// Vector as a string.
+        /// Point as a string.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public string ToString(string f)
         {
             return string.Format("{0},{1},{2},{3}", x.ToString(f), y.ToString(f), z.ToString(f), w.ToString(f));
@@ -505,7 +509,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Distance between two points.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static REAL Distance(Point4f v0, Point4f v1)
         {
             return MathUtil.Sqrt(SqrDistance(v0, v1));
@@ -513,8 +516,7 @@ namespace CGALDotNetGeometry.Numerics
 
         /// <summary>
         /// Square distance between two points.
-        /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        /// </summary>]
         public static REAL SqrDistance(Point4f v0, Point4f v1)
         {
             REAL x = v0.x - v1.x;
@@ -530,20 +532,19 @@ namespace CGALDotNetGeometry.Numerics
         /// <param name="v0">The first point.</param>
         /// <param name="v1">The second point.</param>
         /// <param name="normalize">Should the vector be normalized.</param>
-        /// <returns>The vector from v0 to v1.</returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector4f Direction(Point4f v0, Point4f v1, bool normalize = true)
         {
+            Vector4f v = v1 - v0;
+
             if (normalize)
-                return (v1 - v0).Vector4f.Normalized;
+                return v.Normalized;
             else
-                return (v1 - v0).Vector4f;
+                return v;
         }
 
         /// <summary>
         /// The minimum value between s and each component in point.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Point4f Min(Point4f v, REAL s)
         {
             v.x = MathUtil.Min(v.x, s);
@@ -556,7 +557,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// The minimum value between each component in points.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Point4f Min(Point4f v0, Point4f v1)
         {
             v0.x = MathUtil.Min(v0.x, v1.x);
@@ -569,7 +569,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// The maximum value between s and each component in point.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Point4f Max(Point4f v, REAL s)
         {
             v.x = MathUtil.Max(v.x, s);
@@ -582,7 +581,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// The maximum value between each component in points.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Point4f Max(Point4f v0, Point4f v1)
         {
             v0.x = MathUtil.Max(v0.x, v1.x);
@@ -595,7 +593,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Clamp each component to specified min and max.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Point4f Clamp(Point4f v, REAL min, REAL max)
         {
             v.x = MathUtil.Max(MathUtil.Min(v.x, max), min);
@@ -608,7 +605,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Clamp each component to specified min and max.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Point4f Clamp(Point4f v, Point4f min, Point4f max)
         {
             v.x = MathUtil.Max(MathUtil.Min(v.x, max.x), min.x);
@@ -621,21 +617,31 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Lerp between two points.
         /// </summary>
-        public static Point4f Lerp(Point4f from, Point4f to, REAL t)
+        public static Point4f Lerp(Point4f p0, Point4f p1, REAL a)
         {
-            if (t < 0.0f) t = 0.0f;
-            if (t > 1.0f) t = 1.0f;
+            a = MathUtil.Clamp01(a);
+            Point4f p = new Point4f();
+            p.x = MathUtil.Lerp(p0.x, p1.x, a);
+            p.y = MathUtil.Lerp(p0.y, p1.y, a);
+            p.z = MathUtil.Lerp(p0.z, p1.z, a);
+            p.w = MathUtil.Lerp(p0.w, p1.w, a);
+            return p;
+        }
 
-            if (t == 0.0) return from;
-            if (t == 1.0) return to;
+        /// <summary>
+        /// BLerp between four points.
+        /// </summary>
+        public static Point4f BLerp(Point4f p00, Point4f p10, Point4f p01, Point4f p11, REAL a0, REAL a1)
+        {
+            a0 = MathUtil.Clamp01(a0);
+            a1 = MathUtil.Clamp01(a1);
+            Point4f p = new Point4f();
+            p.x = MathUtil.BLerp(p00.x, p10.x, p01.x, p11.x, a0, a1);
+            p.y = MathUtil.BLerp(p00.y, p10.y, p01.y, p11.y, a0, a1);
+            p.z = MathUtil.BLerp(p00.z, p10.z, p01.z, p11.z, a0, a1);
+            p.w = MathUtil.BLerp(p00.w, p10.w, p01.w, p11.w, a0, a1);
 
-            REAL t1 = 1.0f - t;
-            var v = new Point4f();
-            v.x = from.x * t1 + to.x * t;
-            v.y = from.y * t1 + to.y * t;
-            v.z = from.z * t1 + to.z * t;
-            v.w = from.w * t1 + to.w * t;
-            return v;
+            return p;
         }
 
         /// <summary>
@@ -643,7 +649,6 @@ namespace CGALDotNetGeometry.Numerics
         /// </summary>
         /// <param name="digits">The number of digits to round to.</param>
         /// <returns>The rounded point</returns>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Point4f Rounded(int digits)
         {
             REAL x = MathUtil.Round(this.x, digits);
@@ -657,7 +662,6 @@ namespace CGALDotNetGeometry.Numerics
         /// Round the point.
         /// </summary>
         /// <param name="digits">The number of digits to round to.</param>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Round(int digits)
         {
             x = MathUtil.Round(x, digits);

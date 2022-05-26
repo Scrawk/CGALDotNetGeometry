@@ -93,7 +93,7 @@ namespace CGALDotNetGeometry.Nurbs
             {
                 for (int j = 0; j < points.GetLength(1); j++)
                 {
-                    vectors[i, j] = points[i, j].Vector4d;
+                    vectors[i, j] = points[i, j].xyz1;
                 }
             }
 

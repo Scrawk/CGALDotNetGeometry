@@ -146,6 +146,14 @@ namespace CGALDotNetGeometry.Shapes
         }
 
         /// <summary>
+        /// Normalize the lines direction.
+        /// </summary>
+        public void Normalize()
+        {
+            Direction.Normalize();
+        }
+
+        /// <summary>
         /// Round the rays components.
         /// </summary>
         /// <param name="digits">The number of digits to round to.</param>
@@ -241,7 +249,7 @@ namespace CGALDotNetGeometry.Shapes
         public bool Intersects(CIRCLE2 circle, out REAL t)
         {
             t = 0;
-            VECTOR2 m = (Position - circle.Center).Vector2d;
+            VECTOR2 m = Position - circle.Center;
             REAL b = VECTOR2.Dot(m, Direction);
             REAL c = VECTOR2.Dot(m, m) - circle.Radius2;
 

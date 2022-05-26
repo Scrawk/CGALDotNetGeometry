@@ -46,65 +46,25 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
-        /// A Quaternion from a vector axis and angle.
-        /// The axis is the up direction and the angle is the rotation.
+        /// Array accessor for variables. 
         /// </summary>
-        public Quaternion3f(VECTOR3 axis, REAL angle)
+        /// <param name="i">The variables index.</param>
+        /// <returns>The variable value</returns>
+        unsafe public REAL this[int i]
         {
-            VECTOR3 axisN = axis.Normalized;
-            REAL a = angle * 0.5f;
-            REAL sina = MathUtil.Sin(a);
-            REAL cosa = MathUtil.Cos(a);
-            x = axisN.x * sina;
-            y = axisN.y * sina;
-            z = axisN.z * sina;
-            w = cosa;
-        }
-
-        /// <summary>
-        /// A quaternion with the rotation required to
-        /// rotation from the from direction to the to direction.
-        /// </summary>
-        public Quaternion3f(VECTOR3 to, VECTOR3 from)
-        {
-            VECTOR3 f = from.Normalized;
-            VECTOR3 t = to.Normalized;
-
-            REAL dotProdPlus1 = 1.0f + VECTOR3.Dot(f, t);
-
-            if (MathUtil.IsZero(dotProdPlus1))
+            get
             {
-                w = 0;
-                if (MathUtil.Abs(f.x) < 0.6f)
-                {
-                    REAL norm = MathUtil.Sqrt(1 - f.x * f.x);
-                    x = 0;
-                    y = f.z / norm;
-                    z = -f.y / norm;
-                }
-                else if (MathUtil.Abs(f.y) < 0.6f)
-                {
-                    REAL norm = MathUtil.Sqrt(1 - f.y * f.y);
-                    x = -f.z / norm;
-                    y = 0;
-                    z = f.x / norm;
-                }
-                else
-                {
-                    REAL norm = MathUtil.Sqrt(1 - f.z * f.z);
-                    x = f.y / norm;
-                    y = -f.x / norm;
-                    z = 0;
-                }
+                if ((uint)i >= 4)
+                    throw new IndexOutOfRangeException("Quaternion3f index out of range.");
+
+                fixed (Quaternion3f* array = &this) { return ((REAL*)array)[i]; }
             }
-            else
+            set
             {
-                REAL s = MathUtil.Sqrt(0.5f * dotProdPlus1);
-                VECTOR3 tmp = (VECTOR3.Cross(f, t)) / (2.0f * s);
-                x = tmp.x;
-                y = tmp.y;
-                z = tmp.z;
-                w = s;
+                if ((uint)i >= 4)
+                    throw new IndexOutOfRangeException("Quaternion3f index out of range.");
+
+                fixed (REAL* array = &x) { array[i] = value; }
             }
         }
 
@@ -392,6 +352,53 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
+        /// Extract the rotation from a matrix.
+        /// </summary>
+        /// <param name="m"></param>
+        /// <returns>The rotation as a quaternion from the matrix.</returns>
+        public static Quaternion3f FromMatrix(MATRIX4 m)
+        {
+            REAL trace = m[0,0] + m[1,1] + m[2,2];
+            var q = new Quaternion3f(); 
+
+            if (trace > 0)
+            {
+                // Compute w from matrix trace, then xyz
+                // 4w^2 = m[0][0] + m[1][1] + m[2][2] + m[3][3] (but m[3][3] == 1)
+                REAL s = (REAL)MathUtil.Sqrt(trace + 1.0);
+
+                q.w = s / 2.0f;
+                s = 0.5f / s;
+                q.x = (m[2,1] - m[1,2]) * s;
+                q.y = (m[0,2] - m[2,0]) * s;
+                q.z = (m[1,0] - m[0,1]) * s;
+
+            }
+            else
+            {
+                // Compute largest of x, y, or z, then remaining components
+                int[] nxt = { 1, 2, 0 };
+
+                int i = 0;
+                if (m[1, 1] > m[0, 0]) i = 1;
+                if (m[2, 2] > m[i, i]) i = 2;
+
+                int j = nxt[i];
+                int k = nxt[j];
+                REAL s = (REAL)MathUtil.Sqrt((m[i, i] - (m[j, j] + m[k, k])) + 1.0);
+
+                q[i] = s * 0.5f;
+                if (s != 0) s = 0.5f / s;
+
+                q.w = (m[k,j] - m[j,k]) * s;
+                q[j] = (m[j,i] + m[i,j]) * s;
+                q[k] = (m[k,i] + m[i,k]) * s;
+            }
+
+            return q;   
+        }
+
+        /// <summary>
         /// The normalize the quaternion.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -414,9 +421,156 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
+        /// Create a rotation out of a vector.
+        /// Uses Unity euler axis (+x right, +y up, +z forward)
+        /// </summary>
+        public static Quaternion3f FromEuler(VECTOR3 euler)
+        {
+            REAL heading = MathUtil.ToRadians(euler.y);
+            REAL attitude = MathUtil.ToRadians(euler.z);
+            REAL bank = MathUtil.ToRadians(euler.x);
+
+            REAL c1 = MathUtil.Cos(heading / 2);
+            REAL s1 = MathUtil.Sin(heading / 2);
+            REAL c2 = MathUtil.Cos(attitude / 2);
+            REAL s2 = MathUtil.Sin(attitude / 2);
+            REAL c3 = MathUtil.Cos(bank / 2);
+            REAL s3 = MathUtil.Sin(bank / 2);
+            REAL c1c2 = c1 * c2;
+            REAL s1s2 = s1 * s2;
+
+            Quaternion3f q;
+            q.w = (c1c2 * c3 - s1s2 * s3);
+            q.x = (c1c2 * s3 + s1s2 * c3);
+            q.y = (s1 * c2 * c3 + c1 * s2 * s3);
+            q.z = (c1 * s2 * c3 - s1 * c2 * s3);
+
+            return q;
+        }
+
+
+        /// <summary>
+        /// Returns a 4x4 matrix that rotates around the x-axis by a given number of degrees.
+        /// </summary>
+        /// <param name="radian">
+        /// The clockwise rotation angle when looking along the x-axis towards the origin in degrees.
+        /// </param>
+        public static Quaternion3f RotateX(Radian radian)
+        {
+            REAL a = (REAL)radian.angle * 0.5f;
+            REAL sina = MathUtil.Sin(a);
+            REAL cosa = MathUtil.Cos(a);
+            return new Quaternion3f(sina, 0.0f, 0.0f, cosa);
+        }
+
+        /// <summary>
+        /// Returns a 4x4 matrix that rotates around the y-axis by a given number of degrees.
+        /// </summary>
+        /// <param name="radian">
+        /// The clockwise rotation angle when looking along the y-axis towards the origin in degrees.
+        /// </param>
+        public static Quaternion3f RotateY(Radian radian)
+        {
+            REAL a = (REAL)radian.angle * 0.5f;
+            REAL sina = MathUtil.Sin(a);
+            REAL cosa = MathUtil.Cos(a);
+            return new Quaternion3f(0.0f, sina, 0.0f, cosa);
+        }
+
+        /// <summary>
+        /// Returns a 4x4 matrix that rotates around the z-axis by a given number of degrees.
+        /// </summary>
+        /// <param name="radian">
+        /// The clockwise rotation angle when looking along the z-axis towards the origin in degrees.
+        /// </param>
+        public static Quaternion3f RotateZ(Radian radian)
+        {
+            REAL a = (REAL)radian.angle * 0.5f;
+            REAL sina = MathUtil.Sin(a);
+            REAL cosa = MathUtil.Cos(a);
+            return new Quaternion3f(0.0f, 0.0f, sina, cosa);
+        }
+
+        /// <summary>
+        /// A Quaternion from a vector axis and angle.
+        /// The axis is the up direction and the angle is the rotation.
+        /// </summary>
+        /// <param name="axis">The up axis.</param>
+        /// <param name="radian">The amount to rotate in radians.</param>
+        /// <returns></returns>
+        public static Quaternion3f Rotate(VECTOR3 axis, Radian radian)
+        {
+            VECTOR3 axisN = axis.Normalized;
+            REAL a = (REAL)radian.angle * 0.5f;
+            REAL sina = MathUtil.Sin(a);
+            REAL cosa = MathUtil.Cos(a);
+
+            var q = new Quaternion3f();
+            q.x = axisN.x * sina;
+            q.y = axisN.y * sina;
+            q.z = axisN.z * sina;
+            q.w = cosa;
+
+            return q;
+        }
+
+        /// <summary>
+        /// A quaternion with the rotation required to
+        /// rotation from the from direction to the to direction.
+        /// </summary>
+        /// <param name="from">The vector to start from.</param>
+        /// <param name="to">The vector to slerp to.</param>
+        /// <returns></returns>
+        public static Quaternion3f Slerp(VECTOR3 from, VECTOR3 to)
+        {
+            var q = new Quaternion3f();
+            var f = from.Normalized;
+            var t = to.Normalized;
+
+            var dotProdPlus1 = 1.0f + VECTOR3.Dot(f, t);
+
+            if (MathUtil.IsZero(dotProdPlus1))
+            {
+                q.w = 0;
+                if (MathUtil.Abs(f.x) < 0.6f)
+                {
+                    REAL norm = MathUtil.Sqrt(1 - f.x * f.x);
+                    q.x = 0;
+                    q.y = f.z / norm;
+                    q.z = -f.y / norm;
+                }
+                else if (MathUtil.Abs(f.y) < 0.6f)
+                {
+                    REAL norm = MathUtil.Sqrt(1 - f.y * f.y);
+                    q.x = -f.z / norm;
+                    q.y = 0;
+                    q.z = f.x / norm;
+                }
+                else
+                {
+                    REAL norm = MathUtil.Sqrt(1 - f.z * f.z);
+                    q.x = f.y / norm;
+                    q.y = -f.x / norm;
+                    q.z = 0;
+                }
+            }
+            else
+            {
+                REAL s = MathUtil.Sqrt(0.5f * dotProdPlus1);
+                VECTOR3 tmp = (VECTOR3.Cross(f, t)) / (2.0f * s);
+                q.x = tmp.x;
+                q.y = tmp.y;
+                q.z = tmp.z;
+                q.w = s;
+            }
+
+            return q;
+        }
+
+        /// <summary>
         /// Slerp the quaternion from the from rotation to the to rotation by t.
         /// </summary>
-		public static Quaternion3f Slerp(Quaternion3f from, Quaternion3f to, REAL t)
+        public static Quaternion3f Slerp(Quaternion3f from, Quaternion3f to, REAL t)
         {
             if (t <= 0.0f)
             {
@@ -454,80 +608,6 @@ namespace CGALDotNetGeometry.Numerics
 
                 return res.Normalized;
             }
-        }
-
-        /// <summary>
-        /// Create a rotation out of a vector.
-        /// Uses Unity euler axis (+x right, +y up, +z forward)
-        /// </summary>
-        public static Quaternion3f FromEuler(VECTOR3 euler)
-        {
-            REAL heading = MathUtil.ToRadians(euler.y);
-            REAL attitude = MathUtil.ToRadians(euler.z);
-            REAL bank = MathUtil.ToRadians(euler.x);
-
-            REAL c1 = MathUtil.Cos(heading / 2);
-            REAL s1 = MathUtil.Sin(heading / 2);
-            REAL c2 = MathUtil.Cos(attitude / 2);
-            REAL s2 = MathUtil.Sin(attitude / 2);
-            REAL c3 = MathUtil.Cos(bank / 2);
-            REAL s3 = MathUtil.Sin(bank / 2);
-            REAL c1c2 = c1 * c2;
-            REAL s1s2 = s1 * s2;
-
-            Quaternion3f q;
-            q.w = (c1c2 * c3 - s1s2 * s3);
-            q.x = (c1c2 * s3 + s1s2 * c3);
-            q.y = (s1 * c2 * c3 + c1 * s2 * s3);
-            q.z = (c1 * s2 * c3 - s1 * c2 * s3);
-
-            return q;
-        }
-
-
-        /// <summary>
-        /// Returns a 4x4 matrix that rotates around the x-axis by a given number of degrees.
-        /// </summary>
-        /// <param name="angle">
-        /// The clockwise rotation angle when looking along the x-axis towards the origin in degrees.
-        /// </param>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Quaternion3f RotateX(REAL angle)
-        {
-            REAL a = MathUtil.ToRadians(angle) * 0.5f;
-            REAL sina = MathUtil.Sin(a);
-            REAL cosa = MathUtil.Cos(a);
-            return new Quaternion3f(sina, 0.0f, 0.0f, cosa);
-        }
-
-        /// <summary>
-        /// Returns a 4x4 matrix that rotates around the y-axis by a given number of degrees.
-        /// </summary>
-        /// <param name="angle">
-        /// The clockwise rotation angle when looking along the y-axis towards the origin in degrees.
-        /// </param>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Quaternion3f RotateY(REAL angle)
-        {
-            REAL a = MathUtil.ToRadians(angle) * 0.5f;
-            REAL sina = MathUtil.Sin(a);
-            REAL cosa = MathUtil.Cos(a);
-            return new Quaternion3f(0.0f, sina, 0.0f, cosa);
-        }
-
-        /// <summary>
-        /// Returns a 4x4 matrix that rotates around the z-axis by a given number of degrees.
-        /// </summary>
-        /// <param name="angle">
-        /// The clockwise rotation angle when looking along the z-axis towards the origin in degrees.
-        /// </param>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Quaternion3f RotateZ(REAL angle)
-        {
-            REAL a = MathUtil.ToRadians(angle) * 0.5f;
-            REAL sina = MathUtil.Sin(a);
-            REAL cosa = MathUtil.Cos(a);
-            return new Quaternion3f(0.0f, 0.0f, sina, cosa);
         }
 
     }

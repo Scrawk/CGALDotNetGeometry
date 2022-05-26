@@ -146,6 +146,14 @@ namespace CGALDotNetGeometry.Shapes
         }
 
         /// <summary>
+        /// Normalize the lines direction.
+        /// </summary>
+        public void Normalize()
+        {
+            Direction.Normalize();
+        }
+
+        /// <summary>
         /// Get the position offset along the ray at t.
         /// </summary>
         /// <param name="t">The amount to offset.</param>
@@ -231,7 +239,7 @@ namespace CGALDotNetGeometry.Shapes
         public bool Intersects(CIRCLE2 circle, out REAL t)
         {
             t = 0;
-            VECTOR2 m = (Position - circle.Center).Vector2f;
+            VECTOR2 m = Position - circle.Center;
             REAL b = VECTOR2.Dot(m, Direction);
             REAL c = VECTOR2.Dot(m, m) - circle.Radius2;
 

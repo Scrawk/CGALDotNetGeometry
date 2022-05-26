@@ -7,6 +7,7 @@ using CGALDotNetGeometry.Numerics;
 using REAL = System.Single;
 using POINT2 = CGALDotNetGeometry.Numerics.Point2f;
 using POINT3 = CGALDotNetGeometry.Numerics.Point3f;
+using VECTOR2 = CGALDotNetGeometry.Numerics.Vector2f;
 using VECTOR3 = CGALDotNetGeometry.Numerics.Vector3f;
 using BOX2 = CGALDotNetGeometry.Shapes.Box2f;
 using MATRIX3 = CGALDotNetGeometry.Numerics.Matrix3x3f;
@@ -15,7 +16,7 @@ namespace CGALDotNetGeometry.Shapes
 {
     [Serializable]
     [StructLayout(LayoutKind.Sequential)]
-    public struct Circle2f : IEquatable<Circle2f>
+    public struct Circle2f : IEquatable<Circle2f>, IShape2f
     {
         public POINT2 Center;
 
@@ -140,7 +141,7 @@ namespace CGALDotNetGeometry.Shapes
         {
             POINT2 d = Center - p;
             if (d.SqrMagnitude <= Radius2) return p;
-            return Center + Radius * d.Vector2f.Normalized;
+            return Center + Radius * ((VECTOR2)d).Normalized;
         }
 
         /// <summary>
@@ -160,7 +161,7 @@ namespace CGALDotNetGeometry.Shapes
         /// <param name="point">The point.</param>
         /// <param name="includeBorder">Does the border conunt as inside the circle.</param>
         /// <returns>true if circle contains point</returns>
-        public bool Contains(POINT2 point, bool includeBorder = true)
+        public bool Contains(POINT2 point, bool includeBorder)
         {
             if (includeBorder)
                 return POINT2.SqrDistance(Center, point) <= Radius2;
@@ -174,7 +175,7 @@ namespace CGALDotNetGeometry.Shapes
         /// <param name="box">The box.</param>
         /// <param name="includeBorder">Does the border conunt as inside the circle.</param>
         /// <returns>Does the circle fully contain the box.</returns>
-        public bool Contains(BOX2 box, bool includeBorder = true)
+        public bool Contains(BOX2 box, bool includeBorder)
         {
             if (!Contains(box.Corner00, includeBorder)) return false;
             if (!Contains(box.Corner01, includeBorder)) return false;
@@ -189,7 +190,7 @@ namespace CGALDotNetGeometry.Shapes
         /// <param name="circle">The other circle</param>
         /// <param name="includeBorder">Does the border conunt as inside the circle.</param>
         /// <returns>True if the circles intersect</returns>
-        public bool Intersects(Circle2f circle, bool includeBorder = true)
+        public bool Intersects(Circle2f circle, bool includeBorder)
         {
             REAL r = Radius + circle.Radius;
 
@@ -205,7 +206,7 @@ namespace CGALDotNetGeometry.Shapes
         /// <param name="box">The box.</param>
         /// <param name="includeBorder">Does the border conunt as inside the circle.</param>
         /// <returns>Does the circle intersect the box.</returns>
-        public bool Intersects(BOX2 box, bool includeBorder = true)
+        public bool Intersects(BOX2 box, bool includeBorder)
         {
             var p = box.Closest(Center);
 

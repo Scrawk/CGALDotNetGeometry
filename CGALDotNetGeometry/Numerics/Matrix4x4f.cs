@@ -9,6 +9,7 @@ using VECTOR4 = CGALDotNetGeometry.Numerics.Vector4f;
 using POINT2 = CGALDotNetGeometry.Numerics.Point2f;
 using POINT3 = CGALDotNetGeometry.Numerics.Point3f;
 using POINT4 = CGALDotNetGeometry.Numerics.Point4f;
+using QUATERNION = CGALDotNetGeometry.Numerics.Quaternion3f;
 
 namespace CGALDotNetGeometry.Numerics
 {
@@ -629,6 +630,17 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
+        /// A matrix as a string.
+        /// </summary>
+        public string ToString(string f)
+        {
+            return this[0, 0].ToString(f) + "," + this[0, 1].ToString(f) + "," + this[0, 2].ToString(f) + "," + this[0, 3].ToString(f) + "\n" +
+                    this[1, 0].ToString(f) + "," + this[1, 1].ToString(f) + "," + this[1, 2].ToString(f) + "," + this[1, 3].ToString(f) + "\n" +
+                    this[2, 0].ToString(f) + "," + this[2, 1].ToString(f) + "," + this[2, 2].ToString(f) + "," + this[2, 3].ToString(f) + "\n" +
+                    this[3, 0].ToString(f) + "," + this[3, 1].ToString(f) + "," + this[3, 2].ToString(f) + "," + this[3, 3].ToString(f);
+        }
+
+        /// <summary>
         /// The minor of a matrix. 
         /// </summary>
         private REAL Minor(int r0, int r1, int r2, int c0, int c1, int c2)
@@ -709,7 +721,7 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Create a translation, rotation and scale.
         /// </summary>
-        static public Matrix4x4f TranslateRotateScale(Point3f t, Quaternion3f r, Point3f s)
+        static public Matrix4x4f TranslateRotateScale(POINT3 t, QUATERNION r, POINT3 s)
         {
             Matrix4x4f T = Translate(t);
             Matrix4x4f R = r.ToMatrix4x4f();
@@ -721,7 +733,7 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Create a translation and rotation.
         /// </summary>
-        static public Matrix4x4f TranslateRotate(Point3f t, Quaternion3f r)
+        static public Matrix4x4f TranslateRotate(POINT3 t, QUATERNION r)
         {
             Matrix4x4f T = Translate(t);
             Matrix4x4f R = r.ToMatrix4x4f();
@@ -732,7 +744,7 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Create a translation and scale.
         /// </summary>
-        static public Matrix4x4f TranslateScale(Point3f t, Point3f s)
+        static public Matrix4x4f TranslateScale(POINT3 t, POINT3 s)
         {
             Matrix4x4f T = Translate(t);
             Matrix4x4f S = Scale(s);
@@ -743,7 +755,7 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Create a rotation and scale.
         /// </summary>
-        static public Matrix4x4f RotateScale(Quaternion3f r, Point3f s)
+        static public Matrix4x4f RotateScale(QUATERNION r, POINT3 s)
         {
             Matrix4x4f R = r.ToMatrix4x4f();
             Matrix4x4f S = Scale(s);
@@ -754,7 +766,7 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Create a translation out of a vector.
         /// </summary>
-        static public Matrix4x4f Translate(Point3f v)
+        static public Matrix4x4f Translate(POINT3 v)
         {
             return new Matrix4x4f(	1, 0, 0, v.x,
                                     0, 1, 0, v.y,
@@ -763,13 +775,35 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
+        /// Create a translation out of a vector.
+        /// </summary>
+        static public Matrix4x4f Translate(REAL x, REAL y, REAL z)
+        {
+            return new Matrix4x4f(1, 0, 0, x,
+                                    0, 1, 0, y,
+                                    0, 0, 1, z,
+                                    0, 0, 0, 1);
+        }
+
+        /// <summary>
         /// Create a scale out of a vector.
         /// </summary>
-        static public Matrix4x4f Scale(Point3f v)
+        static public Matrix4x4f Scale(POINT3 v)
         {
-            return new Matrix4x4f(	v.x, 0, 0, 0,
+            return new Matrix4x4f(v.x, 0, 0, 0,
                                     0, v.y, 0, 0,
                                     0, 0, v.z, 0,
+                                    0, 0, 0, 1);
+        }
+
+        /// <summary>
+        /// Create a scale out of a vector.
+        /// </summary>
+        static public Matrix4x4f Scale(REAL x, REAL y, REAL z)
+        {
+            return new Matrix4x4f(x, 0, 0, 0,
+                                    0, y, 0, 0,
+                                    0, 0, z, 0,
                                     0, 0, 0, 1);
         }
 
@@ -834,7 +868,7 @@ namespace CGALDotNetGeometry.Numerics
         /// </summary>
         static public Matrix4x4f Rotate(VECTOR3 euler)
         {
-            return Quaternion3f.FromEuler(euler).ToMatrix4x4f();
+            return QUATERNION.FromEuler(euler).ToMatrix4x4f();
         }
 
         /// <summary>
@@ -873,9 +907,9 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Create a perspective matrix.
         /// </summary>
-        static public Matrix4x4f Perspective(REAL fovy, REAL aspect, REAL zNear, REAL zFar)
+        static public Matrix4x4f Perspective(Radian fovy, REAL aspect, REAL zNear, REAL zFar)
         {
-			REAL f = 1.0f / (REAL)Math.Tan((fovy * Math.PI / 180.0) / 2.0);
+			REAL f = 1.0f / (REAL)Math.Tan(fovy.angle / 2.0);
             return new Matrix4x4f(	f / aspect, 0, 0, 0,
                                     0, f, 0, 0,
                                     0, 0, (zFar + zNear) / (zNear - zFar), (2.0f * zFar * zNear) / (zNear - zFar),
@@ -897,13 +931,22 @@ namespace CGALDotNetGeometry.Numerics
                                     0, 0, 0, 1);
         }
 
-		/// <summary>
-		/// Creates the matrix need to look at target from position.
-		/// </summary>
-		static public Matrix4x4f LookAt(Point3f position, Point3f target, VECTOR3 Up)
+
+        /// <summary>
+        /// Create a ortho matrix.
+        /// </summary>
+        static public Matrix4x4f Ortho(REAL zNear, REAL zFar)
+        {
+            return Scale(1, 1, 1 / (zFar - zNear)) * Translate(0, 0, -zNear);
+        }
+
+        /// <summary>
+        /// Creates the matrix need to look at target from position.
+        /// </summary>
+        static public Matrix4x4f LookAt(POINT3 position, POINT3 target, VECTOR3 Up)
 		{
 			
-			VECTOR3 zaxis = Point3f.Direction(target, position);
+			VECTOR3 zaxis = POINT3.Direction(target, position);
 			VECTOR3 xaxis = VECTOR3.Cross(Up, zaxis).Normalized;
 			VECTOR3 yaxis = VECTOR3.Cross(zaxis, xaxis);
 			

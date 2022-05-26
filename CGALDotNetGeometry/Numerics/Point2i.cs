@@ -89,6 +89,26 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
+        /// A point from the varibles.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Point2i(float x, float y)
+        {
+            this.x = (REAL)x;
+            this.y = (REAL)y;
+        }
+
+        /// <summary>
+        /// A point from the varibles.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Point2i(double x, double y)
+        {
+            this.x = (REAL)x;
+            this.y = (REAL)y;
+        }
+
+        /// <summary>
         /// Array accessor for variables. 
         /// </summary>
         /// <param name="i">The variables index.</param>
@@ -110,26 +130,6 @@ namespace CGALDotNetGeometry.Numerics
                 fixed (REAL* array = &x) { array[i] = value; }
             }
         }
-
-        /// <summary>
-        /// Convert to float vector.
-        /// </summary>
-        public Vector2f Vector2f => new Vector2f(x, y);
-
-        /// <summary>
-        /// Convert to double vector.
-        /// </summary>
-        public Vector2d Vector2d => new Vector2d(x, y);
-
-        /// <summary>
-        /// Convert to float point.
-        /// </summary>
-        public Point2f Point2f => new Point2f(x, y);
-
-        /// <summary>
-        /// Convert to double point.
-        /// </summary>
-        public Point2d Point2d => new Point2d(x, y);
 
         /// <summary>
         /// The sum of the points components.
@@ -303,7 +303,7 @@ namespace CGALDotNetGeometry.Numerics
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static explicit operator Point2i(Point2f v)
         {
-            return new Point2i((REAL)v.x, (REAL)v.y);
+            return new Point2i(v.x, v.y);
         }
 
         /// <summary>
@@ -313,7 +313,27 @@ namespace CGALDotNetGeometry.Numerics
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static explicit operator Point2i(Point2d v)
         {
-            return new Point2i((REAL)v.x, (REAL)v.y);
+            return new Point2i(v.x, v.y);
+        }
+
+        /// <summary>
+        /// Cast from Vector2f to Point2i.
+        /// </summary>
+        /// <param name="v"></param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static explicit operator Point2i(Vector2f v)
+        {
+            return new Point2i(v.x, v.y);
+        }
+
+        /// <summary>
+        /// Cast from Vector2d to Point2i.
+        /// </summary>
+        /// <param name="v"></param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static explicit operator Point2i(Vector2d v)
+        {
+            return new Point2i(v.x, v.y);
         }
 
         /// <summary>
@@ -337,7 +357,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Are these points equal.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object obj)
         {
             if (!(obj is Point2i)) return false;
@@ -348,7 +367,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Are these points equal.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool Equals(Point2i v)
         {
             return this == v;
@@ -357,7 +375,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Vectors hash code. 
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override int GetHashCode()
         {
             unchecked
@@ -372,7 +389,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Vector as a string.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override string ToString()
         {
             return string.Format("{0},{1}", x, y);
@@ -381,7 +397,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Vector as a string.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public string ToString(string f)
         {
             return string.Format("{0},{1}", x.ToString(f), y.ToString(f));
@@ -390,7 +405,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Distance between two points.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static double Distance(Point2i v0, Point2i v1)
         {
             return MathUtil.Sqrt(SqrDistance(v0, v1));
@@ -399,7 +413,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Square distance between two points.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static REAL SqrDistance(Point2i v0, Point2i v1)
         {
             REAL x = v0.x - v1.x;
@@ -408,18 +421,8 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
-        /// Direction between two points.
-        /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Vector2d Direction(Point2i v0, Point2i v1)
-        {
-            return (v1 - v0).Vector2d.Normalized;
-        }
-
-        /// <summary>
         /// The minimum value between s and each component in point.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Point2i Min(Point2i v, REAL s)
         {
             v.x = MathUtil.Min(v.x, s);
@@ -430,7 +433,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// The minimum value between each component in points.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Point2i Min(Point2i v0, Point2i v1)
         {
             v0.x = MathUtil.Min(v0.x, v1.x);
@@ -441,7 +443,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// The maximum value between s and each component in point.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Point2i Max(Point2i v, REAL s)
         {
             v.x = MathUtil.Max(v.x, s);
@@ -452,7 +453,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// The maximum value between each component in points.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Point2i Max(Point2i v0, Point2i v1)
         {
             v0.x = MathUtil.Max(v0.x, v1.x);
@@ -463,7 +463,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Clamp each component to specified min and max.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Point2i Clamp(Point2i v, REAL min, REAL max)
         {
             v.x = MathUtil.Max(MathUtil.Min(v.x, max), min);
@@ -474,7 +473,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Clamp each component to specified min and max.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Point2i Clamp(Point2i v, Point2i min, Point2i max)
         {
             v.x = MathUtil.Max(MathUtil.Min(v.x, max.x), min.x);

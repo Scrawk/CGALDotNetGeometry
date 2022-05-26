@@ -17,7 +17,7 @@ namespace CGALDotNetGeometry.Shapes
     /// </summary>
     [Serializable]
     [StructLayout(LayoutKind.Sequential)]
-    public struct Box3f : IEquatable<Box3f>
+    public struct Box3f : IEquatable<Box3f>, IShape3f
     {
 
         /// <summary>
@@ -57,6 +57,12 @@ namespace CGALDotNetGeometry.Shapes
             Min = min;
             Max = max;
         }
+
+        /// <summary>
+        /// The boxes bounding box is just itself.
+        /// Needed for the IShape interface.
+        /// </summary>
+        public Box3f Bounds => this;
 
         /// <summary>
         /// Does the shape contain no non finite points.
@@ -337,7 +343,7 @@ namespace CGALDotNetGeometry.Shapes
         /// <param name="box">The other box.</param>
         /// <param name="includeBorder">True if on border counts as inside.</param>
         /// <returns>Returns true if this box intersects the other box.</returns>
-        public bool Intersects(Box3f box, bool includeBorder = true)
+        public bool Intersects(Box3f box, bool includeBorder)
         {
             if (includeBorder)
             {
@@ -361,7 +367,7 @@ namespace CGALDotNetGeometry.Shapes
         /// <param name="box">The other box.</param>
         /// <param name="includeBorder">True if on border counts as inside.</param>
         /// <returns>Does the box fully contain the other box.</returns>
-        public bool Contains(Box3f box, bool includeBorder = true)
+        public bool Contains(Box3f box, bool includeBorder)
         {
             if (includeBorder)
             {
@@ -385,7 +391,7 @@ namespace CGALDotNetGeometry.Shapes
         /// <param name="point">The point.</param>
         /// <param name="includeBorder">True if on border counts as inside.</param>
         /// <returns>True if the box contains the point.</returns>
-        public bool Contains(POINT3 point, bool includeBorder = true)
+        public bool Contains(POINT3 point, bool includeBorder)
         {
             if (includeBorder)
             {

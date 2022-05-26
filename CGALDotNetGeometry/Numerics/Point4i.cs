@@ -89,6 +89,30 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
+        /// A point from the varibles.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Point4i(float x, float y, float z, float w)
+        {
+            this.x = (REAL)x;
+            this.y = (REAL)y;
+            this.z = (REAL)z;
+            this.w = (REAL)w;
+        }
+
+        /// <summary>
+        /// A point from the varibles.
+        /// </summary>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public Point4i(double x, double y, double z, double w)
+        {
+            this.x = (REAL)x;
+            this.y = (REAL)y;
+            this.z = (REAL)z;
+            this.w = (REAL)w;
+        }
+
+        /// <summary>
         /// Array accessor for variables. 
         /// </summary>
         /// <param name="i">The variables index.</param>
@@ -110,26 +134,6 @@ namespace CGALDotNetGeometry.Numerics
                 fixed (REAL* array = &x) { array[i] = value; }
             }
         }
-
-        /// <summary>
-        /// Convert to float vector.
-        /// </summary>
-        public Vector4f Vector4f => new Vector4f(x, y, z, y);
-
-        /// <summary>
-        /// Convert to double vector.
-        /// </summary>
-        public Vector4d Vector4d => new Vector4d(x, y, z, y);
-
-        /// <summary>
-        /// Convert to float point.
-        /// </summary>
-        public Point4f Point4f => new Point4f(x, y, z, y);
-
-        /// <summary>
-        /// Convert to double point.
-        /// </summary>
-        public Point4d Point4d => new Point4d(x, y, z, y);
 
         /// <summary>
         /// The sum of the points components.
@@ -303,7 +307,7 @@ namespace CGALDotNetGeometry.Numerics
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static explicit operator Point4i(Point4f v)
         {
-            return new Point4i((REAL)v.x, (REAL)v.y, (REAL)v.z, (REAL)v.w);
+            return new Point4i(v.x, v.y, v.z, v.w);
         }
 
         /// <summary>
@@ -313,7 +317,27 @@ namespace CGALDotNetGeometry.Numerics
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static explicit operator Point4i(Point4d v)
         {
-            return new Point4i((REAL)v.x, (REAL)v.y, (REAL)v.z, (REAL)v.w);
+            return new Point4i(v.x, v.y, v.z, v.w);
+        }
+
+        /// <summary>
+        /// Cast from Vector4f to Point4i.
+        /// </summary>
+        /// <param name="v"></param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static explicit operator Point4i(Vector4f v)
+        {
+            return new Point4i(v.x, v.y, v.z, v.w);
+        }
+
+        /// <summary>
+        /// Cast from Vector4d to Point4i.
+        /// </summary>
+        /// <param name="v"></param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static explicit operator Point4i(Vector4d v)
+        {
+            return new Point4i(v.x, v.y, v.z, v.w);
         }
 
         /// <summary>
@@ -337,7 +361,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Are these points equal.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals(object obj)
         {
             if (!(obj is Point4i)) return false;
@@ -348,7 +371,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Are these points equal.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool Equals(Point4i v)
         {
             return this == v;
@@ -357,7 +379,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Vectors hash code. 
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override int GetHashCode()
         {
             unchecked
@@ -374,7 +395,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Vector as a string.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override string ToString()
         {
             return string.Format("{0},{1},{2},{3}", x, y, z, w);
@@ -383,7 +403,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Vector as a string.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public string ToString(string f)
         {
             return string.Format("{0},{1},{2},{3}", x.ToString(f), y.ToString(f), z.ToString(f), w.ToString(f));
@@ -392,7 +411,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// The minimum value between s and each component in point.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Point4i Min(Point4i v, REAL s)
         {
             v.x = MathUtil.Min(v.x, s);
@@ -405,7 +423,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// The minimum value between each component in points.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Point4i Min(Point4i v0, Point4i v1)
         {
             v0.x = MathUtil.Min(v0.x, v1.x);
@@ -418,7 +435,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// The maximum value between s and each component in point.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Point4i Max(Point4i v, REAL s)
         {
             v.x = MathUtil.Max(v.x, s);
@@ -431,7 +447,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// The maximum value between each component in points.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Point4i Max(Point4i v0, Point4i v1)
         {
             v0.x = MathUtil.Max(v0.x, v1.x);
@@ -444,7 +459,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Clamp each component to specified min and max.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Point4i Clamp(Point4i v, REAL min, REAL max)
         {
             v.x = MathUtil.Max(MathUtil.Min(v.x, max), min);
@@ -457,7 +471,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Clamp each component to specified min and max.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Point4i Clamp(Point4i v, Point4i min, Point4i max)
         {
             v.x = MathUtil.Max(MathUtil.Min(v.x, max.x), min.x);

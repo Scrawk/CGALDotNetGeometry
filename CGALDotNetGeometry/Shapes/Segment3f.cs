@@ -17,7 +17,7 @@ namespace CGALDotNetGeometry.Shapes
     /// </summary>
     [Serializable]
     [StructLayout(LayoutKind.Sequential)]
-    public struct Segment3f : IEquatable<Segment3f>
+    public struct Segment3f : IEquatable<Segment3f>, IShape3f
     {
         /// <summary>
         /// The segments first (aka source) point.
@@ -239,13 +239,36 @@ namespace CGALDotNetGeometry.Shapes
         /// <summary>
         /// Does the point line on the segemnts.
         /// </summary>
-        /// <param name="point"></param>
-        /// <param name="eps"></param>
-        /// <returns></returns>
-        public bool Contains(POINT3 point, REAL eps = MathUtil.EPS_32)
+        /// <param name="p">The point</param>
+        /// <param name="eps">A small value to give the segment some width.</param>
+        /// <returns>Does the point line on the segemnts.</returns>
+        public bool Contains(POINT3 p, REAL eps)
         {
-            var c = Closest(point);
-            return POINT3.AlmostEqual(c, point, eps);
+            var c = Closest(p);
+            return POINT3.AlmostEqual(c, p, eps);
+        }
+
+        /// <summary>
+        /// Does the point line on the segemnts.
+        /// </summary>
+        /// <param name="p">The point</param>
+        /// <param name="includeBorder">NA here. Needed for IShape interface.</param>
+        /// <returns>Does the point line on the segemnts.</returns>
+        public bool Contains(POINT3 p, bool includeBorder)
+        {
+            var c = Closest(p);
+            return POINT3.AlmostEqual(c, p, MathUtil.EPS_32);
+        }
+
+        /// <summary>
+        /// Does the shape intersect the box.
+        /// </summary>
+        /// <param name="box">The box.</param>
+        /// <param name="includeBorder"></param>
+        /// <returns>Does the shape intersect the box.</returns>
+        public bool Intersects(BOX3 box, bool includeBorder)
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>

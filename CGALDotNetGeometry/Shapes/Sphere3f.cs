@@ -6,6 +6,7 @@ using CGALDotNetGeometry.Numerics;
 
 using REAL = System.Single;
 using POINT3 = CGALDotNetGeometry.Numerics.Point3f;
+using VECTOR3 = CGALDotNetGeometry.Numerics.Vector3f;
 using VECTOR4 = CGALDotNetGeometry.Numerics.Vector4f;
 using MATRIX4 = CGALDotNetGeometry.Numerics.Matrix4x4f;
 using BOX3 = CGALDotNetGeometry.Shapes.Box3f;
@@ -17,7 +18,7 @@ namespace CGALDotNetGeometry.Shapes
     /// </summary>
     [Serializable]
     [StructLayout(LayoutKind.Sequential)]
-    public struct Sphere3f : IEquatable<Sphere3f>
+    public struct Sphere3f : IEquatable<Sphere3f>, IShape3f
     {
 
         /// <summary>
@@ -192,7 +193,7 @@ namespace CGALDotNetGeometry.Shapes
         {
             POINT3 d = Center - p;
             if (d.SqrMagnitude <= Radius2) return p;
-            return Center + Radius * d.Vector3f.Normalized;
+            return Center + Radius * ((VECTOR3)d).Normalized;
         }
 
         /// <summary>
@@ -212,7 +213,7 @@ namespace CGALDotNetGeometry.Shapes
         /// <param name="point">The point</param>
         /// <param name="inculdeBorder">Does the border count as being in side the sphere.</param>
         /// <returns>true if sphere contains point</returns>
-        public bool Contains(POINT3 point, bool inculdeBorder = true)
+        public bool Contains(POINT3 point, bool inculdeBorder)
         {
             if (inculdeBorder)
                 return POINT3.SqrDistance(Center, point) <= Radius2;
@@ -226,7 +227,7 @@ namespace CGALDotNetGeometry.Shapes
         /// <param name="box">The box.</param>
         /// <param name="inculdeBorder">Does the border count as being in side the sphere.</param>
         /// <returns>oes the sphere fully contain the box.</returns>
-        public bool Contains(BOX3 box, bool inculdeBorder = true)
+        public bool Contains(BOX3 box, bool inculdeBorder)
         {
             if (!Contains(new POINT3(box.Min.x, box.Min.y, box.Min.z), inculdeBorder)) return false;
             if (!Contains(new POINT3(box.Max.x, box.Min.y, box.Min.z), inculdeBorder)) return false;
@@ -245,7 +246,7 @@ namespace CGALDotNetGeometry.Shapes
         /// <param name="sphere">The other sphere</param>
         /// <param name="inculdeBorder">Does the border count as being in side the sphere.</param>
         /// <returns>True if the spheres intersect</returns>
-        public bool Intersects(Sphere3f sphere, bool inculdeBorder = true)
+        public bool Intersects(Sphere3f sphere, bool inculdeBorder)
         {
             REAL r = Radius + sphere.Radius;
 
@@ -261,7 +262,7 @@ namespace CGALDotNetGeometry.Shapes
         /// <param name="box"></param>
         /// <param name="inculdeBorder">Does the border count as being in side the sphere.</param>
         /// <returns>Does the sphere intersect the box.</returns>
-        public bool Intersects(BOX3 box, bool inculdeBorder = true)
+        public bool Intersects(BOX3 box, bool inculdeBorder)
         {
             var p = box.Closest(Center);
 
@@ -292,10 +293,10 @@ namespace CGALDotNetGeometry.Shapes
             var m = new MATRIX4();
 
             // x, y, z, 1
-            m.SetRow(0, new VECTOR4(p0.Vector3f, 1));
-            m.SetRow(1, new VECTOR4(p1.Vector3f, 1));
-            m.SetRow(2, new VECTOR4(p2.Vector3f, 1));
-            m.SetRow(3, new VECTOR4(p3.Vector3f, 1));
+            m.SetRow(0, new VECTOR4(p0, 1));
+            m.SetRow(1, new VECTOR4(p1, 1));
+            m.SetRow(2, new VECTOR4(p2, 1));
+            m.SetRow(3, new VECTOR4(p3, 1));
             REAL a = m.Determinant;
 
             // size, y, z, 1

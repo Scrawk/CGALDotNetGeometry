@@ -8,6 +8,7 @@ using POINT3 = CGALDotNetGeometry.Numerics.Point3d;
 using VECTOR3 = CGALDotNetGeometry.Numerics.Vector3d;
 using MATRIX3 = CGALDotNetGeometry.Numerics.Matrix3x3d;
 using MATRIX4 = CGALDotNetGeometry.Numerics.Matrix4x4d;
+using BOX3 = CGALDotNetGeometry.Shapes.Box3d;
 
 namespace CGALDotNetGeometry.Shapes
 {
@@ -185,6 +186,53 @@ namespace CGALDotNetGeometry.Shapes
         {
             Position = Position.Rounded(digits);
             Direction = Direction.Rounded(digits);
+        }
+
+        /// <summary>
+        /// Does the ray intersect the box.
+        /// </summary>
+        /// <param name="bounds">The box.</param>
+        /// <returns>Does the ray intersect the box.</returns>
+        public bool Intersects(BOX3 bounds)
+        {
+            return Intersects(bounds, out REAL s, out REAL t);
+        }
+
+        /// <summary>
+        /// Does the ray intersect the box.
+        /// </summary>
+        /// <param name="bounds">The box.</param>
+        /// <param name="s">Intersection point = Position + s * Direction where ray enters box.</param>
+        /// <param name="t">Intersection point = Position + t * Direction where ray exits box.</param>
+        /// <returns>Does the ray intersect the box.</returns>
+        public bool Intersects(BOX3 bounds, out REAL s, out REAL t)
+        {
+            s = 0;
+            t = 0;
+            REAL t0 = 0;
+            REAL t1 = REAL.PositiveInfinity;
+
+            for (int i = 0; i < 3; ++i)
+            {
+                // Update interval for ith bounding box slab
+                REAL invRayDir = 1.0 / Direction[i];
+                REAL tNear = (bounds.Min[i] - Position[i]) * invRayDir;
+                REAL tFar = (bounds.Max[i] - Position[i]) * invRayDir;
+
+                // Update parametric interval from slab intersection t values
+                if (tNear > tFar)
+                    MathUtil.Swap(ref tNear, ref tFar); 
+
+                t0 = tNear > t0 ? tNear : t0;
+                t1 = tFar < t1 ? tFar : t1;
+
+                if (t0 > t1) return false;
+            }
+
+            s = t0;
+            t = t1;
+
+            return true;
         }
     }
 }

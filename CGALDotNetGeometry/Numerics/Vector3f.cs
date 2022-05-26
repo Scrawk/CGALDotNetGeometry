@@ -113,9 +113,9 @@ namespace CGALDotNetGeometry.Numerics
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Vector3f(double x, double y, double z)
         {
-            this.x = (float)x;
-            this.y = (float)y;
-            this.z = (float)z;
+            this.x = (REAL)x;
+            this.y = (REAL)y;
+            this.z = (REAL)z;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -127,7 +127,7 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
-        /// A vector from a 2d vector and the z varible.
+        /// A vector from a 2f vector and the z varible.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Vector3f(Vector2f v, REAL z)
@@ -210,17 +210,6 @@ namespace CGALDotNetGeometry.Numerics
                 if (REAL.IsNaN(v.y)) v.y = 0;
                 if (REAL.IsNaN(v.z)) v.z = 0;
                 return v;
-            }
-        }
-
-        /// <summary>
-        /// Convert the vector to a point.
-        /// </summary>
-        public Point3f Point3f
-        {
-            get
-            {
-                return new Point3f(x, y, z);
             }
         }
 
@@ -431,7 +420,7 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
-        /// Cast from Vector3d to Vector3f.
+        /// Cast from Vector3f to Vector3f.
         /// </summary>
         /// <param name="v"></param>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -441,38 +430,56 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
+        /// Cast from Point3f to Vector3f.
+        /// </summary>
+        /// <param name="v"></param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static implicit operator Vector3f(Point3f v)
+        {
+            return new Vector3f(v.x, v.y, v.z);
+        }
+
+        /// <summary>
+        /// Cast from Point3f to Vector3f.
+        /// </summary>
+        /// <param name="v"></param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static explicit operator Vector3f(Point3d v)
+        {
+            return new Vector3f(v.x, v.y, v.z);
+        }
+
+        /// <summary>
         /// Are these vectors equal.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator ==(Vector3f v1, Vector3f v2)
-		{
-			return (v1.x == v2.x && v1.y == v2.y && v1.z == v2.z);
-		}
+        {
+            return (v1.x == v2.x && v1.y == v2.y && v1.z == v2.z);
+        }
 
         /// <summary>
         /// Are these vectors not equal.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool operator !=(Vector3f v1, Vector3f v2)
-		{
-			return (v1.x != v2.x || v1.y != v2.y || v1.z != v2.z);
-		}
+        {
+            return (v1.x != v2.x || v1.y != v2.y || v1.z != v2.z);
+        }
 
         /// <summary>
         /// Are these vectors equal.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public override bool Equals (object obj)
-		{
-			if(!(obj is Vector3f)) return false;
-			Vector3f v = (Vector3f)obj;
-			return this == v;
-		}
+        public override bool Equals(object obj)
+        {
+            if (!(obj is Vector3f)) return false;
+            Vector3f v = (Vector3f)obj;
+            return this == v;
+        }
 
         /// <summary>
         /// Are these vectors equal given the error.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool AlmostEqual(Vector3f v0, Vector3f v1, REAL eps = MathUtil.EPS_32)
         {
             if (Math.Abs(v0.x - v1.x) > eps) return false;
@@ -484,7 +491,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Are these vectors equal.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool Equals(Vector3f v)
         {
             return this == v;
@@ -493,7 +499,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Vectors hash code. 
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override int GetHashCode()
         {
             unchecked
@@ -509,7 +514,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Compare two vectors by axis.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public int CompareTo(Vector3f other)
         {
             if (x != other.x)
@@ -524,7 +528,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Vector as a string.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override string ToString()
         {
             return string.Format("{0},{1},{2}", x, y, z);
@@ -533,7 +536,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Vector as a string.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public string ToString(string f)
         {
             return string.Format("{0},{1},{2}", x.ToString(f), y.ToString(f), z.ToString(f));
@@ -542,17 +544,23 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// The dot product of two vectors.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static REAL Dot(Vector3f v0, Vector3f v1)
-		{
-			return (v0.x * v1.x + v0.y * v1.y + v0.z * v1.z);
-		}
+        {
+            return (v0.x * v1.x + v0.y * v1.y + v0.z * v1.z);
+        }
 
         /// <summary>
         /// The dot product of vector and point.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static REAL Dot(Vector3f v0, Point3f v1)
+        {
+            return (v0.x * v1.x + v0.y * v1.y + v0.z * v1.z);
+        }
+
+        /// <summary>
+        /// The dot product of two points.
+        /// </summary>
+        public static REAL Dot(Point3f v0, Point3f v1)
         {
             return (v0.x * v1.x + v0.y * v1.y + v0.z * v1.z);
         }
@@ -560,7 +568,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// The abs dot product of two vectors.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static REAL AbsDot(Vector3f v0, Vector3f v1)
         {
             return Math.Abs(v0.x * v1.x + v0.y * v1.y + v0.z * v1.z);
@@ -569,7 +576,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Normalize the vector.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Normalize()
         {
             REAL invLength = MathUtil.SafeInvSqrt(1.0f, x * x + y * y + z * z);
@@ -582,7 +588,6 @@ namespace CGALDotNetGeometry.Numerics
         /// Angle between two vectors in degrees from 0 to 180.
         /// A and b origin treated as 0,0 and do not need to be normalized.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Degree Angle180(Vector3f a, Vector3f b)
         {
             REAL dp = Dot(a, b);
@@ -594,7 +599,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Cross two vectors.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Vector3f Cross(Vector3f v)
         {
             return new Vector3f(y * v.z - z * v.y, z * v.x - x * v.z, x * v.y - y * v.x);
@@ -603,16 +607,14 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Cross two vectors.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector3f Cross(Vector3f v0, Vector3f v1)
-		{
-			return new Vector3f(v0.y * v1.z - v0.z * v1.y, v0.z * v1.x - v0.x * v1.z, v0.x * v1.y - v0.y * v1.x);
-		}
+        {
+            return new Vector3f(v0.y * v1.z - v0.z * v1.y, v0.z * v1.x - v0.x * v1.z, v0.x * v1.y - v0.y * v1.x);
+        }
 
         /// <summary>
         /// Cross a vector andpoint.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector3f Cross(Vector3f v0, Point3f v1)
         {
             return new Vector3f(v0.y * v1.z - v0.z * v1.y, v0.z * v1.x - v0.x * v1.z, v0.x * v1.y - v0.y * v1.x);
@@ -621,7 +623,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Cross two points.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector3f Cross(Point3f v0, Point3f v1)
         {
             return new Vector3f(v0.y * v1.z - v0.z * v1.y, v0.z * v1.x - v0.x * v1.z, v0.x * v1.y - v0.y * v1.x);
@@ -630,7 +631,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Project vector v onto u.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector3f Project(Vector3f u, Vector3f v)
         {
             return Dot(u, v) / u.SqrMagnitude * u;
@@ -639,7 +639,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Given an incident vector i and a normal vector n.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector3f Reflect(Vector3f i, Vector3f n)
         {
             return i - 2 * n * Dot(i, n);
@@ -649,19 +648,31 @@ namespace CGALDotNetGeometry.Numerics
         /// Returns the refraction vector given the incident vector i, 
         /// the normal vector n and the refraction index eta.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static Vector3f Refract(Vector3f i, Vector3f n, REAL eta)
+        /// <param name="i">The incident vector</param>
+        /// <param name="n">The normal vector</param>
+        /// <param name="eta">The refraction index</param>
+        /// <param name="r">The reflected ray.</param>
+        /// <returns>True if there is a solution.</returns>
+        public static bool Refract(Vector3f i, Vector3f n, REAL eta, out Vector3f r)
         {
             REAL ni = Dot(n, i);
             REAL k = 1.0f - eta * eta * (1.0f - ni * ni);
 
-            return (k >= 0) ? eta * i - (eta * ni + MathUtil.SafeSqrt(k)) * n : Zero;
+            if (k > 0)
+            {
+                r = eta * i - (eta * ni + MathUtil.SafeSqrt(k)) * n;
+                return true;
+            }
+            else
+            {
+                r = Zero;
+                return false;
+            }
         }
 
         /// <summary>
         /// Create a set of orthonormal vectors.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static void Orthonormal(ref Vector3f a, ref Vector3f b, out Vector3f c)
         {
             a.Normalize();
@@ -677,7 +688,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// The minimum value between s and each component in vector.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector3f Min(Vector3f v, REAL s)
         {
             v.x = Math.Min(v.x, s);
@@ -689,7 +699,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// The minimum value between each component in vectors.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector3f Min(Vector3f v0, Vector3f v1)
         {
             v0.x = Math.Min(v0.x, v1.x);
@@ -701,7 +710,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// The maximum value between s and each component in vector.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector3f Max(Vector3f v, REAL s)
         {
             v.x = Math.Max(v.x, s);
@@ -713,7 +721,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// The maximum value between each component in vectors.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector3f Max(Vector3f v0, Vector3f v1)
         {
             v0.x = Math.Max(v0.x, v1.x);
@@ -725,7 +732,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Clamp each component to specified min and max.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector3f Clamp(Vector3f v, REAL min, REAL max)
         {
             v.x = Math.Max(Math.Min(v.x, max), min);
@@ -737,7 +743,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Clamp each component to specified min and max.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector3f Clamp(Vector3f v, Vector3f min, Vector3f max)
         {
             v.x = Math.Max(Math.Min(v.x, max.x), min.x);
@@ -749,19 +754,28 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Lerp between two vectors.
         /// </summary>
-        public static Vector3f Lerp(Vector3f from, Vector3f to, REAL t)
+        public static Vector3f Lerp(Vector3f v0, Vector3f v1, REAL a)
         {
-            if (t < 0.0f) t = 0.0f;
-            if (t > 1.0f) t = 1.0f;
-
-            if (t == 0.0f) return from;
-            if (t == 1.0f) return to;
-
-            REAL t1 = 1.0f - t;
+            a = MathUtil.Clamp01(a);
             Vector3f v = new Vector3f();
-            v.x = from.x * t1 + to.x * t;
-            v.y = from.y * t1 + to.y * t;
-            v.z = from.z * t1 + to.z * t;
+            v.x = MathUtil.Lerp(v0.x, v1.x, a);
+            v.y = MathUtil.Lerp(v0.y, v1.y, a);
+            v.z = MathUtil.Lerp(v0.z, v1.z, a);
+            return v;
+        }
+
+        /// <summary>
+        /// BLerp between four vectors.
+        /// </summary>
+        public static Vector3f BLerp(Vector3f v00, Vector3f v10, Vector3f v01, Vector3f v11, REAL a0, REAL a1)
+        {
+            a0 = MathUtil.Clamp01(a0);
+            a1 = MathUtil.Clamp01(a1);
+            Vector3f v = new Vector3f();
+            v.x = MathUtil.BLerp(v00.x, v10.x, v01.x, v11.x, a0, a1);
+            v.y = MathUtil.BLerp(v00.y, v10.y, v01.y, v11.y, a0, a1);
+            v.z = MathUtil.BLerp(v00.z, v10.z, v01.z, v11.z, a0, a1);
+
             return v;
         }
 
@@ -780,13 +794,13 @@ namespace CGALDotNetGeometry.Numerics
             REAL m = from.Magnitude * to.Magnitude;
             if (MathUtil.IsZero(m)) return Vector3f.Zero;
 
-            double theta = Math.Acos(Dot(from, to) / m);
+            REAL theta = MathUtil.Acos(Dot(from, to) / m);
 
             if (theta == 0.0) return to;
 
-            double sinTheta = Math.Sin(theta);
-            REAL st1 = (REAL)(Math.Sin((1.0 - t) * theta) / sinTheta);
-            REAL st = (REAL)(Math.Sin(t * theta) / sinTheta);
+            REAL sinTheta = MathUtil.Sin(theta);
+            REAL st1 = MathUtil.Sin((1.0f - t) * theta) / sinTheta;
+            REAL st = MathUtil.Sin(t * theta) / sinTheta;
 
             Vector3f v = new Vector3f();
             v.x = from.x * st1 + to.x * st;
@@ -800,7 +814,6 @@ namespace CGALDotNetGeometry.Numerics
         /// Round vector.
         /// </summary>
         /// <param name="digits">number of digits to round to.</param>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Vector3f Rounded(int digits)
         {
             REAL x = MathUtil.Round(this.x, digits);
@@ -813,7 +826,6 @@ namespace CGALDotNetGeometry.Numerics
         /// Round the vector.
         /// </summary>
         /// <param name="digits">The number of digits to round to.</param>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Round(int digits)
         {
             x = MathUtil.Round(x, digits);
@@ -842,7 +854,6 @@ namespace CGALDotNetGeometry.Numerics
         }
 
     }
-
 
 }
 

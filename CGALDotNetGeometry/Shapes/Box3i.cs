@@ -61,7 +61,7 @@ namespace CGALDotNetGeometry.Shapes
         /// </summary>
         public Point3d Center
         {
-            get { return (Min + Max).Point3d * 0.5; }
+            get { return ((Point3d)(Min + Max)) * 0.5; }
         }
 
         /// <summary>

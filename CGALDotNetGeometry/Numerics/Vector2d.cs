@@ -177,17 +177,6 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
-        /// Convert the vector to a point.
-        /// </summary>
-        public Point2d Point2d
-        {
-            get
-            {
-                return new Point2d(x, y);
-            }
-        }
-
-        /// <summary>
         /// The sum of the vectors components.
         /// </summary>
         public REAL Sum
@@ -412,6 +401,26 @@ namespace CGALDotNetGeometry.Numerics
         }
 
         /// <summary>
+        /// Cast from Point2f to Vector2f.
+        /// </summary>
+        /// <param name="v"></param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static implicit operator Vector2d(Point2f v)
+        {
+            return new Vector2d(v.x, v.y);
+        }
+
+        /// <summary>
+        /// Cast from Point2d to Vector2f.
+        /// </summary>
+        /// <param name="v"></param>
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static implicit operator Vector2d(Point2d v)
+        {
+            return new Vector2d(v.x, v.y);
+        }
+
+        /// <summary>
         /// Are these vectors equal.
         /// </summary>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -432,7 +441,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Are these vectors equal.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override bool Equals (object obj)
 		{
 			if(!(obj is Vector2d)) return false;
@@ -443,7 +451,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Are these vectors equal given the error.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static bool AlmostEqual(Vector2d v0, Vector2d v1, REAL eps = MathUtil.EPS_64)
 		{
 			if(Math.Abs(v0.x - v1.x) > eps) return false;
@@ -454,7 +461,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Are these vectors equal.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public bool Equals(Vector2d v)
         {
             return this == v;
@@ -463,7 +469,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Vectors hash code. 
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override int GetHashCode()
         {
             unchecked
@@ -478,7 +483,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Compare two vectors by axis.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public int CompareTo(Vector2d other)
         {
             if (x != other.x)
@@ -491,7 +495,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Vector as a string.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public override string ToString()
         {
             return string.Format("{0},{1}", x, y);
@@ -500,7 +503,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Vector as a string.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public string ToString(string f)
         {
             return string.Format("{0},{1}", x.ToString(f), y.ToString(f));
@@ -509,7 +511,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// The dot product of two vectors.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static REAL Dot(Vector2d v0, Vector2d v1)
 		{
 			return (v0.x*v1.x + v0.y*v1.y);
@@ -518,8 +519,15 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// The dot product of vector and point.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static REAL Dot(Vector2d v0, Point2d v1)
+        {
+            return (v0.x * v1.x + v0.y * v1.y);
+        }
+
+        /// <summary>
+        /// The dot product of two pointss.
+        /// </summary>
+        public static REAL Dot(Point2d v0, Point2d v1)
         {
             return (v0.x * v1.x + v0.y * v1.y);
         }
@@ -527,7 +535,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// The abs dot product of two vectors.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static REAL AbsDot(Vector2d v0, Vector2d v1)
         {
             return Math.Abs(v0.x * v1.x + v0.y * v1.y);
@@ -536,7 +543,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Normalize the vector.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Normalize()
 		{
 	    	REAL invLength = MathUtil.SafeInvSqrt(1.0, x*x + y*y);
@@ -547,7 +553,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Cross two vectors.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static REAL Cross(Vector2d v0, Vector2d v1)
         {
             return v0.x * v1.y - v0.y * v1.x;
@@ -556,7 +561,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Project vector v onto u.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector2d Project(Vector2d u, Vector2d v)
         {
             return Dot(u, v) / u.SqrMagnitude * u;
@@ -565,7 +569,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Given an incident vector i and a normal vector n.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector2d Reflect(Vector2d i, Vector2d n)
         {
             return i - 2 * n * Dot(i, n);
@@ -575,7 +578,6 @@ namespace CGALDotNetGeometry.Numerics
         /// Returns the refraction vector given the incident vector i, 
         /// the normal vector n and the refraction index eta.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector2d Refract(Vector2d i, Vector2d n, float eta)
         {
             REAL ni = Dot(n, i);
@@ -588,7 +590,6 @@ namespace CGALDotNetGeometry.Numerics
         /// Angle between two vectors in degrees from 0 to 180.
         /// A and b origin treated as 0,0 and do not need to be normalized.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Degree Angle180(Vector2d a, Vector2d b)
         {
             REAL dp = Dot(a, b);
@@ -602,7 +603,6 @@ namespace CGALDotNetGeometry.Numerics
         /// Angle represents moving ccw from a to b.
         /// A and b origin treated as 0,0 and do not need to be normalized.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Degree Angle360(Vector2d a, Vector2d b)
         {
             REAL angle = MathUtil.Atan2(a.y, a.x) - MathUtil.Atan2(b.y, b.x);
@@ -617,7 +617,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// The minimum value between s and each component in vector.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector2d Min(Vector2d v, REAL s)
         {
             v.x = Math.Min(v.x, s);
@@ -628,7 +627,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// The minimum value between each component in vectors.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector2d Min(Vector2d v0, Vector2d v1)
         {
             v0.x = Math.Min(v0.x, v1.x);
@@ -639,7 +637,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// The maximum value between s and each component in vector.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector2d Max(Vector2d v, REAL s)
         {
             v.x = Math.Max(v.x, s);
@@ -650,7 +647,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// The maximum value between each component in vectors.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector2d Max(Vector2d v0, Vector2d v1)
         {
             v0.x = Math.Max(v0.x, v1.x);
@@ -661,7 +657,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Clamp each component to specified min and max.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector2d Clamp(Vector2d v, REAL min, REAL max)
 		{
 			v.x = Math.Max(Math.Min(v.x, max), min);
@@ -672,7 +667,6 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Clamp each component to specified min and max.
         /// </summary>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Vector2d Clamp(Vector2d v, Vector2d min, Vector2d max)
         {
             v.x = Math.Max(Math.Min(v.x, max.x), min.x);
@@ -683,18 +677,26 @@ namespace CGALDotNetGeometry.Numerics
         /// <summary>
         /// Lerp between two vectors.
         /// </summary>
-        public static Vector2d Lerp(Vector2d from, Vector2d to, REAL t)
+        public static Vector2d Lerp(Vector2d v0, Vector2d v1, REAL a)
         {
-            if (t < 0.0) t = 0.0;
-            if (t > 1.0) t = 1.0;
-
-            if (t == 0.0) return from;
-            if (t == 1.0) return to;
-
-            REAL t1 = 1.0 - t;
+            a = MathUtil.Clamp01(a);
             Vector2d v = new Vector2d();
-            v.x = from.x * t1 + to.x * t;
-            v.y = from.y * t1 + to.y * t;
+            v.x = MathUtil.Lerp(v0.x, v1.x, a);
+            v.y = MathUtil.Lerp(v0.y, v1.y, a);
+            return v;
+        }
+
+        /// <summary>
+        /// BLerp between four vectors.
+        /// </summary>
+        public static Vector2d BLerp(Vector2d v00, Vector2d v10, Vector2d v01, Vector2d v11, REAL a0, REAL a1)
+        {
+            a0 = MathUtil.Clamp01(a0);
+            a1 = MathUtil.Clamp01(a1);
+            Vector2d v = new Vector2d();
+            v.x = MathUtil.BLerp(v00.x, v10.x, v01.x, v11.x, a0, a1);
+            v.y = MathUtil.BLerp(v00.y, v10.y, v01.y, v11.y, a0, a1);
+
             return v;
         }
 
@@ -713,13 +715,13 @@ namespace CGALDotNetGeometry.Numerics
             REAL m = from.Magnitude * to.Magnitude;
             if (MathUtil.IsZero(m)) return Vector2d.Zero;
 
-            REAL theta = Math.Acos(Dot(from, to) / m);
+            REAL theta = MathUtil.Acos(Dot(from, to) / m);
 
             if (theta == 0.0) return to;
 
-            REAL sinTheta = Math.Sin(theta);
-            REAL st1 = Math.Sin((1.0 - t) * theta) / sinTheta;
-            REAL st = Math.Sin(t * theta) / sinTheta;
+            REAL sinTheta = MathUtil.Sin(theta);
+            REAL st1 = MathUtil.Sin((1.0 - t) * theta) / sinTheta;
+            REAL st = MathUtil.Sin(t * theta) / sinTheta;
 
             Vector2d v = new Vector2d();
             v.x = from.x * st1 + to.x * st;
@@ -732,7 +734,6 @@ namespace CGALDotNetGeometry.Numerics
         /// Round vector.
         /// </summary>
         /// <param name="digits">number of digits to round to.</param>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public Vector2d Rounded(int digits)
         {
             REAL x = MathUtil.Round(this.x, digits);
@@ -744,7 +745,6 @@ namespace CGALDotNetGeometry.Numerics
         /// Round the vector.
         /// </summary>
         /// <param name="digits">The number of digits to round to.</param>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void Round(int digits)
         {
             x = MathUtil.Round(x, digits);
